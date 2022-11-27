@@ -1,0 +1,11 @@
+.tab-bar{
+  &__list{
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    align-self: center;
+    @media (min-width: 800px) {
+      position: initial;
+    }
+  }
+}

@@ -1,0 +1,6 @@
+<h1 class="title section__title">{{ 'home.title'|trans }}</h1>
+<div class="section__description">{{ 'home.description'|trans|raw }}</div>
+<div class="homepage__log">
+    <a href="{{ path('app_register') }}" class="btn btn__primary homepage__btn">{{ 'home.sign_in'|trans }}</a>
+    <a href="{{ path('login') }}" class="btn btn__secondary homepage__btn">{{ 'home.login'|trans }}</a>
+</div>

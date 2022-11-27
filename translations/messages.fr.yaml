@@ -1,0 +1,40 @@
+button.validate: Valider
+button.connection: Me connecter
+button.register: M'inscrire
+
+error.verified: Compte non vérifier veuillez regarder vos mail.
+
+form.agree_therms.label: j'accepte les termes et conditions d'utilisation
+form.password.first_label: Mot de passe
+form.password.second_label: Confirmation mot de passe
+
+home.title: ORGAnise toi avec ORGA
+home.description: <p>Invite des convives</p>
+  <p>Décidez de la date ensemble</p>
+  <p>Partagez en temps réel la liste de course</p>
+  <p>Donne leur accès a toute les information importante (lieux, contact, horaire)</p>
+  <p>et bien plus encore</p>
+home.sign_in: Créer mon compte
+home.login: Déjà inscrit
+
+nav.home: accueil
+nav.login: se connecter
+nav.logout: se déconnecter
+nav.register: s'inscrire
+
+reset.pwd.button: Mot de passe oublié
+reset.pwd.check_email.title: Mail envoyé
+reset.pwd.check_email.message: Si vous dispose d'un compte sur l'addresse email renseigner un mail contenant le lien de modification du mot de passe vous a été envoyé.
+  Si vous ne trouvez pas le mail vérifiez vos spam.
+  Ce lien expirera dans
+reset.pwd.check_email.not_receive: Si vous n'avez pas reçu de mail
+reset.pwd.check_email.button: Réessayez
+reset.pwd.email.top:
+  <h1>Bonjour !</h1>
+  <p>Pour réinitialiser votre mot de passe cliquez sur le lien ci-dessous.</p>
+reset.pwd.email.expire: Ce lien expire dans
+reset.pwd.email.bottom: <p>Merci</p>
+reset.pwd.request.title: Mot de passe oublié
+reset.pwd.request.text: Ecrivez votre adresse email un lien vous sera envoyé afin de créer un nouveau mot de passe
+reset.pwd.reset.title: Choix du nouveau mot de passe
+reset.pwd.reset.button: Modifier mon mot de passe

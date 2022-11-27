@@ -1,0 +1,27 @@
+.btn{
+  &__eye {
+    background: center / contain no-repeat url("https://cdn-icons-png.flaticon.com/512/6405/6405909.png");
+    width: 40px;
+    height: 40px;
+    position: absolute;
+    right: 20px;
+    bottom: -1px;
+  }
+  &__primary {
+    color: white;
+    background-color: green;
+    &:hover {
+      color: white;
+      background-color: #034d03;
+    }
+  }
+  &__secondary {
+    color: white;
+    background-color: grey;
+    &:hover {
+      color: white;
+      background-color: #595757;
+    }
+  }
+
+}

@@ -1,0 +1,32 @@
+{% extends 'base.html.twig' %}
+
+{% block javascripts %}
+    {{ parent() }}
+    {{ encore_entry_script_tags('password_checker') }}
+{% endblock %}
+
+{% block title %}Register{% endblock %}
+
+{% block body %}
+    {% for flash_error in app.flashes('verify_email_error') %}
+        <div class="alert alert-danger" role="alert">{{ flash_error }}</div>
+    {% endfor %}
+
+    <h1>Register</h1>
+
+    {{ form_start(registrationForm) }}
+    {{ form_row(registrationForm.email) }}
+    {{ form_row(registrationForm.plainPassword) }}
+    <div>
+        <ul>
+            <li class="form__clue"><span data-clue="lowercase" class="icon__cross">✖</span> au moins une lettre minuscule</li>
+            <li class="form__clue"><span data-clue="uppercase" class="icon__cross">✖</span> au moins une lettre majuscule</li>
+            <li class="form__clue"><span data-clue="int" class="icon__cross">✖</span> au moins un chiffre</li>
+            <li class="form__clue"><span data-clue="sp" class="icon__cross">✖</span> au moins une charactère spèciale</li>
+            <li class="form__clue"><span data-clue="length" class="icon__cross">✖</span> plus de 10 charactère</li>
+        </ul>
+    </div>
+    {{ form_row(registrationForm.agreeTerms) }}
+    <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
+    {{ form_end(registrationForm) }}
+{% endblock %}

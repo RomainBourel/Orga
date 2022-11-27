@@ -1,0 +1,11 @@
+<nav class="tab-bar">
+    <ul class="tab-bar__list d-flex flex-row justify-content-around">
+        <li><a href="{{ path('home') }}">{{ 'nav.home'|trans }}</a></li>
+        {% if app.user %}
+            <li><a href="{{ path('logout') }}">{{ 'nav.logout'|trans }}</a></li>
+        {% else %}
+            <li><a href="{{ path('app_register') }}">{{ 'nav.register'|trans }}</a></li>
+            <li><a href="{{ path('login') }}">{{ 'nav.login'|trans }}</a></li>
+        {% endif %}
+    </ul>
+</nav>

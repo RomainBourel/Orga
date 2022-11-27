@@ -1,0 +1,7 @@
+{{ 'reset.pwd.email.top'|trans|raw }}
+
+<a href="{{ url('app_reset_password', {token: resetToken.token}) }}">{{ url('app_reset_password', {token: resetToken.token}) }}</a>
+
+<p>{{ 'reset.pwd.email.expire'|trans }} {{ resetToken.expirationMessageKey|trans(resetToken.expirationMessageData, 'ResetPasswordBundle') }}.</p>
+
+{{ 'reset.pwd.email.bottom'|trans|raw }}

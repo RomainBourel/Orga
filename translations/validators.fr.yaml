@@ -1,0 +1,8 @@
+user.email: Cet email est déjà utilisé
+user.agree_therms: Vous devez agréer à nos term et condition
+user.password.not_blank: Merci de saisir un mot de passe
+user.password.min_length: Merci de saisir un mot de passe d'au moins {{ limit }} caractères
+user.password.regex_sp: Votre mot de passe doit comporté un charactère spécial
+user.password.regex_int: Votre mot de passe doit comporté un chiffre
+user.password.regex_lowercase: Votre mot de passe doit comporté une lettre minuscule
+user.password.regex_uppercase: Votre mot de passe doit comporté une lettre majuscule

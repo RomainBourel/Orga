@@ -1,0 +1,16 @@
+html {
+  display: flex;
+  min-height: 100vh;
+}
+body{
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+.body {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  width: 100%;
+}
