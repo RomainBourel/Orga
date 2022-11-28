@@ -9,9 +9,8 @@ function addToggleTypeButton(input) {
 }
 
 function makeEyeButton() {
-    const eyeButton = document.createElement('button');
-    eyeButton.type = 'button';
-    eyeButton.classList.add('btn', 'btn__eye');
+    const eyeButton = document.createElement('div');
+    eyeButton.innerHTML = document.querySelector('#eye-template').innerHTML;
     return eyeButton;
 }
 

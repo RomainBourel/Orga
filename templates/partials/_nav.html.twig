@@ -1,11 +1,32 @@
 <nav class="tab-bar">
     <ul class="tab-bar__list d-flex flex-row justify-content-around">
-        <li><a href="{{ path('home') }}">{{ 'nav.home'|trans }}</a></li>
+        <li class="tab-bar__list__link {% if app.request.get('_route') is same as 'home' %}tab-bar__list__link--active{% endif %}"><a href="{{ path('home') }}">
+                <div class="d-flex flex-column align-items-center">
+                    <p><i class="fa-solid fa-house-chimney"></i></p>
+                    <p>{{ 'nav.home'|trans }}</p>
+                </div>
+
+            </a></li>
         {% if app.user %}
-            <li><a href="{{ path('logout') }}">{{ 'nav.logout'|trans }}</a></li>
+            <li class="tab-bar__list__link"><a href="{{ path('logout') }}">
+                    <div class="d-flex flex-column align-items-center">
+                        <p><i class="fa-solid fa-right-from-bracket"></i></p>
+                        <p>{{ 'nav.logout'|trans }}</p>
+                    </div>
+                </a></li>
         {% else %}
-            <li><a href="{{ path('app_register') }}">{{ 'nav.register'|trans }}</a></li>
-            <li><a href="{{ path('login') }}">{{ 'nav.login'|trans }}</a></li>
+            <li class="tab-bar__list__link {% if app.request.get('_route') is same as 'app_register' %}tab-bar__list__link--active{% endif %}"><a href="{{ path('app_register') }}">
+                    <div class="d-flex flex-column align-items-center">
+                        <p><i class="fa-solid fa-file"></i></p>
+                        <p>{{ 'nav.register'|trans }}</p>
+                    </div>
+                </a></li>
+            <li class="tab-bar__list__link {% if app.request.get('_route') is same as 'login' %}tab-bar__list__link--active{% endif %}"><a href="{{ path('login') }}">
+                    <div class="d-flex flex-column align-items-center">
+                        <p><i class="fa-solid fa-right-to-bracket"></i></p>
+                        <p>{{ 'nav.login'|trans }}</p>
+                    </div>
+                </a></li>
         {% endif %}
     </ul>
 </nav>

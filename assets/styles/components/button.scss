@@ -1,27 +1,53 @@
 .btn{
+  padding: 0.5rem;
+  margin: 1rem;
+  font-size: 1.5rem;
   &__eye {
-    background: center / contain no-repeat url("https://cdn-icons-png.flaticon.com/512/6405/6405909.png");
-    width: 40px;
-    height: 40px;
+    width: 2rem;
+    height: 2rem;
     position: absolute;
-    right: 20px;
-    bottom: -1px;
+    right: 1.8rem;
+    bottom: 0;
+    &--login {
+      right: 0.7rem;
+    }
   }
   &__primary {
-    color: white;
-    background-color: green;
+    background-color: $clr-btn-primary;
+    @include text-clr($clr-btn-primary);
     &:hover {
-      color: white;
-      background-color: #034d03;
+      @include hover-clr($clr-btn-primary);
     }
   }
   &__secondary {
-    color: white;
-    background-color: grey;
+    background-color: $clr-btn-secondary;
+    @include text-clr($clr-btn-secondary);
+
     &:hover {
-      color: white;
-      background-color: #595757;
+      @include hover-clr($clr-btn-secondary);
     }
   }
+  &__tertiary {
+    background-color: $clr-btn-tertiary;
+    @include text-clr($clr-btn-tertiary);
 
+    &:hover {
+      @include hover-clr($clr-btn-tertiary);
+    }
+  }
+  &__delete {
+    background-color: $clr-btn-delete;
+    @include text-clr($clr-btn-delete);
+
+    &:hover {
+      @include hover-clr($clr-btn-delete);
+    }
+  }
+  &__edit {
+    background-color: $clr-btn-edit;
+    @include text-clr($clr-btn-edit);
+    &:hover {
+      @include hover-clr($clr-btn-edit);
+    }
+  }
 }

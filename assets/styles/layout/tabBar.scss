@@ -1,11 +1,21 @@
-.tab-bar{
-  &__list{
+.tab-bar {
+  &__list {
     position: fixed;
     bottom: 0;
     width: 100%;
     align-self: center;
-    @media (min-width: 800px) {
+    border-top: solid $clr-line 5px;
+    @media (min-width: 1000px) {
       position: initial;
+      border-top: none;
+      border-bottom: solid $clr-line 2px;
+    }
+    &__link {
+      margin: 10px;
+
+      &--active {
+        text-decoration: underline;
+      }
     }
   }
 }

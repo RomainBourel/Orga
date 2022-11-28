@@ -23,8 +23,14 @@
         {# If you want to control the URL the user is redirected to on success
        <input type="hidden" name="_target_path" value="/account"> #}
         <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
-        <button type="submit" class="btn btn-success">{{ 'button.connection'|trans}}</button>
+        <button type="submit" class="btn btn__primary">{{ 'button.connection'|trans}}</button>
     </form>
-    <a href="{{ path('app_register') }}" class="btn btn-primary">{{ 'button.register'|trans }}</a>
-    <a href="{{ path('app_forgot_password_request') }}" class="btn btn-secondary">{{ 'reset.pwd.button'|trans }}</a>
+    <div class="d-flex flex-row justify-content-between">
+        <a href="{{ path('app_register') }}" class="btn btn__secondary">{{ 'button.register'|trans }}</a>
+        <a href="{{ path('app_forgot_password_request') }}" class="btn btn__tertiary">{{ 'reset.pwd.button'|trans }}</a>
+    </div>
+
+    <template id="eye-template">
+        <button class="btn btn__eye btn__eye--login" type="button"><i class="fa-solid fa-eye"></i></button>
+    </template>
 {% endblock %}

@@ -29,4 +29,7 @@
     {{ form_row(registrationForm.agreeTerms) }}
     <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
     {{ form_end(registrationForm) }}
+    <template id="eye-template">
+        <button class="btn btn__eye" type="button"><i class="fa-solid fa-eye"></i></button>
+    </template>
 {% endblock %}
