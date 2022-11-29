@@ -14,6 +14,12 @@
                         <p>{{ 'nav.party.create'|trans }}</p>
                     </div>
                 </a></li>
+            <li class="tab-bar__list__link {% if app.request.get('_route') is same as 'user' %}tab-bar__list__link--active{% endif %}"><a href="{{ path('user') }}">
+                    <div class="d-flex flex-column align-items-center">
+                        <p><i class="fa-solid fa-user"></i></p>
+                        <p>{{ 'nav.profil'|trans }}</p>
+                    </div>
+                </a></li>
             <li class="tab-bar__list__link"><a href="{{ path('logout') }}">
                     <div class="d-flex flex-column align-items-center">
                         <p><i class="fa-solid fa-right-from-bracket"></i></p>

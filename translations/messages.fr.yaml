@@ -21,6 +21,7 @@ nav.home: accueil
 nav.login: se connecter
 nav.logout: se déconnecter
 nav.party.create: organiser une événement
+nav.profil: profil
 nav.register: s'inscrire
 
 reset.pwd.button: Mot de passe oublié

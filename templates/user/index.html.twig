@@ -1,0 +1,14 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello UserController!{% endblock %}
+
+{% block body %}
+    <h1>Profil</h1>
+    <p>{{ user.email }}</p>
+    <p>adresse</p>
+    {% for address in user.locations %}
+        <p>{{ address.name }} {% if address.principal %}principal{% endif %}</p>
+        <p>{{ address.city }}</p>
+    {% endfor %}
+    <a href="{{ path('location_create') }}" class="btn btn__primary">ajouter une adresse</a>
+{% endblock %}

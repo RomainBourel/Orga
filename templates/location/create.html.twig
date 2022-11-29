@@ -1,0 +1,12 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ parent() }}-création{% endblock %}
+
+{% block body %}
+    <h1 class="title section__title">mon form</h1>
+    {{ form_start(form) }}
+    {{ form_errors(form) }}
+    {{form_rest(form) }}
+    <button class="btn__primary btn" type="submit">Créer</button>
+    {{ form_end(form) }}
+{% endblock %}

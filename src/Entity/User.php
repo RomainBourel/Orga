@@ -40,10 +40,14 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\ManyToMany(targetEntity: Party::class, mappedBy: 'users')]
     private Collection $parties;
 
+    #[ORM\OneToMany(mappedBy: 'user', targetEntity: Location::class, orphanRemoval: true)]
+    private Collection $locations;
+
     public function __construct()
     {
         $this->createdParties = new ArrayCollection();
         $this->parties = new ArrayCollection();
+        $this->locations = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -180,6 +184,36 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     {
         if ($this->parties->removeElement($party)) {
             $party->removeUser($this);
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Location>
+     */
+    public function getLocations(): Collection
+    {
+        return $this->locations;
+    }
+
+    public function addLocation(Location $location): self
+    {
+        if (!$this->locations->contains($location)) {
+            $this->locations->add($location);
+            $location->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeLocation(Location $location): self
+    {
+        if ($this->locations->removeElement($location)) {
+            // set the owning side to null (unless already changed)
+            if ($location->getUser() === $this) {
+                $location->setUser(null);
+            }
         }
 
         return $this;
