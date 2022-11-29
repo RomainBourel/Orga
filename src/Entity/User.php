@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\UserRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
@@ -31,6 +33,18 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     #[ORM\Column(type: 'boolean')]
     private $isVerified = false;
+
+    #[ORM\OneToMany(mappedBy: 'creator', targetEntity: Party::class, orphanRemoval: true)]
+    private Collection $createdParties;
+
+    #[ORM\ManyToMany(targetEntity: Party::class, mappedBy: 'users')]
+    private Collection $parties;
+
+    public function __construct()
+    {
+        $this->createdParties = new ArrayCollection();
+        $this->parties = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -110,6 +124,63 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function setIsVerified(bool $isVerified): self
     {
         $this->isVerified = $isVerified;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Party>
+     */
+    public function getCreatedParties(): Collection
+    {
+        return $this->createdParties;
+    }
+
+    public function addCreatedParty(Party $createdParty): self
+    {
+        if (!$this->createdParties->contains($createdParty)) {
+            $this->createdParties->add($createdParty);
+            $createdParty->setCreator($this);
+        }
+
+        return $this;
+    }
+
+    public function removeCreatedParty(Party $createdParty): self
+    {
+        if ($this->createdParties->removeElement($createdParty)) {
+            // set the owning side to null (unless already changed)
+            if ($createdParty->getCreator() === $this) {
+                $createdParty->setCreator(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Party>
+     */
+    public function getParties(): Collection
+    {
+        return $this->parties;
+    }
+
+    public function addParty(Party $party): self
+    {
+        if (!$this->parties->contains($party)) {
+            $this->parties->add($party);
+            $party->addUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeParty(Party $party): self
+    {
+        if ($this->parties->removeElement($party)) {
+            $party->removeUser($this);
+        }
 
         return $this;
     }

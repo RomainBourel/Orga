@@ -8,6 +8,12 @@
 
             </a></li>
         {% if app.user %}
+            <li class="tab-bar__list__link {% if app.request.get('_route') is same as 'party_create' %}tab-bar__list__link--active{% endif %}"><a href="{{ path('party_create') }}">
+                    <div class="d-flex flex-column align-items-center">
+                        <p><i class="fa-solid fa-plus"></i></p>
+                        <p>{{ 'nav.party.create'|trans }}</p>
+                    </div>
+                </a></li>
             <li class="tab-bar__list__link"><a href="{{ path('logout') }}">
                     <div class="d-flex flex-column align-items-center">
                         <p><i class="fa-solid fa-right-from-bracket"></i></p>
