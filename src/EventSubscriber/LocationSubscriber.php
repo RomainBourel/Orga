@@ -5,45 +5,45 @@ namespace App\EventSubscriber;
 use App\Entity\Location;
 use App\Repository\LocationRepository;
 use Doctrine\Bundle\DoctrineBundle\EventSubscriber\EventSubscriberInterface;
-use Doctrine\ORM\Event\LifecycleEventArgs;
+use Doctrine\ORM\Event\OnFlushEventArgs;
 use Doctrine\ORM\Events;
 
 
 class LocationSubscriber implements EventSubscriberInterface
 {
 
-    public function __construct(private LocationRepository $locationRepository)
-    {
-    }
+    public function __construct(
+        private LocationRepository $locationRepository,
+    ){}
 
     public function getSubscribedEvents(): array
     {
         return [
-            Events::prePersist,
-            Events::preUpdate,
+            Events::onFlush,
         ];
     }
 
-    public function prePersist(LifecycleEventArgs $args): void
+    public function onFlush(OnFlushEventArgs $args): void
     {
-        $this->logActivity('persist', $args);
-    }
+        $em = $args->getObjectManager();
+        $uow = $em->getUnitOfWork();
 
-    public function preUpdate(LifecycleEventArgs $args): void
-    {
-        $this->logActivity('update', $args);
-    }
-
-    private function logActivity(string $action, LifecycleEventArgs $args): void
-    {
-        $entity = $args->getObject();
-
-        if (!$entity instanceof Location) {
-            return;
+        foreach ($uow->getScheduledEntityUpdates() as $entity) {
+            if ($entity instanceof Location) {
+                if ($entity->isPrincipal()) {
+                    $ActualPrincipalEntity = $this->locationRepository->findOneByPrincipal(true)->setPrincipal(false);
+                    $uow->computeChangeSet($em->getClassMetadata(Location::class), $ActualPrincipalEntity);
+                }
+            }
         }
-
-        if (in_array($action, ['persist', 'update']) && $entity->isPrincipal()) {
-            $this->locationRepository->findOneByPrincipal(true)->setPrincipal(false);
+        foreach ($uow->getScheduledEntityInsertions() as $entity) {
+            if ($entity instanceof Location) {
+                if ($entity->isPrincipal()) {
+                    $ActualPrincipalEntity = $this->locationRepository->findOneByPrincipal(true)->setPrincipal(false);
+                    $uow->computeChangeSet($em->getClassMetadata(Location::class), $ActualPrincipalEntity);
+                }
+            }
         }
     }
+
 }
