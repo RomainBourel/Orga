@@ -34,4 +34,27 @@
     </tbody>
 </table>
 
+<table class="table table-striped">
+    <thead>
+    <tr>
+        <th scope="col">Nom</th>
+        <th scope="col">image</th>
+    </tr>
+    </thead>
+    <tbody>
+    {% for product in user.products %}
+        <tr>
+            <th scope="row">{{ product.name }}</th>
+            <td>
+                <img
+                        class="table__image"
+                        src="{% if product.picture is defined and product.picture is not null %}{{ asset('uploads/'~product.picture) }}{% endif %}"
+                        alt="{{ product.name }} "
+                >
+            </td>
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>
+
 <a href="{{ path('party_create') }}" class="btn btn__primary">{{ 'button.add.party'|trans}}</a>

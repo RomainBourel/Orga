@@ -21,6 +21,7 @@ nav.home: accueil
 nav.login: se connecter
 nav.logout: se déconnecter
 nav.party.create: organiser une événement
+nav.product.create: créer un objet
 nav.profil: profil
 nav.register: s'inscrire
 
