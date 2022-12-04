@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\LocationRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: LocationRepository::class)]
@@ -38,6 +40,14 @@ class Location
 
     #[ORM\Column]
     private ?bool $principal = null;
+
+    #[ORM\OneToMany(mappedBy: 'location', targetEntity: Party::class)]
+    private Collection $parties;
+
+    public function __construct()
+    {
+        $this->parties = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -139,6 +149,36 @@ class Location
     public function setPrincipal(bool $principal): self
     {
         $this->principal = $principal;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Party>
+     */
+    public function getParties(): Collection
+    {
+        return $this->parties;
+    }
+
+    public function addParty(Party $party): self
+    {
+        if (!$this->parties->contains($party)) {
+            $this->parties->add($party);
+            $party->setLocation($this);
+        }
+
+        return $this;
+    }
+
+    public function removeParty(Party $party): self
+    {
+        if ($this->parties->removeElement($party)) {
+            // set the owning side to null (unless already changed)
+            if ($party->getLocation() === $this) {
+                $party->setLocation(null);
+            }
+        }
 
         return $this;
     }

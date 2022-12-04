@@ -1,4 +1,5 @@
-<h1>Bienvenue dans ton espace {{ app.user.email }}</h1>
+{% set user = app.user %}
+<h1>Bienvenue dans ton espace {{ user.email }}</h1>
 
 {#<div class="flex-table">#}
 {#    <h3 class="flex-table__title">Mes événement à venir</h3>#}
@@ -14,6 +15,23 @@
 {#        </div>#}
 {#    {% endfor %}#}
 {#</div>#}
+<table class="table table-striped">
+    <thead>
+    <tr>
+        <th scope="col">Nom</th>
+        <th scope="col">adresse</th>
+        <th scope="col">ville</th>
+    </tr>
+    </thead>
+    <tbody>
+    {% for party in user.parties %}
+        <tr {% if party.creator is same as user %}class="bg-success"{% endif %}>
+            <th scope="row">{{ party.name }}</th>
+            <td>{{ party.location.address }}</td>
+            <td>{{ party.location.city }}</td>
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>
 
-
-{#<a href="{{ path('party_create') }}" class="btn btn__primary">{{ 'button.add.party'|trans}}</a>#}
+<a href="{{ path('party_create') }}" class="btn btn__primary">{{ 'button.add.party'|trans}}</a>

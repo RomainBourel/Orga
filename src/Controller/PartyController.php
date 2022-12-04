@@ -31,7 +31,6 @@ class PartyController extends AbstractController
 
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
-            //if you need setter use this example :
             $party->setCreator($this->getUser());
             $em->persist($party);
             $em->flush();

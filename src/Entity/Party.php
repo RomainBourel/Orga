@@ -7,6 +7,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Security\Core\Security;
 
 #[ORM\Entity(repositoryClass: PartyRepository::class)]
 #[ORM\HasLifecycleCallbacks]
@@ -35,6 +36,9 @@ class Party
 
     #[ORM\ManyToMany(targetEntity: User::class, inversedBy: 'parties')]
     private Collection $users;
+
+    #[ORM\ManyToOne(inversedBy: 'parties')]
+    private ?Location $location = null;
 
     public function __construct()
     {
@@ -105,6 +109,7 @@ class Party
     public function setCreator(?User $creator): self
     {
         $this->creator = $creator;
+        $this->addUser($creator);
 
         return $this;
     }
@@ -129,6 +134,18 @@ class Party
     public function removeUser(User $user): self
     {
         $this->users->removeElement($user);
+
+        return $this;
+    }
+
+    public function getLocation(): ?Location
+    {
+        return $this->location;
+    }
+
+    public function setLocation(?Location $location): self
+    {
+        $this->location = $location;
 
         return $this;
     }
