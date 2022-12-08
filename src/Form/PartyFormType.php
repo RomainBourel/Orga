@@ -4,7 +4,11 @@ namespace App\Form;
 
 use App\Entity\Location;
 use App\Entity\Party;
+use App\Entity\Product;
+use App\Entity\ProductParty;
 use App\Repository\LocationRepository;
+use App\Repository\ProductPartyRepository;
+use App\Repository\ProductRepository;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\ChoiceList\ChoiceList;
@@ -27,9 +31,21 @@ class PartyFormType extends AbstractType
                     return $qb->createQueryBuilder('l')
                         ->addOrderBy('l.principal', 'DESC',)
                         ->addOrderBy('l.name', 'ASC')
-
                     ;
                 },
+            ])
+            ->add('productsParty', CollectionType::class, [
+                'entry_type' => ProductPartyFormType::class,
+                'label' => false,
+                'allow_add' => true,
+                'by_reference' => false,
+            ])
+            ->add('product', CollectionType::class, [
+                'mapped' => false,
+                'entry_type' => ProductFormType::class,
+                'label' => false,
+                'allow_add' => true,
+                'by_reference' => false,
             ])
         ;
     }

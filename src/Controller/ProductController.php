@@ -12,7 +12,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\String\Slugger\SluggerInterface;
-
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 class ProductController extends AbstractController
 {
     #[Route('/product', name: 'product')]
@@ -57,10 +57,34 @@ class ProductController extends AbstractController
             $product->setSlug($slug);
             $em->persist($product);
             $em->flush();
+            if ($request->isXmlHttpRequest()) {
+                return $this->json([
+                    'code' => 200,
+                    'response' => $product->getId(),
+                ]);
+            }
             return $this->redirectToRoute('home');
+        }
+        if ($request->isXmlHttpRequest()) {
+            return $this->renderForm('product/create_form.html.twig', [
+            'form' => $form,
+        ]);
         }
         return $this->renderForm('product/create.html.twig', [
             'form' => $form,
+        ]);
+    }
+
+    #[isGranted('ROLE_USER')]
+    #[Route('/product/search', name: 'product_search')]
+    public function search(Request $request, EntityManagerInterface $em, ProductRepository $productRepository): Response
+    {
+        $response = $this->render('product/search_proposition.html.twig', [
+            'products' => $productRepository->findWith($request->get('q')),
+        ]);
+
+        return $this->json([
+            'response' => $response,
         ]);
     }
 }

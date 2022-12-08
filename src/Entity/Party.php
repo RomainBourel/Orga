@@ -40,9 +40,13 @@ class Party
     #[ORM\ManyToOne(inversedBy: 'parties')]
     private ?Location $location = null;
 
+    #[ORM\OneToMany(mappedBy: 'party', targetEntity: ProductParty::class, cascade:["persist"], orphanRemoval: true )]
+    private Collection $productsParty;
+
     public function __construct()
     {
         $this->users = new ArrayCollection();
+        $this->productsParty = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -146,6 +150,36 @@ class Party
     public function setLocation(?Location $location): self
     {
         $this->location = $location;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, ProductParty>
+     */
+    public function getProductsParty(): Collection
+    {
+        return $this->productsParty;
+    }
+
+    public function addProductsParty(ProductParty $productsParty): self
+    {
+        if (!$this->productsParty->contains($productsParty)) {
+            $this->productsParty->add($productsParty);
+            $productsParty->setParty($this);
+        }
+
+        return $this;
+    }
+
+    public function removeProductsParty(ProductParty $productsParty): self
+    {
+        if ($this->productsParty->removeElement($productsParty)) {
+            // set the owning side to null (unless already changed)
+            if ($productsParty->getParty() === $this) {
+                $productsParty->setParty(null);
+            }
+        }
 
         return $this;
     }

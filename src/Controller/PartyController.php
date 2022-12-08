@@ -9,6 +9,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 
 class PartyController extends AbstractController
 {
@@ -20,7 +21,7 @@ class PartyController extends AbstractController
         ]);
     }
 
-    #[isGranted('ROLE_USER')]
+    #[isGranted('ROLE_ADMIN')]
     #[Route('/party/create', name: 'party_create')]
     public function create(Request $request, EntityManagerInterface $em): Response
     {
