@@ -67,8 +67,6 @@ class ProductRepository extends ServiceEntityRepository
     public function findWith(string $value): array
     {
         return $this->createQueryBuilder('p')
-            ->select('p.name, p.id, p.picture, u.shortname')
-            ->join('p.unity', 'u')
             ->andWhere('p.name like :val')
             ->setParameter('val', '%'.$value.'%')
             ->setMaxResults('3')

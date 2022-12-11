@@ -60,7 +60,10 @@ class ProductController extends AbstractController
             if ($request->isXmlHttpRequest()) {
                 return $this->json([
                     'code' => 200,
-                    'response' => $product->getId(),
+                    'response' => [
+                        'id' => $product->getId(),
+                        'name' => $product->getName(),
+                    ],
                 ]);
             }
             return $this->redirectToRoute('home');
@@ -79,10 +82,18 @@ class ProductController extends AbstractController
     #[Route('/product/search', name: 'product_search')]
     public function search(Request $request, EntityManagerInterface $em, ProductRepository $productRepository): Response
     {
+        if ($id = $request->get('id')) {
+            $response = $this->render('product/search_proposition.html.twig', [
+                'products' => $productRepository->findById($id),
+            ]);
+            return $this->json([
+                'response' => $response,
+            ]);
+        }
+
         $response = $this->render('product/search_proposition.html.twig', [
             'products' => $productRepository->findWith($request->get('q')),
         ]);
-
         return $this->json([
             'response' => $response,
         ]);

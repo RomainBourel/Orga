@@ -1,7 +1,7 @@
 <table class="table table-striped">
     <tbody>
     {% for product in products %}
-        <tr id="search-product-{{ product.id }}">
+        <tr id="search-product-{{ product.id }}" data-id="{{ product.id }}">
             <th scope="row">{{ product.name }}</th>
             <td>
                 <img
@@ -14,8 +14,8 @@
             </td>
             <td>
                 <button id="remove-product-{{ product.id }}" type="button" data-product-id="{{ product.id }}">-</button>
-                <p><span id="nb-product-{{ product.id }}">0</span> {{ product.shortname }}</p>
-                <button id="add-product-{{ product.id }}" type="button" data-product-id="{{ product.id }}">+</button>
+                <p><span id="nb-product-{{ product.id }}">0</span> {{ product.unity.shortname }}</p>
+                <button id="add-product-{{ product.id }}" type="button" data-product-id="{{ product.id }}" data-product-name="{{ product.name }}">+</button>
             </td>
         </tr>
     {% endfor %}

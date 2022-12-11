@@ -22,6 +22,8 @@
             type="button"
             data-url="{{ path('product_create') }}"
             data-template='{{ form_widget(form.product.vars.prototype)|raw }}'
+            data-toggle="modal"
+            data-target="#modal"
         >Ajouter un produit</button>
     </div>
     <div id="product-proposition-table"></div>
@@ -29,5 +31,6 @@
 
     <button class="btn-dark btn" type="submit">Créer</button>
     {{ form_end(form) }}
-    <div id="new-product-form" data-url="{{ path('product_create') }}"></div>
+    <div id="new-product-form" class="modal" data-modal="true" data-url="{{ path('product_create') }}"></div>
+    {% include "partials/_modal.html.twig" %}
 {% endblock %}

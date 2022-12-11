@@ -8,6 +8,7 @@ use App\Repository\ProductRepository;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\HiddenType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -16,12 +17,11 @@ class ProductPartyFormType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('sharing')
             ->add('quantity')
+            ->add('sharing')
             ->add('product', EntityType::class, [
                 'class' => Product::class,
                 'choice_label' => 'name',
-                'disabled' => true,
                 'query_builder' => function (ProductRepository $qb) {
                     return $qb->createQueryBuilder('p')
                         ->orderBy('p.name', 'ASC')

@@ -50,6 +50,8 @@
                         class="table__image"
                         src="{% if product.picture is defined and product.picture is not null %}{{ asset('uploads/'~product.picture) }}{% endif %}"
                         alt="{{ product.name }} "
+                        width="70px"
+                        height="70px"
                 >
             </td>
         </tr>
