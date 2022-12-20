@@ -22,9 +22,14 @@ class PartyFormType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('name')
-            ->add('description')
+            ->add('name', null, [
+                'label' => "Nom de l'évènement",
+            ])
+            ->add('description', null, [
+                'label' => "Information complèmentaire",
+            ])
             ->add('location', EntityType::class, [
+                'label' => "Adresse",
                 'class' => Location::class,
                 'choice_label' => 'name',
                 'query_builder' => function (LocationRepository $qb) {

@@ -43,6 +43,9 @@ class Party
     #[ORM\OneToMany(mappedBy: 'party', targetEntity: ProductParty::class, cascade:["persist"], orphanRemoval: true )]
     private Collection $productsParty;
 
+    #[ORM\Column(length: 255)]
+    private ?string $slug = null;
+
     public function __construct()
     {
         $this->users = new ArrayCollection();
@@ -180,6 +183,18 @@ class Party
                 $productsParty->setParty(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getSlug(): ?string
+    {
+        return $this->slug;
+    }
+
+    public function setSlug(string $slug): self
+    {
+        $this->slug = $slug;
 
         return $this;
     }

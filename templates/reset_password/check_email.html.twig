@@ -3,8 +3,15 @@
 {% block title %}{{ 'reset.pwd.check_email.title'|trans }}{% endblock %}
 
 {% block body %}
-    <p>
-        {{ 'reset.pwd.check_email.message'|trans }} {{ resetToken.expirationMessageKey|trans(resetToken.expirationMessageData, 'ResetPasswordBundle') }}.
-    </p>
-    <p>{{ 'reset.pwd.check_email.not_receive'|trans }} <a href="{{ path('app_forgot_password_request') }}"> {{'reset.pwd.check_email.button'|trans}} </a>.</p>
+    <div class="section__description d-flex flex-column justify-content-around h-75">
+        <p>
+            {{ 'reset.pwd.check_email.message'|trans }} {{ resetToken.expirationMessageKey|trans(resetToken.expirationMessageData, 'ResetPasswordBundle') }}.
+        </p>
+        <div class="d-flex flex-column">
+            <p>{{ 'reset.pwd.check_email.not_receive'|trans }} .</p>
+            <a class="btn btn-primary" href="{{ path('app_forgot_password_request') }}"> {{'reset.pwd.check_email.button'|trans}} </a>
+        </div>
+
+    </div>
+
 {% endblock %}

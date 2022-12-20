@@ -5,6 +5,7 @@ namespace App\Repository;
 use App\Entity\Party;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
+use http\Encoding\Stream\Inflate;
 
 /**
  * @extends ServiceEntityRepository<Party>
@@ -63,4 +64,23 @@ class PartyRepository extends ServiceEntityRepository
 //            ->getOneOrNullResult()
 //        ;
 //    }
+//
+    public function findNextSlug(string $slug): string
+    {
+        $result =  $this->createQueryBuilder('p')
+            ->select('p.slug')
+            ->where('p.slug LIKE :slug')
+            ->setParameter('slug', $slug.'%')
+            ->orderBy('p.slug', 'DESC')
+            ->setMaxResults(1)
+            ->getQuery()
+            ->getOneOrNullResult()
+        ;
+        dump($result);
+        if ($result) {
+            $slugNumber = (int)str_replace($slug, '', $result['slug']) + 1;
+            return $slug . $slugNumber;
+        }
+        return $slug;
+    }
 }

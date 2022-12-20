@@ -1,4 +1,23 @@
-.form-control {
-  border: solid $clr-line 3px;
-  border-radius: 25px;
+.form {
+  width: 85%;
+  display: flex;
+  align-items: center;
+  align-self: center;
+  flex-direction: column;
+  &-control {
+    border: solid $clr-line 3px;
+    border-radius: 25px;
+  }
+  &-check {
+    margin: 5px;
+  }
+  &__clue {
+    font-size: 0.7rem;
+  }
+  &__section {
+    border: 1px $clr-line solid;
+    border-radius: 4px;
+    margin: 5px;
+    padding: 5px;
+  }
 }

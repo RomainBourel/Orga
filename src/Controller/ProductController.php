@@ -50,10 +50,7 @@ class ProductController extends AbstractController
                 }
                 $product->setPicture($newFilename);
             }
-            $slug = $slugger->slug($product->getName());
-            if (!empty($productRepository->findBySlug($slug)))  {
-                $slug = $slug . '-' . $product->getId();
-            }
+            $slug = $productRepository->findNextSlug($slugger->slug($product->getName()));
             $product->setSlug($slug);
             $em->persist($product);
             $em->flush();

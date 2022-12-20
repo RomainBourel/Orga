@@ -1,6 +1,7 @@
-button.validate: Valider
+button.add.party: Créer un événement
 button.connection: Me connecter
 button.register: M'inscrire
+button.validate: Je m'inscris
 
 error.verified: Compte non vérifier veuillez regarder vos mail.
 
@@ -8,11 +9,13 @@ form.agree_therms.label: j'accepte les termes et conditions d'utilisation
 form.password.first_label: Mot de passe
 form.password.second_label: Confirmation mot de passe
 
-home.title: ORGAnise toi avec ORGA
-home.description: <p>Invite des convives</p>
+home.title: ORGA
+home.sub_title: organise toi !!!
+home.description:
+  <p>Invite des convives</p>
   <p>Décidez de la date ensemble</p>
-  <p>Partagez en temps réel la liste de course</p>
-  <p>Donne leur accès a toute les information importante (lieux, contact, horaire)</p>
+  <p>Partagez en temps réel la liste de course</p></br>
+  <p>Donne leur accès a toute les information importante (lieux, contact, horaire)</p></br>
   <p>et bien plus encore</p>
 home.sign_in: Créer mon compte
 home.login: Déjà inscrit

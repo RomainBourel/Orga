@@ -24,6 +24,8 @@ Encore
     .addEntry('password_checker', './assets/script/passwordChecker.js')
     .addEntry('party_form', './assets/script/partyForm/index.js')
 
+    .addEntry('home', './assets/styles/pages/home.scss')
+
     // enables the Symfony UX Stimulus bridge (used in assets/bootstrap.js)
     .enableStimulusBridge('./assets/controllers.json')
 

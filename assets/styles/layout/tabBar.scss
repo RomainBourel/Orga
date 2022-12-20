@@ -5,6 +5,7 @@
     width: 100%;
     align-self: center;
     border-top: solid $clr-line 5px;
+    background: #fff;
     @media (min-width: 1000px) {
       position: initial;
       border-top: none;
@@ -17,5 +18,11 @@
         text-decoration: underline;
       }
     }
+  }
+  &__icon {
+    margin: 0.5rem 0;
+  }
+  &__text {
+    font-size: 0.7rem;
   }
 }

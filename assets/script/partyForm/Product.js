@@ -4,7 +4,7 @@ class Product {
         if (this.isAlreadyAdding(id)) {
             this.takeActualValue(id);
         }
-        document.querySelector(`#add-product-${id}`).addEventListener('click', (this.onClickAdd));
+        document.querySelector(`#add-product-${id}`).addEventListener('click', this.onClickAdd);
         document.querySelector(`#remove-product-${id}`).addEventListener('click', this.onClickRemove);
     }
     initQuantityInput(id) {
@@ -52,7 +52,11 @@ class Product {
         this.add(target.dataset.productId, target.dataset.productName);
     }
     onClickRemove = ({target}) => {
-        this.remove(target.dataset.productId);
+        const id = target.dataset.productId
+        if (0 === +this.getNumberById(id).innerText) {
+            return;
+        }
+        this.remove(id);
     }
     add(id, name) {
         this.getNumberById(id).innerText ++;

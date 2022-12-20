@@ -8,14 +8,20 @@
 {% endblock %}
 
 {% block body %}
-    <h1 class="title section__title">mon form</h1>
+    <h1 class="title section__title">Créer un événement</h1>
     {{ form_start(form) }}
     {{ form_errors(form) }}
-    {{ form_row(form.name) }}
-    {{ form_row(form.description) }}
-    {{ form_row(form.location) }}
-    <div>
-        <input id="search-product" name="search-product" type="text" data-url="{{ path('product_search') }}" list="search-list"/>
+    <div class="form__section">
+        {{ form_row(form.name) }}
+        {{ form_row(form.description) }}
+    </div>
+    <div class="form__section">
+        {{ form_row(form.location) }}
+    </div>
+
+    <div class="form__section d-flex flex-column align-items-center">
+        <input id="search-product" placeholder="chercher un produit" class="form-control" name="search-product" type="text" data-url="{{ path('product_search') }}" list="search-list"/>
+        <div id="product-proposition-table"></div>
         <button
             id="add-product"
             class="btn btn__primary"
@@ -24,12 +30,14 @@
             data-template='{{ form_widget(form.product.vars.prototype)|raw }}'
             data-toggle="modal"
             data-target="#modal"
-        >Ajouter un produit</button>
+        >
+            Ajouter un produit
+        </button>
+        <div id="products-list" data-template='{{ form_widget(form.productsParty.vars.prototype)|raw }}'></div>
     </div>
-    <div id="product-proposition-table"></div>
-    <div id="products-list" data-template='{{ form_widget(form.productsParty.vars.prototype)|raw }}'></div>
 
-    <button class="btn-dark btn" type="submit">Créer</button>
+
+    <button class="btn-dark btn" type="submit">Créer l'évènement</button>
     {{ form_end(form) }}
     <div id="new-product-form" class="modal" data-modal="true" data-url="{{ path('product_create') }}"></div>
     {% include "partials/_modal.html.twig" %}

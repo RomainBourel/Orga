@@ -74,4 +74,23 @@ class ProductRepository extends ServiceEntityRepository
             ->getResult()
         ;
     }
+
+    public function findNextSlug(string $slug): string
+    {
+        $result =  $this->createQueryBuilder('p')
+            ->select('p.slug')
+            ->where('p.slug LIKE :slug')
+            ->setParameter('slug', $slug.'%')
+            ->orderBy('p.slug', 'DESC')
+            ->setMaxResults(1)
+            ->getQuery()
+            ->getOneOrNullResult()
+        ;
+        dump($result);
+        if ($result) {
+            $slugNumber = (int)str_replace($slug, '', $result['slug']) + 1;
+            return $slug . $slugNumber;
+        }
+        return $slug;
+    }
 }

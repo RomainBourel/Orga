@@ -1,26 +1,12 @@
 {% set user = app.user %}
 <h1>Bienvenue dans ton espace {{ user.email }}</h1>
-
-{#<div class="flex-table">#}
-{#    <h3 class="flex-table__title">Mes événement à venir</h3>#}
-{#    {% for party in lastParties %}#}
-{#        <div class="flex-table__row flex-table__row--participate {% if loop.first %}flex-table__row--first{% endif %}">#}
-{#            <div class="flex-table__case">#}
-{#                <p>{{ party.name }}</p>#}
-{#            </div>#}
-{#            <div class="flex-table__case">#}
-{#                <p>status</p>#}
-{#                <p>lundi xx/xx/xx</p>#}
-{#            </div>#}
-{#        </div>#}
-{#    {% endfor %}#}
-{#</div>#}
 <table class="table table-striped">
     <thead>
     <tr>
         <th scope="col">Nom</th>
         <th scope="col">adresse</th>
         <th scope="col">ville</th>
+        <th scope="col">action</th>
     </tr>
     </thead>
     <tbody>
@@ -29,34 +15,9 @@
             <th scope="row">{{ party.name }}</th>
             <td>{{ party.location.address }}</td>
             <td>{{ party.location.city }}</td>
+            <td><a href="{{ path('party_show', {slug: party.slug}) }}" class="btn btn-primary">Voir l'évènement</a></td>
         </tr>
     {% endfor %}
     </tbody>
 </table>
-
-<table class="table table-striped">
-    <thead>
-    <tr>
-        <th scope="col">Nom</th>
-        <th scope="col">image</th>
-    </tr>
-    </thead>
-    <tbody>
-    {% for product in user.products %}
-        <tr>
-            <th scope="row">{{ product.name }}</th>
-            <td>
-                <img
-                        class="table__image"
-                        src="{% if product.picture is defined and product.picture is not null %}{{ asset('uploads/'~product.picture) }}{% endif %}"
-                        alt="{{ product.name }} "
-                        width="70px"
-                        height="70px"
-                >
-            </td>
-        </tr>
-    {% endfor %}
-    </tbody>
-</table>
-
 <a href="{{ path('party_create') }}" class="btn btn__primary">{{ 'button.add.party'|trans}}</a>

@@ -1,9 +1,8 @@
-<table class="table table-striped">
-    <tbody>
+<div class="search-list">
     {% for product in products %}
-        <tr id="search-product-{{ product.id }}" data-id="{{ product.id }}">
-            <th scope="row">{{ product.name }}</th>
-            <td>
+        <div class="search-list__product" id="search-product-{{ product.id }}" data-id="{{ product.id }}">
+            <div class="search-list__product__name">
+                <p>{{ product.name }}</p>
                 <img
                         class="table__image"
                         src="{% if product.picture is defined and product.picture is not null %}{{ asset('uploads/'~product.picture) }}{% endif %}"
@@ -11,13 +10,12 @@
                         width="50px"
                         height="50px"
                 >
-            </td>
-            <td>
-                <button id="remove-product-{{ product.id }}" type="button" data-product-id="{{ product.id }}">-</button>
-                <p><span id="nb-product-{{ product.id }}">0</span> {{ product.unity.shortname }}</p>
-                <button id="add-product-{{ product.id }}" type="button" data-product-id="{{ product.id }}" data-product-name="{{ product.name }}">+</button>
-            </td>
-        </tr>
+            </div>
+            <div class="search-list__product__quantity d-flex align-items-center">
+                <button id="remove-product-{{ product.id }}" class="btn btn-outline-info search-list__quantity-btn" type="button" data-product-id="{{ product.id }}">-</button>
+                <p class="product-quantity"><span id="nb-product-{{ product.id }}">0</span> {{ product.unity.shortname }}</p>
+                <button id="add-product-{{ product.id }}" class="btn btn-outline-info fa-solid fa-plus search-list__quantity-btn" type="button" data-product-id="{{ product.id }}" data-product-name="{{ product.name }}"></button>
+            </div>
+        </div>
     {% endfor %}
-    </tbody>
-</table>
+</div>

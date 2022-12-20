@@ -2,49 +2,49 @@
     <ul class="tab-bar__list d-flex flex-row justify-content-around">
         <li class="tab-bar__list__link {% if app.request.get('_route') is same as 'home' %}tab-bar__list__link--active{% endif %}"><a href="{{ path('home') }}">
                 <div class="d-flex flex-column align-items-center">
-                    <p><i class="fa-solid fa-house-chimney"></i></p>
-                    <p>{{ 'nav.home'|trans }}</p>
+                    <p class="tab-bar__icon"><i class="fa-solid fa-house-chimney"></i></p>
+                    <p class="tab-bar__text">{{ 'nav.home'|trans }}</p>
                 </div>
 
-            </a></li>
+            </a>
+        </li>
         {% if app.user %}
             <li class="tab-bar__list__link {% if app.request.get('_route') is same as 'party_create' %}tab-bar__list__link--active{% endif %}"><a href="{{ path('party_create') }}">
                     <div class="d-flex flex-column align-items-center">
-                        <p><i class="fa-solid fa-plus"></i></p>
-                        <p>{{ 'nav.party.create'|trans }}</p>
+                        <p class="tab-bar__icon"><i class="fa-solid fa-plus"></i></p>
+                        <p class="tab-bar__text">{{ 'nav.party.create'|trans }}</p>
                     </div>
-                </a></li>
-            <li class="tab-bar__list__link {% if app.request.get('_route') is same as 'product_create' %}tab-bar__list__link--active{% endif %}"><a href="{{ path('product_create') }}">
-                    <div class="d-flex flex-column align-items-center">
-                        <p><i class="fa-solid fa-plus"></i></p>
-                        <p>{{ 'nav.product.create'|trans }}</p>
-                    </div>
-                </a></li>
+                </a>
+            </li>
             <li class="tab-bar__list__link {% if app.request.get('_route') is same as 'user' %}tab-bar__list__link--active{% endif %}"><a href="{{ path('user') }}">
                     <div class="d-flex flex-column align-items-center">
-                        <p><i class="fa-solid fa-user"></i></p>
-                        <p>{{ 'nav.profil'|trans }}</p>
+                        <p class="tab-bar__icon"><i class="fa-solid fa-user"></i></p>
+                        <p class="tab-bar__text">{{ 'nav.profil'|trans }}</p>
                     </div>
-                </a></li>
+                </a>
+            </li>
             <li class="tab-bar__list__link"><a href="{{ path('logout') }}">
                     <div class="d-flex flex-column align-items-center">
-                        <p><i class="fa-solid fa-right-from-bracket"></i></p>
-                        <p>{{ 'nav.logout'|trans }}</p>
+                        <p class="tab-bar__icon"><i class="fa-solid fa-right-from-bracket"></i></p>
+                        <p class="tab-bar__text">{{ 'nav.logout'|trans }}</p>
                     </div>
-                </a></li>
+                </a>
+            </li>
         {% else %}
             <li class="tab-bar__list__link {% if app.request.get('_route') is same as 'app_register' %}tab-bar__list__link--active{% endif %}"><a href="{{ path('app_register') }}">
                     <div class="d-flex flex-column align-items-center">
-                        <p><i class="fa-solid fa-file"></i></p>
-                        <p>{{ 'nav.register'|trans }}</p>
+                        <p class="tab-bar__icon"><i class="fa-solid fa-file"></i></p>
+                        <p class="tab-bar__text">{{ 'nav.register'|trans }}</p>
                     </div>
-                </a></li>
+                </a>
+            </li>
             <li class="tab-bar__list__link {% if app.request.get('_route') is same as 'login' %}tab-bar__list__link--active{% endif %}"><a href="{{ path('login') }}">
                     <div class="d-flex flex-column align-items-center">
-                        <p><i class="fa-solid fa-right-to-bracket"></i></p>
-                        <p>{{ 'nav.login'|trans }}</p>
+                        <p class="tab-bar__icon"><i class="fa-solid fa-right-to-bracket"></i></p>
+                        <p class="tab-bar__text">{{ 'nav.login'|trans }}</p>
                     </div>
-                </a></li>
+                </a>
+            </li>
         {% endif %}
     </ul>
 </nav>
