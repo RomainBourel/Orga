@@ -1,23 +1,8 @@
 {% set user = app.user %}
 <h1>Bienvenue dans ton espace {{ user.email }}</h1>
-<table class="table table-striped">
-    <thead>
-    <tr>
-        <th scope="col">Nom</th>
-        <th scope="col">adresse</th>
-        <th scope="col">ville</th>
-        <th scope="col">action</th>
-    </tr>
-    </thead>
-    <tbody>
+<div class="party__reminder">
     {% for party in user.parties %}
-        <tr {% if party.creator is same as user %}class="bg-success"{% endif %}>
-            <th scope="row">{{ party.name }}</th>
-            <td>{{ party.location.address }}</td>
-            <td>{{ party.location.city }}</td>
-            <td><a href="{{ path('party_show', {slug: party.slug}) }}" class="btn btn-primary">Voir l'évènement</a></td>
-        </tr>
+        {% include "party/card_reminder.html.twig" %}
     {% endfor %}
-    </tbody>
-</table>
+</div>
 <a href="{{ path('party_create') }}" class="btn btn__primary">{{ 'button.add.party'|trans}}</a>

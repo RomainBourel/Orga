@@ -6,29 +6,32 @@
     <h1>Profil</h1>
     <p>{{ user.email }}</p>
     <p>adresse</p>
-    <table class="table table-striped">
-        <thead>
-            <tr>
-                <th scope="col">Nom</th>
-                <th scope="col">adresse</th>
-                <th scope="col">ville</th>
-                <th scope="col">action</th>
-            </tr>
-        </thead>
-        <tbody>
+{#    <table class="table table-striped">#}
+{#        <thead>#}
+{#            <tr>#}
+{#                <th scope="col">Nom</th>#}
+{#                <th scope="col">adresse</th>#}
+{#                <th scope="col">ville</th>#}
+{#                <th scope="col">action</th>#}
+{#            </tr>#}
+{#        </thead>#}
+{#        <tbody>#}
+<div class="block__overview">
             {% for location in user.locations %}
-                <tr {% if location.principal %}class="bg-success"{% endif %}>
-                    <th scope="row">{{ location.name }}</th>
-                    <td>{{ location.address }}</td>
-                    <td>{{ location.city }}</td>
-                    <td>
-                        <a href="{{ path('location_update_principal', {'location': location.id}) }}"><button class="btn btn__primary">devenir résidence principale</button></a>
-                        <a href="{{ path('location_remove', {'location': location.id}) }}"><button class="btn btn__delete">supprimer</button></a>
-                        <a href="{{ path('location_update', {'location': location.id}) }}"><button class="btn btn__edit">modifier</button></a>
-                    </td>
-                </tr>
+                {% include "location/card_overview.html.twig" %}
+{#                <tr {% if location.principal %}class="bg-success"{% endif %}>#}
+{#                    <th scope="row">{{ location.name }}</th>#}
+{#                    <td>{{ location.address }}</td>#}
+{#                    <td>{{ location.city }}</td>#}
+{#                    <td>#}
+{#                        <a href="{{ path('location_update_principal', {'location': location.id}) }}"><button class="btn btn__primary">devenir résidence principale</button></a>#}
+{#                        <a href="{{ path('location_remove', {'location': location.id}) }}"><button class="btn btn__delete">supprimer</button></a>#}
+{#                        <a href="{{ path('location_update', {'location': location.id}) }}"><button class="btn btn__edit">modifier</button></a>#}
+{#                    </td>#}
+{#                </tr>#}
             {% endfor %}
-            <tr><a href="{{ path('location_create') }}" class="btn btn__primary">ajouter une adresse</a></tr>
-        </tbody>
-    </table>
+</div>
+{#            <tr><a href="{{ path('location_create') }}" class="btn btn__primary">ajouter une adresse</a></tr>#}
+{#        </tbody>#}
+{#    </table>#}
 {% endblock %}

@@ -1,0 +1,33 @@
+.block__overview {
+  width: 95%;
+  display: flex;
+  flex-direction: column;
+  &__card {
+    border-radius: 5px;
+    padding: 5px;
+    margin: 2px;
+    &__section {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      &__title {
+        font-size: 1.2rem;
+        margin: 5px;
+      }
+      &__info {
+        font-size: 1rem;
+      }
+      &--action {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        flex-wrap: wrap;
+      };
+      &__action {
+        font-size: 1rem;
+        padding: 2px 5px;
+        margin: 2px;
+      }
+    }
+  }
+}
