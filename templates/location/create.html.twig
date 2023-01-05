@@ -2,11 +2,28 @@
 
 {% block title %}{{ parent() }}-création{% endblock %}
 
+{% block javascripts %}
+    {{ parent() }}
+    {{ encore_entry_script_tags('location_update') }}
+{% endblock %}
+
 {% block body %}
     <h1 class="title section__title">mon form</h1>
     {{ form_start(form) }}
-    {{ form_errors(form) }}
-    {{form_rest(form) }}
-    <button class="btn__primary btn" type="submit">Créer</button>
+        {{ form_errors(form) }}
+        {{form_rest(form) }}
+
+        {% if location is defined %}
+            <div>
+                <button class="btn__primary btn" type="submit">Modifier</button>
+                <a href="{{ path('location_remove', {'location': location.id}) }}"><button class="btn btn__delete" type="button">supprimer</button></a>
+            </div>
+            {% if not location.principal %}
+                <a id="locationPrincipalButton" href="{{ path('location_update_principal', {'location': location.id}) }}"><button class="btn btn__secondary" type="button">devenir résidence principale</button></a>
+            {% endif %}
+
+        {% else %}
+            <button class="btn__primary btn" type="submit">Créer</button>
+        {% endif %}
     {{ form_end(form) }}
 {% endblock %}

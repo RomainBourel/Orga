@@ -14,6 +14,10 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class LocationController extends AbstractController
 {
+    public function __construct(private LocationRepository $locationRepository)
+    {
+    }
+
     #[Route('/location', name: 'location')]
     #[Security("is_granted('ROLE_USER')")]
     public function index(): Response
@@ -33,6 +37,9 @@ class LocationController extends AbstractController
 
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
+            if ($location->isPrincipal()) {
+                $this->removeActualPrincipal();
+            }
             $location->setUser($this->getUser());
             $em->persist($location);
             $em->flush();
@@ -55,15 +62,20 @@ class LocationController extends AbstractController
         }
         return $this->renderForm('location/create.html.twig', [
             'form' => $form,
+            'location' => $location,
         ]);
     }
 
     #[Route('/location/{location}/principal', name: 'location_update_principal')]
     #[Security("is_granted('ROLE_ADMIN') or user == location.getUser()")]
-    public function updatePrincipal(Location $location, EntityManagerInterface $em, LocationRepository $locationRepository): Response
+    public function updatePrincipal(Location $location, EntityManagerInterface $em, Request $request): Response
     {
             $location->setPrincipal(true);
+            $this->removeActualPrincipal();
             $em->flush();
+            if ($request->isXmlHttpRequest()) {
+                return $this->json(['message'=> 'résidence principal modifier', 'type' => 'success']);
+            }
             return $this->redirectToRoute('user');
     }
 
@@ -74,5 +86,11 @@ class LocationController extends AbstractController
         $em->remove($location);
         $em->flush();
         return $this->redirectToRoute('user');
+    }
+
+    private function removeActualPrincipal(): void
+    {
+        $this->locationRepository->findOneBy(['principal' => true, 'user' => $this->getUser()])
+            ?->setPrincipal(false);
     }
 }

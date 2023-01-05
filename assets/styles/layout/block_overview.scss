@@ -6,6 +6,12 @@
     border-radius: 5px;
     padding: 5px;
     margin: 2px;
+    border: $clr-line solid 2px;
+    overflow: hidden;
+    position: relative;
+    &--principal {
+      border: $clr-line-principal solid 2px;
+    }
     &__section {
       display: flex;
       flex-direction: column;
@@ -20,8 +26,8 @@
       &--action {
         display: flex;
         flex-direction: row;
-        justify-content: space-between;
-        flex-wrap: wrap;
+        justify-content: end;
+        flex-wrap: nowrap;
       };
       &__action {
         font-size: 1rem;
@@ -29,5 +35,15 @@
         margin: 2px;
       }
     }
+  }
+  &__banner {
+    transform: rotate(45deg);
+    background: $clr-btn-secondary;
+    display: inline-block;
+    padding: 2px 20px;
+    font-size: 0.7rem;
+    position: absolute;
+    top: 12px;
+    right: -20px;
   }
 }
