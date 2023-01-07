@@ -16,8 +16,10 @@ class LocationFormType extends AbstractType
             ->add('address')
             ->add('city')
             ->add('zipCode')
-            ->add('principal')
         ;
+        if (null === $options['data']->getId()) {
+            $builder->add('principal');
+        }
     }
 
     public function configureOptions(OptionsResolver $resolver): void

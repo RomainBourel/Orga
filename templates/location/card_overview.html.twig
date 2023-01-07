@@ -1,0 +1,12 @@
+<div class="block__overview__card {% if location.principal %}block__overview__card--principal{% endif %}">
+    {% if location.principal %}
+            <div class="block__overview__banner">principal</div>
+    {% endif %}
+    <div class="block__overview__card__section">
+        <div class="block__overview__card__section__title">{{ location.name }}</div>
+        <div class="block__overview__card__section__info">{{ location.address }} - {{ location.city }}</div>
+    </div>
+    <div class="block__overview__card__section block__overview__card__section--action">
+      <a href="{{ path('location_update', {'location': location.id}) }}"><button class="btn btn__edit  block__overview__card__section__action">modifier</button></a>
+    </div>
+</div>
