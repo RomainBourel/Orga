@@ -1,14 +1,26 @@
 .search-list {
   display: flex;
   flex-direction: column;
-  &__product{
+  &__product {
     display: flex;
-    justify-content: space-between;
+    flex-direction: column;
+    border: $clr-line solid 1px;
+    border-radius: 5px;
+    margin: 2px 0;
     &__name {
+      text-align: center;
+      margin: 5px;
+    }
+    &__info {
+      display: flex;
+      justify-content: space-between;
+    }
+    &__image {
       width: 100%;
       display: flex;
       flex-direction: column;
       align-items: center;
+      margin: 5px;
     }
   }
   &__quantity-btn {
@@ -19,4 +31,8 @@
 
 .product-quantity {
   font-size: 0.7rem;
+  &__input {
+    border: none;
+    width: 3.5rem;
+  }
 }

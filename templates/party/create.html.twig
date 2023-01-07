@@ -8,7 +8,10 @@
 {% endblock %}
 
 {% block body %}
-    <h1 class="title section__title">Créer un événement</h1>
+    <div class="section__title">
+        <h1 class="title">Créer un événement</h1>
+    </div>
+
     {{ form_start(form) }}
     {{ form_errors(form) }}
     <div class="form__section">
@@ -36,8 +39,9 @@
         <div id="products-list" data-template='{{ form_widget(form.productsParty.vars.prototype)|raw }}'></div>
     </div>
 
-
-    <button class="btn-dark btn" type="submit">Créer l'évènement</button>
+    <div class="d-flex flex-column align-items-center">
+        <button class="btn-dark btn" type="submit">Créer l'évènement</button>
+    </div>
     {{ form_end(form) }}
     <div id="new-product-form" class="modal" data-modal="true" data-url="{{ path('product_create') }}"></div>
     {% include "partials/_modal.html.twig" %}
