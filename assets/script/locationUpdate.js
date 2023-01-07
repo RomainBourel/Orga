@@ -6,7 +6,6 @@ class LocationUpdate {
 
     onClickUpdateLocationPrincipal(e) {
         e.preventDefault();
-        console.log(this.href)
         fetch(this.href, {
             method: "POST",
             headers: {
@@ -14,7 +13,6 @@ class LocationUpdate {
             },
         })
             .then((response) => {
-                console.log(response.status)
                 if (200 === response.status) {
                     this.remove()
                     return response.json()

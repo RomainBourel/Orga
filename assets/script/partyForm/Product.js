@@ -6,9 +6,12 @@ class Product {
         }
         document.querySelector(`#add-product-${id}`).addEventListener('click', this.onClickAdd);
         document.querySelector(`#remove-product-${id}`).addEventListener('click', this.onClickRemove);
+        document.querySelector(`#nb-product-${id}`).addEventListener('input', this.onInputUpdate);
     }
-    initQuantityInput(id) {
-        this.getQuantityInputById(id).dataset.id = id;
+    initQuantityInput(id, unity) {
+        const quantityInput = this.getQuantityInputById(id);
+        quantityInput.dataset.id = id;
+        quantityInput.parentElement.querySelector('label').innerText += ` (${unity})`
     }
     getAll() {
         return document.querySelectorAll('[id^=search-product-]');
@@ -49,36 +52,56 @@ class Product {
         this.getNumberById(id).innerText = this.getQuantityInputById(id).value;
     }
     onClickAdd = ({target}) => {
-        this.add(target.dataset.productId, target.dataset.productName);
+        this.add(target.dataset.productId, target.dataset.productName, target.dataset.productUnity);
     }
     onClickRemove = ({target}) => {
         const id = target.dataset.productId
-        if (0 === +this.getNumberById(id).innerText) {
+        if (0 === +this.getNumberById(id).value) {
             return;
         }
         this.remove(id);
     }
-    add(id, name) {
-        this.getNumberById(id).innerText ++;
-        if (!this.isAlreadyAdding(id)) {
-            this.getList().append(this.getFormTemplate(id));
-            this.getFormById(id).insertBefore(Maker.element('h3', name), this.getFormById(id).firstElementChild);
-            this.initQuantityInput(id)
-            this.getQuantityInputById(id).addEventListener('input', ({target}) => {
-                this.getNumberById(id).innerHTML = target.value;
-            });
+    onInputUpdate = ({target}) => {
+        const id = target.dataset.productId;
+        if (0 !== +target.value) {
+            if (!this.isAlreadyAdding(id)) {
+                this.createProductForm(id, target.dataset.productName, target.dataset.productUnity);
+            }
+            this.updateProductForm(id)
+        } else {
+            if (this.isAlreadyAdding(id)) {
+                this.getFormById(id).remove();
+            }
         }
-        this.getQuantityInputById(id).value = this.getNumberById(id).innerText;
-        this.hiddenProductField(id);
-        this.setProductFieldOption(id, name);
+    }
+    add(id, name, unity) {
+        this.getNumberById(id).value ++;
+        if (!this.isAlreadyAdding(id)) {
+            this.createProductForm(id, name, unity);
+        }
+        this.updateProductForm(id);
     }
     remove(id) {
-        this.getNumberById(id).innerText  --;
-        if (0 === +this.getNumberById(id).innerText) {
+        this.getNumberById(id).value  --;
+        if (0 === +this.getNumberById(id).value) {
+            this.getNumberById(id).value = null;
             this.getFormById(id).remove();
             return;
         }
-        this.getQuantityInputById(id).value = this.getNumberById(id).innerText;
+        this.updateProductForm(id)
+    }
+    updateProductForm(id) {
+        this.getQuantityInputById(id).value = this.getNumberById(id).value;
+    }
+    createProductForm(id, name, unity) {
+        this.getList().append(this.getFormTemplate(id));
+        this.getFormById(id).insertBefore(Maker.element('h3', name), this.getFormById(id).firstElementChild);
+        this.initQuantityInput(id, unity);
+        this.getQuantityInputById(id).addEventListener('input', ({target}) => {
+            this.getNumberById(id).value = target.value;
+        });
+        this.hiddenProductField(id);
+        this.setProductFieldOption(id, name);
     }
 }
 export default new Product();

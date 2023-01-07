@@ -15,7 +15,7 @@ class ProductParty
     private ?int $id = null;
 
     #[ORM\Column]
-    private ?bool $sharing = null;
+    private ?bool $sharing = false;
 
     #[ORM\Column]
     private ?int $quantity = null;

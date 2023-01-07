@@ -8,6 +8,7 @@ error.verified: Compte non vérifier veuillez regarder vos mail.
 form.agree_therms.label: j'accepte les termes et conditions d'utilisation
 form.password.first_label: Mot de passe
 form.password.second_label: Confirmation mot de passe
+form.product_party.quantity: quantité
 
 home.title: ORGA
 home.sub_title: organise toi !!!

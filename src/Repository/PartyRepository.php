@@ -76,7 +76,6 @@ class PartyRepository extends ServiceEntityRepository
             ->getQuery()
             ->getOneOrNullResult()
         ;
-        dump($result);
         if ($result) {
             $slugNumber = (int)str_replace($slug, '', $result['slug']) + 1;
             return $slug . $slugNumber;
