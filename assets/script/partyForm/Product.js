@@ -23,7 +23,7 @@ class Product {
         return document.querySelector('#products-list');
     }
     getFormTemplate(id) {
-        return Maker.elementByString(this.getList().dataset.template.replace(/__name__/g, id));
+        return Maker.nodeElementByString(this.getList().dataset.template.replace(/__name__/g, id));
     }
     getFormById(id) {
         return document.querySelector(`#party_form_productsParty_${id}`);

@@ -8,13 +8,27 @@
 {% endblock %}
 
 {% block body %}
-    <h2>{{ party.name }}</h2>
-    <p>{{ party.description }}</p>
-    <p>{{ party.location.address }} {{ party.location.city }} {{ party.location.zipCode }}</p>
-    {% for product in party.productsParty %}
-        <h3>{{ product.product.name }}</h3>
-        <p>{{ product.quantity }} {{ product.product.unity.shortName }}</p>
-    {% endfor %}
+    <div class="form__section">
+        <h2>{{ party.name }}</h2>
+        {% if party.description %}
+            <p>description</p>
+            <p>{{ party.description }}</p>
+        {% endif %}
+        <p>Lieux de rendez-vous :</p>
+        <p>{{ party.location.address }} {{ party.location.city }} {{ party.location.zipCode }}</p>
+    </div>
+    <div class="form__section">
+        {% for date in party.propositionDates %}
+            {% include 'proposition_date/card.html.twig' %}
+        {% endfor %}
+    </div>
+    {% if 0 < party.productsParty|length %}
+        <div class="form__section">
+            {% for product in party.productsParty %}
+                {% include 'product/card.html.twig' with {products: party.productsParty} %}
+            {% endfor %}
+        </div>
+    {% endif %}
     {% if app.user is same as party.creator %}
         <div id="party-share" class="d-flex align-items-center flex-column">
             <a href="{{ path('party_invitation_create', {slug: party.slug}) }}" id="party-share-button">
@@ -23,5 +37,6 @@
                 </button>
             </a>
         </div>
+        <a href="{{ path('party_remove', {slug: party.slug}) }}" class="btn btn__delete">{{ 'button.remove'|trans }}</a>
     {% endif %}
 {% endblock %}

@@ -7,6 +7,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\Security\Core\Security;
 
 #[ORM\Entity(repositoryClass: PartyRepository::class)]
@@ -19,6 +20,7 @@ class Party
     private ?int $id = null;
 
     #[ORM\Column(length: 255)]
+    #[Assert\NotBlank]
     private ?string $name = null;
 
     #[ORM\Column(type: Types::TEXT, nullable: true)]
@@ -40,7 +42,7 @@ class Party
     #[ORM\ManyToOne(inversedBy: 'parties')]
     private ?Location $location = null;
 
-    #[ORM\OneToMany(mappedBy: 'party', targetEntity: ProductParty::class, cascade:["persist"], orphanRemoval: true )]
+    #[ORM\OneToMany(mappedBy: 'party', targetEntity: ProductParty::class, cascade:["persist", "remove"], orphanRemoval: true )]
     private Collection $productsParty;
 
     #[ORM\Column(length: 255)]
@@ -49,10 +51,18 @@ class Party
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $invitationToken = null;
 
+    #[ORM\OneToMany(mappedBy: 'party', targetEntity: PropositionDate::class, cascade:["persist", "remove"], orphanRemoval: true)]
+    #[Assert\Count(min:1, minMessage: 'party.proposition_date')]
+    private Collection $propositionDates;
+
+    #[ORM\OneToOne(cascade: ['persist', 'remove'])]
+    private ?PropositionDate $finalDate = null;
+
     public function __construct()
     {
         $this->users = new ArrayCollection();
         $this->productsParty = new ArrayCollection();
+        $this->propositionDates = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -210,6 +220,48 @@ class Party
     public function setInvitationToken(?string $invitationToken): self
     {
         $this->invitationToken = $invitationToken;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, PropositionDate>
+     */
+    public function getPropositionDates(): Collection
+    {
+        return $this->propositionDates;
+    }
+
+    public function addPropositionDate(PropositionDate $propositionDate): self
+    {
+        if (!$this->propositionDates->contains($propositionDate)) {
+            $this->propositionDates->add($propositionDate);
+            $propositionDate->setParty($this);
+        }
+
+        return $this;
+    }
+
+    public function removePropositionDate(PropositionDate $propositionDate): self
+    {
+        if ($this->propositionDates->removeElement($propositionDate)) {
+            // set the owning side to null (unless already changed)
+            if ($propositionDate->getParty() === $this) {
+                $propositionDate->setParty(null);
+            }
+        }
+
+        return $this;
+    }
+
+    public function getFinalDate(): ?PropositionDate
+    {
+        return $this->finalDate;
+    }
+
+    public function setFinalDate(?PropositionDate $finalDate): self
+    {
+        $this->finalDate = $finalDate;
 
         return $this;
     }

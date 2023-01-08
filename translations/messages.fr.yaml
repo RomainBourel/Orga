@@ -4,6 +4,7 @@ button.copy.link: Copier le lien
 button.party.share: Accèder au lien de partage
 button.party.share.new: Créer un nouveau lien
 button.register: M'inscrire
+button.remove: Effacer
 button.validate: Je m'inscris
 
 error.verified: Compte non vérifier veuillez regarder vos mail.
@@ -12,6 +13,18 @@ flash.copy.link: Lien copiée
 flash.new.link: Nouveau lien créer
 
 form.agree_therms.label: j'accepte les termes et conditions d'utilisation
+form.party.button.add_product: Ajouter un produit
+form.party.button.add_proposition_date: Ajouter une Date
+form.party.button.create_party: Créer l'évènement
+form.party.label.description: Information complèmentaire
+form.party.label.location: Adresse
+form.party.label.name: Nom de l'évènement
+form.party.placeholder.search_product: chercher un produit
+form.party.title: Créer un événement
+form.proposition_date.label.starting_at: Date d'arrivée
+form.proposition_date.label.ending_at: Date de fin
+form.proposition_date.label.number_max_participant: Nombre de participant maximum
+form.proposition_date.placeholder.number_max_participant: Pas de maximum
 form.password.first_label: Mot de passe
 form.password.second_label: Confirmation mot de passe
 form.product_party.quantity: quantité

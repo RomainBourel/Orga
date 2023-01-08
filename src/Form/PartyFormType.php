@@ -16,20 +16,25 @@ use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Contracts\Translation\TranslatorInterface;
 
 class PartyFormType extends AbstractType
 {
+    public function __construct(private TranslatorInterface $translator)
+    {
+    }
+
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
             ->add('name', null, [
-                'label' => "Nom de l'évènement",
+                'label' => $this->translator->trans('form.party.label.name'),
             ])
             ->add('description', null, [
-                'label' => "Information complèmentaire",
+                'label' => $this->translator->trans('form.party.label.description'),
             ])
             ->add('location', EntityType::class, [
-                'label' => "Adresse",
+                'label' => $this->translator->trans('form.party.label.location'),
                 'class' => Location::class,
                 'choice_label' => 'name',
                 'query_builder' => function (LocationRepository $qb) {
@@ -38,6 +43,12 @@ class PartyFormType extends AbstractType
                         ->addOrderBy('l.name', 'ASC')
                     ;
                 },
+            ])
+            ->add('propositionDates', CollectionType::class, [
+                'entry_type' => PropositionDateFormType::class,
+                'label' => false,
+                'allow_add' => true,
+                'by_reference' => false,
             ])
             ->add('productsParty', CollectionType::class, [
                 'entry_type' => ProductPartyFormType::class,

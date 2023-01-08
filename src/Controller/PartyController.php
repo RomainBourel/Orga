@@ -22,7 +22,7 @@ class PartyController extends AbstractController
     {
     }
 
-    #[isGranted('ROLE_ADMIN')]
+    #[isGranted('ROLE_USER')]
     #[Route('/party/create', name: 'party_create')]
     public function create(Request $request, EntityManagerInterface $em, PartyRepository $partyRepository, SluggerInterface $slugger): Response
     {
@@ -39,11 +39,20 @@ class PartyController extends AbstractController
             ;
             $em->persist($party);
             $em->flush();
-            return $this->redirectToRoute('party_invitation_create', ['slug' => $slug]);
+            return $this->redirectToRoute('party_show', ['slug' => $slug]);
         }
         return $this->renderForm('party/create.html.twig', [
             'form' => $form,
         ]);
+    }
+
+    #[isGranted('ROLE_USER')]
+    #[Route('/party/remove/{slug}', name: 'party_remove')]
+    public function remove(Party $party, EntityManagerInterface $em): Response
+    {
+        $em->remove($party);
+        $em->flush();
+        return $this->redirectToRoute('home');
     }
     #[Route('/party/{slug}', name: 'party_show')]
 //    #[Security("is_granted('ROLE_ADMIN') or user == party.getCreator() or  in_array(user, party.getUsers())")]
@@ -81,7 +90,7 @@ class PartyController extends AbstractController
             }
             return $this->json($response);
         }
-        return $this->render('party/index.html.twig', [
+        return $this->render('party/share_link.html.twig', [
             'invitationToken' => $party->getInvitationToken(),
         ]);
     }
