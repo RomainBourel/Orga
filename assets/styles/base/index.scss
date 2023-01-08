@@ -28,6 +28,9 @@ h3 {
 }
 footer {
   height: 60px;
+  @media (min-width: 1000px) {
+    height: 0px;
+  }
 }
 
 }

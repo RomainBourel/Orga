@@ -1,9 +1,15 @@
 button.add.party: Créer un événement
 button.connection: Me connecter
+button.copy.link: Copier le lien
+button.party.share: Accèder au lien de partage
+button.party.share.new: Créer un nouveau lien
 button.register: M'inscrire
 button.validate: Je m'inscris
 
 error.verified: Compte non vérifier veuillez regarder vos mail.
+
+flash.copy.link: Lien copiée
+flash.new.link: Nouveau lien créer
 
 form.agree_therms.label: j'accepte les termes et conditions d'utilisation
 form.password.first_label: Mot de passe

@@ -2,6 +2,11 @@
 
 {% block title %}Hello PartyController!{% endblock %}
 
+{% block javascripts %}
+    {{ parent() }}
+    {{ encore_entry_script_tags('party_share_link') }}
+{% endblock %}
+
 {% block body %}
     <h2>{{ party.name }}</h2>
     <p>{{ party.description }}</p>
@@ -10,4 +15,13 @@
         <h3>{{ product.product.name }}</h3>
         <p>{{ product.quantity }} {{ product.product.unity.shortName }}</p>
     {% endfor %}
+    {% if app.user is same as party.creator %}
+        <div id="party-share" class="d-flex align-items-center flex-column">
+            <a href="{{ path('party_invitation_create', {slug: party.slug}) }}" id="party-share-button">
+                <button class="btn btn-primary" type="button">
+                    {{ 'button.party.share'|trans }}
+                </button>
+            </a>
+        </div>
+    {% endif %}
 {% endblock %}

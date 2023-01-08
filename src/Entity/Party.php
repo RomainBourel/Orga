@@ -46,6 +46,9 @@ class Party
     #[ORM\Column(length: 255)]
     private ?string $slug = null;
 
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $invitationToken = null;
+
     public function __construct()
     {
         $this->users = new ArrayCollection();
@@ -195,6 +198,18 @@ class Party
     public function setSlug(string $slug): self
     {
         $this->slug = $slug;
+
+        return $this;
+    }
+
+    public function getInvitationToken(): ?string
+    {
+        return $this->invitationToken;
+    }
+
+    public function setInvitationToken(?string $invitationToken): self
+    {
+        $this->invitationToken = $invitationToken;
 
         return $this;
     }

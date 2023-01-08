@@ -23,6 +23,7 @@ Encore
     .addEntry('app', './assets/app.js')
     .addEntry('password_checker', './assets/script/passwordChecker.js')
     .addEntry('party_form', './assets/script/partyForm/index.js')
+    .addEntry('party_share_link', './assets/script/partyShareLink.js')
     .addEntry('location_update', './assets/script/locationUpdate.js')
 
     .addEntry('home', './assets/styles/pages/home/index.scss')
