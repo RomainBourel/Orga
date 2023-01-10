@@ -9,6 +9,7 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: UserRepository::class)]
 #[UniqueEntity(fields: ['email'], message: 'There is already an account with this email')]
@@ -49,6 +50,13 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\OneToMany(mappedBy: 'user', targetEntity: Available::class, orphanRemoval: true)]
     private Collection $availables;
 
+    #[ORM\OneToMany(mappedBy: 'user', targetEntity: ReservedProduct::class)]
+    private Collection $reservedProducts;
+
+    #[ORM\Column(length: 255)]
+    #[Assert\NotBlank]
+    private ?string $username = null;
+
     public function __construct()
     {
         $this->createdParties = new ArrayCollection();
@@ -56,6 +64,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         $this->locations = new ArrayCollection();
         $this->products = new ArrayCollection();
         $this->availables = new ArrayCollection();
+        $this->reservedProducts = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -283,6 +292,48 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
                 $available->setUser(null);
             }
         }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, ReservedProduct>
+     */
+    public function getReservedProducts(): Collection
+    {
+        return $this->reservedProducts;
+    }
+
+    public function addReservedProduct(ReservedProduct $reservedProduct): self
+    {
+        if (!$this->reservedProducts->contains($reservedProduct)) {
+            $this->reservedProducts->add($reservedProduct);
+            $reservedProduct->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeReservedProduct(ReservedProduct $reservedProduct): self
+    {
+        if ($this->reservedProducts->removeElement($reservedProduct)) {
+            // set the owning side to null (unless already changed)
+            if ($reservedProduct->getUser() === $this) {
+                $reservedProduct->setUser(null);
+            }
+        }
+
+        return $this;
+    }
+
+    public function getUsername(): ?string
+    {
+        return $this->username;
+    }
+
+    public function setUsername(string $username): self
+    {
+        $this->username = $username;
 
         return $this;
     }

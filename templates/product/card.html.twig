@@ -1,4 +1,4 @@
-<div class="card form__section">
+<div class="card">
     <div class="card__section">
         <img
                 class="table__image"
@@ -13,6 +13,41 @@
         </div>
     </div>
     <div class="card__section">
+        {% set reservedProduct = product.reservedProductByUser(app.user) %}
+        {% if reservedProduct or product.quantityReserved is not same as product.quantity %}
+            <div id="reserved-button-{{ product.id }}-container">
+
+                {% include 'product/reserved_button.html.twig' with {
+                    type: 'reserved',
+                    id: product.id,
+                    isHidden: reservedProduct,
+                    btnClass: 'btn__primary',
+                } %}
+                {% include 'product/reserved_button.html.twig' with {
+                    type: 'unreserved',
+                    id: product.id,
+                    isHidden: not reservedProduct or reservedProduct.status is same as constant('App\\Entity\\ReservedProduct::STATUS_BOUGHT'),
+                    btnClass: 'btn__delete',
+                } %}
+            </div>
+            <div id="buy-button-{{ product.id }}-container">
+                {% if reservedProduct %}
+                    {% include 'product_party/_buy_button.html.twig' %}
+                {% endif %}
+            </div>
+        {% endif %}
+    </div>
+    <div class="card__section">
         <h3>{{ product.product.name }}</h3>
     </div>
+    {% if not reservedProduct and not product.reservedProducts.isEmpty %}
+        <div class="card__section">
+                <p>
+                    {% for reservedProduct in product.reservedProducts %}
+                        {{ reservedProduct.user.username }}
+                    {% endfor %}
+                    s'en charge
+                </p>
+        </div>
+    {% endif %}
 </div>

@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\ProductPartyRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: ProductPartyRepository::class)]
@@ -34,6 +36,14 @@ class ProductParty
     #[ORM\JoinColumn(nullable: false)]
     private ?Party $party = null;
 
+    #[ORM\OneToMany(mappedBy: 'productParty', targetEntity: ReservedProduct::class, orphanRemoval: true)]
+    private Collection $reservedProducts;
+
+    public function __construct()
+    {
+        $this->reservedProducts = new ArrayCollection();
+    }
+
     public function getId(): ?int
     {
         return $this->id;
@@ -63,6 +73,32 @@ class ProductParty
         return $this;
     }
 
+    public function getQuantityReserved(): int
+    {
+        $quantityReserved = 0;
+        foreach ($this->reservedProducts as $reservedProduct) {
+            $quantityReserved += $reservedProduct->getQuantityReserved();
+        }
+        return $quantityReserved;
+    }
+
+    public function getReservedProductByUser(User $user): ?ReservedProduct
+    {
+        foreach ($this->reservedProducts as $reservedProduct) {
+            if ($reservedProduct->getUser() === $user) {
+                return $reservedProduct;
+            }
+        }
+        return null;
+    }
+    public function getQuantityBuy(): int
+    {
+        $quantityBuy = 0;
+        foreach ($this->reservedProducts as $reservedProduct) {
+            $quantityBuy += $reservedProduct->getQuantityBuy();
+        }
+        return $quantityBuy;
+    }
     public function getCreatedAt(): ?\DateTimeImmutable
     {
         return $this->createdAt;
@@ -110,6 +146,36 @@ class ProductParty
     public function setParty(?Party $party): self
     {
         $this->party = $party;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, ReservedProduct>
+     */
+    public function getReservedProducts(): Collection
+    {
+        return $this->reservedProducts;
+    }
+
+    public function addReservedProduct(ReservedProduct $reservedProduct): self
+    {
+        if (!$this->reservedProducts->contains($reservedProduct)) {
+            $this->reservedProducts->add($reservedProduct);
+            $reservedProduct->setProductParty($this);
+        }
+
+        return $this;
+    }
+
+    public function removeReservedProduct(ReservedProduct $reservedProduct): self
+    {
+        if ($this->reservedProducts->removeElement($reservedProduct)) {
+            // set the owning side to null (unless already changed)
+            if ($reservedProduct->getProductParty() === $this) {
+                $reservedProduct->setProductParty(null);
+            }
+        }
 
         return $this;
     }

@@ -39,10 +39,14 @@
     </div>
     <div class="card__section">
         <ul class="card__section__list">
-            <li>{{ party.creator.email }}</li>
+            <li>{{ party.creator.username }}</li>
             {% for available in date.availables %}
                 {% if available.isavailable %}
-                    <li>{{ available.user.email }}</li>
+                    {% if available.user is same as app.user %}
+                        <li>Vous</li>
+                    {% else %}
+                        <li>{{ available.user.username }}</li>
+                    {% endif %}
                 {% endif %}
             {% endfor %}
         </ul>

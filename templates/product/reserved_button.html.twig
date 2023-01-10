@@ -1,0 +1,12 @@
+<a
+        id="{{ type }}-product-button-{{ product.id }}"
+        href="{{ path(('product_party_' ~ type), {id: id}) }}"
+        data-listener="false"
+        data-type="{{ type }}"
+        data-id="{{ product.id }}"
+        {% if isHidden %}hidden="hidden"{% endif %}
+>
+    <button class="btn {{ btnClass }}">
+        {{ ('button.party.reserved_product.' ~ type )|trans }}
+    </button>
+</a>

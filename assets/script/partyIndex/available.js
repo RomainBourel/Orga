@@ -18,7 +18,13 @@ export default class Available {
     }
     onClickCallLink = (e, button) => {
         e.preventDefault();
-        this.callLink(button.href, button.dataset.id);
+        if ('false' === button.dataset.listener) {
+            this.callLink(button.href, button.dataset.id, button);
+            button.dataset.listener = 'true';
+        } else {
+            this.callLink(button.href, button.dataset.id);
+        }
+
     }
 
     callLink(url, id) {

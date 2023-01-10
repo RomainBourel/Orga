@@ -4,6 +4,10 @@ button.copy.link: Copier le lien
 button.party.proposition_date_available: Je suis disponible
 button.party.proposition_date_available.not: Je suis indisponible
 button.party.proposition_date_confirm: définir comme date final
+button.party.reserved_product.reserved: Je m'en charge
+button.party.reserved_product.unreserved: Je ne m'en charge plus
+button.party.reserved_product.buy: J'ai trouver
+button.party.reserved_product.unbuy: Je n'ai plus trouver
 button.party.share: Accèder au lien de partage
 button.party.share.new: Créer un nouveau lien
 button.register: M'inscrire
