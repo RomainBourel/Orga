@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\PropositionDateRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 
@@ -37,6 +39,14 @@ class PropositionDate
 
     #[ORM\OneToOne(inversedBy: 'finalDate', cascade: ['persist', 'remove'])]
     private ?Party $finalDate = null;
+
+    #[ORM\OneToMany(mappedBy: 'propositionDate', targetEntity: Available::class, orphanRemoval: true)]
+    private Collection $availables;
+
+    public function __construct()
+    {
+        $this->availables = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -128,5 +138,42 @@ class PropositionDate
         $this->finalDate = $finalDate;
 
         return $this;
+    }
+
+    /**
+     * @return Collection<int, Available>
+     */
+    public function getAvailables(): Collection
+    {
+        return $this->availables;
+    }
+
+    public function addAvailable(Available $available): self
+    {
+        if (!$this->availables->contains($available)) {
+            $this->availables->add($available);
+            $available->setPropositionDate($this);
+        }
+
+        return $this;
+    }
+
+    public function removeAvailable(Available $available): self
+    {
+        if ($this->availables->removeElement($available)) {
+            // set the owning side to null (unless already changed)
+            if ($available->getPropositionDate() === $this) {
+                $available->setPropositionDate(null);
+            }
+        }
+
+        return $this;
+    }
+
+    public function isUserAvailable(User $user): bool
+    {
+        return $this->availables->reduce(function(bool $accumulator, Available $value) use ($user) : bool {
+            return $accumulator || ($value->getUser() === $user && $value->isIsAvailable());
+        }, false);
     }
 }

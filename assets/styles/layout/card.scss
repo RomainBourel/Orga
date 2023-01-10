@@ -31,5 +31,15 @@
       margin: 2px;
       justify-content: flex-end;
     };
+    &__list {
+      width: 100%;
+      display: flex;
+      flex-direction: row;
+      justify-content: space-around;
+    }
+  }
+  &--success {
+    border:$clr-line-success 2px solid;
+    color: mediumseagreen;
   }
 }

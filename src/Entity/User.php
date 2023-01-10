@@ -46,12 +46,16 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\OneToMany(mappedBy: 'user', targetEntity: Product::class)]
     private Collection $products;
 
+    #[ORM\OneToMany(mappedBy: 'user', targetEntity: Available::class, orphanRemoval: true)]
+    private Collection $availables;
+
     public function __construct()
     {
         $this->createdParties = new ArrayCollection();
         $this->parties = new ArrayCollection();
         $this->locations = new ArrayCollection();
         $this->products = new ArrayCollection();
+        $this->availables = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -247,6 +251,36 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
             // set the owning side to null (unless already changed)
             if ($product->getUser() === $this) {
                 $product->setUser(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Available>
+     */
+    public function getAvailables(): Collection
+    {
+        return $this->availables;
+    }
+
+    public function addAvailable(Available $available): self
+    {
+        if (!$this->availables->contains($available)) {
+            $this->availables->add($available);
+            $available->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeAvailable(Available $available): self
+    {
+        if ($this->availables->removeElement($available)) {
+            // set the owning side to null (unless already changed)
+            if ($available->getUser() === $this) {
+                $available->setUser(null);
             }
         }
 

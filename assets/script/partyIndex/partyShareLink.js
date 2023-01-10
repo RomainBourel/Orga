@@ -1,9 +1,11 @@
-import {makeFlash} from "./flashMessage";
-import Maker from "./Maker";
-class PartyShareLink {
+import {makeFlash} from "../flashMessage";
+import Maker from "../Maker";
+export default class PartyShareLink {
     constructor() {
         this.partyShareButton = document.querySelector('#party-share-button');
-        this.partyShareButton.addEventListener('click', this.onClickCallLink);
+        if (this.partyShareButton) {
+            this.partyShareButton.addEventListener('click', this.onClickCallLink);
+        }
     }
 
     onClickCallLink = (e) => {
@@ -46,5 +48,3 @@ class PartyShareLink {
         makeFlash(flash.message, flash.type);
     }
 }
-
-new PartyShareLink();

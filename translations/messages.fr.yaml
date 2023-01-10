@@ -1,6 +1,8 @@
 button.add.party: Créer un événement
 button.connection: Me connecter
 button.copy.link: Copier le lien
+button.party.proposition_date_available: Je suis disponible
+button.party.proposition_date_available.not: Je suis indisponible
 button.party.proposition_date_confirm: définir comme date final
 button.party.share: Accèder au lien de partage
 button.party.share.new: Créer un nouveau lien

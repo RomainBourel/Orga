@@ -59,7 +59,7 @@ class PartyController extends AbstractController
         return $this->redirectToRoute('home');
     }
     #[Route('/party/{slug}', name: 'party_show')]
-//    #[Security("is_granted('ROLE_ADMIN') or user == party.getCreator() or  in_array(user, party.getUsers())")]
+    #[Security("is_granted('ROLE_ADMIN') or user == party.getCreator() or party.getUsers().contains(user)")]
     public function show(Party $party): Response
     {
         return $this->render('party/index.html.twig', [

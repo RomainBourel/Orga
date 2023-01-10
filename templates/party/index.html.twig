@@ -4,7 +4,7 @@
 
 {% block javascripts %}
     {{ parent() }}
-    {{ encore_entry_script_tags('party_share_link') }}
+    {{ encore_entry_script_tags('party_index') }}
 {% endblock %}
 
 {% block body %}
@@ -26,12 +26,10 @@
 
     <div class="form__section">
         {% if party.finalDate %}
-            {% include 'proposition_date/card.html.twig' with {date: party.finalDate}%}
+            {% include 'proposition_date/card.html.twig' with {date: party.finalDate, final: true}%}
         {% else %}
             {% for date in party.propositionDates %}
-                <div class="card">
-                    {% include 'proposition_date/card.html.twig' %}
-                </div>
+                {% include 'proposition_date/card.html.twig' with {final: false} %}
             {% endfor %}
         {% endif %}
     </div>

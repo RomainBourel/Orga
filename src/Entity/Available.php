@@ -23,6 +23,14 @@ class Available
     #[ORM\Column]
     private ?\DateTimeImmutable $updatedAt = null;
 
+    #[ORM\ManyToOne(inversedBy: 'availables')]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?User $user = null;
+
+    #[ORM\ManyToOne(inversedBy: 'availables')]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?PropositionDate $propositionDate = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -63,6 +71,30 @@ class Available
     public function setUpdatedAt(): self
     {
         $this->updatedAt = new \DateTimeImmutable;
+
+        return $this;
+    }
+
+    public function getUser(): ?User
+    {
+        return $this->user;
+    }
+
+    public function setUser(?User $user): self
+    {
+        $this->user = $user;
+
+        return $this;
+    }
+
+    public function getPropositionDate(): ?PropositionDate
+    {
+        return $this->propositionDate;
+    }
+
+    public function setPropositionDate(?PropositionDate $propositionDate): self
+    {
+        $this->propositionDate = $propositionDate;
 
         return $this;
     }
