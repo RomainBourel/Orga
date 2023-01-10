@@ -1,5 +1,5 @@
-<div class="party__reminder__card form__section">
-    <div class="party__reminder__card__section">
+<div class="card form__section">
+    <div class="card__section">
         <img
                 class="table__image"
                 src="{% if product.product.picture is defined and product.product.picture is not null %}{{ asset('uploads/'~product.product.picture) }}{% endif %}"
@@ -7,9 +7,12 @@
                 width="50px"
                 height="50px"
         >
-        <div class="party__reminder__card__section--left">{{ product.product.name }}</div>
-        <div class="party__reminder__card__section--right">
+
+        <div class="card__section--right">
             <p>{{ product.quantity }} {{ product.product.unity.name }}</p>
         </div>
+    </div>
+    <div class="card__section">
+        <h3>{{ product.product.name }}</h3>
     </div>
 </div>

@@ -2,7 +2,9 @@ import Maker from '../Maker.js';
 class PropositionDate {
     constructor() {
         this.id = 0;
-        document.querySelector(`#add-proposition-date`).addEventListener('click', this.onClickAddPropositionDate);
+        this.createPropositionDateForm();
+        this.buttonAddPropositionDate = document.querySelector(`#add-proposition-date`);
+        this.buttonAddPropositionDate.addEventListener('click', this.onClickAddPropositionDate);
     }
 
     getList() {
@@ -15,9 +17,16 @@ class PropositionDate {
     }
 
     onClickAddPropositionDate = (e) => {
+        if ('false' === this.buttonAddPropositionDate.dataset.listener) {
+            this.buttonAddPropositionDate.dataset.listener = "true";
+            this.updateTextButton();
+        }
         this.createPropositionDateForm();
     }
 
+    updateTextButton() {
+        this.buttonAddPropositionDate.innerText = this.buttonAddPropositionDate.dataset.addPropositionText;
+    }
     createPropositionDateForm() {
         this.getList().append(this.getFormTemplate());
     }

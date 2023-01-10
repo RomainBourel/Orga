@@ -43,6 +43,7 @@ class Party
     private ?Location $location = null;
 
     #[ORM\OneToMany(mappedBy: 'party', targetEntity: ProductParty::class, cascade:["persist", "remove"], orphanRemoval: true )]
+    #[Assert\Valid]
     private Collection $productsParty;
 
     #[ORM\Column(length: 255)]
@@ -53,10 +54,12 @@ class Party
 
     #[ORM\OneToMany(mappedBy: 'party', targetEntity: PropositionDate::class, cascade:["persist", "remove"], orphanRemoval: true)]
     #[Assert\Count(min:1, minMessage: 'party.proposition_date')]
+    #[Assert\Valid]
     private Collection $propositionDates;
 
-    #[ORM\OneToOne(cascade: ['persist', 'remove'])]
+    #[ORM\OneToOne(mappedBy: 'finalDate', cascade: ['persist', 'remove'])]
     private ?PropositionDate $finalDate = null;
+
 
     public function __construct()
     {

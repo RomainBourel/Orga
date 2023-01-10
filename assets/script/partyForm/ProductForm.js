@@ -42,6 +42,7 @@ class ProductForm {
         })
             .then(response => response.json())
             .then((data) => {
+                console.log(data.response)
                 SearchProductBar.search(this.getNameInput().value, data.response);
             })
     }

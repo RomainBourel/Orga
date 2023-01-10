@@ -1,6 +1,7 @@
 button.add.party: Créer un événement
 button.connection: Me connecter
 button.copy.link: Copier le lien
+button.party.proposition_date_confirm: définir comme date final
 button.party.share: Accèder au lien de partage
 button.party.share.new: Créer un nouveau lien
 button.register: M'inscrire
@@ -14,8 +15,9 @@ flash.new.link: Nouveau lien créer
 
 form.agree_therms.label: j'accepte les termes et conditions d'utilisation
 form.party.button.add_product: Ajouter un produit
-form.party.button.add_proposition_date: Ajouter une Date
+form.party.button.add_proposition_date: Ajouter une date
 form.party.button.create_party: Créer l'évènement
+form.party.button.make_proposition: Proposer plusieurs date
 form.party.label.description: Information complèmentaire
 form.party.label.location: Adresse
 form.party.label.name: Nom de l'évènement

@@ -8,19 +8,32 @@
 {% endblock %}
 
 {% block body %}
-    <div class="form__section">
-        <h2>{{ party.name }}</h2>
-        {% if party.description %}
-            <p>description</p>
-            <p>{{ party.description }}</p>
-        {% endif %}
-        <p>Lieux de rendez-vous :</p>
-        <p>{{ party.location.address }} {{ party.location.city }} {{ party.location.zipCode }}</p>
+    <div class="card__title">
+        <div class="card__section">
+            <h2>{{ party.name }}</h2>
+        </div>
+        <div class="card__section">
+            {% if party.description %}
+                <p>description</p>
+                <p>{{ party.description }}</p>
+            {% endif %}
+            <p>Lieux de rendez-vous :</p>
+        </div>
+        <div class="card__section">
+            <p>{{ party.location.address }} {{ party.location.city }} {{ party.location.zipCode }}</p>
+        </div>
     </div>
+
     <div class="form__section">
-        {% for date in party.propositionDates %}
-            {% include 'proposition_date/card.html.twig' %}
-        {% endfor %}
+        {% if party.finalDate %}
+            {% include 'proposition_date/card.html.twig' with {date: party.finalDate}%}
+        {% else %}
+            {% for date in party.propositionDates %}
+                <div class="card">
+                    {% include 'proposition_date/card.html.twig' %}
+                </div>
+            {% endfor %}
+        {% endif %}
     </div>
     {% if 0 < party.productsParty|length %}
         <div class="form__section">

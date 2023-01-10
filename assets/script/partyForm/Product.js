@@ -1,5 +1,12 @@
 import Maker from '../Maker.js';
 class Product {
+    prepareAll() {
+        document.querySelectorAll('div[id^=party_form_productsParty_]').forEach((div) => {
+            this.initProductName(div, div.dataset.id, div.dataset.name)
+            this.hiddenProductField(div.dataset.id);
+            this.initQuantityInput(div.dataset.id, div.dataset.unity)
+        });
+    }
     initOne(id) {
         if (this.isAlreadyAdding(id)) {
             this.takeActualValue(id);
@@ -7,6 +14,9 @@ class Product {
         document.querySelector(`#add-product-${id}`).addEventListener('click', this.onClickAdd);
         document.querySelector(`#remove-product-${id}`).addEventListener('click', this.onClickRemove);
         document.querySelector(`#nb-product-${id}`).addEventListener('input', this.onInputUpdate);
+    }
+    initProductName(div, id, name) {
+        div.insertBefore(Maker.element('h3', name), this.getFormById(id).firstElementChild);
     }
     initQuantityInput(id, unity) {
         const quantityInput = this.getQuantityInputById(id);
@@ -49,7 +59,7 @@ class Product {
         return !!this.getFormById(id);
     }
     takeActualValue(id) {
-        this.getNumberById(id).innerText = this.getQuantityInputById(id).value;
+        this.getNumberById(id).value = this.getQuantityInputById(id).value;
     }
     onClickAdd = ({target}) => {
         this.add(target.dataset.productId, target.dataset.productName, target.dataset.productUnity);
@@ -95,7 +105,7 @@ class Product {
     }
     createProductForm(id, name, unity) {
         this.getList().append(this.getFormTemplate(id));
-        this.getFormById(id).insertBefore(Maker.element('h3', name), this.getFormById(id).firstElementChild);
+        this.initProductName(this.getFormById(id), id, name);
         this.initQuantityInput(id, unity);
         this.getQuantityInputById(id).addEventListener('input', ({target}) => {
             this.getNumberById(id).value = target.value;

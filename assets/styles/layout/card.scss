@@ -1,0 +1,35 @@
+.card {
+  border-radius: 5px;
+  padding: 5px;
+  margin: 2px;
+  &__title {
+    margin: 10px;
+  }
+  &__section {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    &--left {
+      width: 60%;
+      margin: 2px;
+      align-self: center;
+    }
+    &--right {
+      margin: 2px;
+      align-self: center;
+    }
+    &__detail {
+      font-size: 0.7rem;
+    }
+    &--action {
+      //justify-content: flex-end;
+    }
+    &__action {
+      display: flex;
+      font-size: 1rem;
+      padding: 2px;
+      margin: 2px;
+      justify-content: flex-end;
+    };
+  }
+}

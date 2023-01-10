@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use App\Repository\PropositionDateRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: PropositionDateRepository::class)]
 #[ORM\HasLifecycleCallbacks]
@@ -34,8 +35,8 @@ class PropositionDate
     #[ORM\JoinColumn(nullable: false, onDelete: "cascade")]
     private ?Party $party = null;
 
-    #[ORM\Column(nullable: true)]
-    private ?bool $isFinalDate = null;
+    #[ORM\OneToOne(inversedBy: 'finalDate', cascade: ['persist', 'remove'])]
+    private ?Party $finalDate = null;
 
     public function getId(): ?int
     {
@@ -117,14 +118,14 @@ class PropositionDate
         return $this;
     }
 
-    public function isIsFinalDate(): ?bool
+    public function getFinalDate(): ?Party
     {
-        return $this->isFinalDate;
+        return $this->finalDate;
     }
 
-    public function setIsFinalDate(?bool $isFinalDate): self
+    public function setFinalDate(?Party $finalDate): self
     {
-        $this->isFinalDate = $isFinalDate;
+        $this->finalDate = $finalDate;
 
         return $this;
     }

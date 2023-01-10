@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Party;
+use App\Entity\PropositionDate;
 use App\Form\PartyFormType;
 use App\Repository\PartyRepository;
 use Doctrine\ORM\EntityManagerInterface;
@@ -37,6 +38,9 @@ class PartyController extends AbstractController
             $party->setCreator($this->getUser())
                 ->setSlug($slug)
             ;
+            if (1 === count($party->getPropositionDates())) {
+                $party->getPropositionDates()[0]->setFinalDate($party);
+            }
             $em->persist($party);
             $em->flush();
             return $this->redirectToRoute('party_show', ['slug' => $slug]);
@@ -105,5 +109,13 @@ class PartyController extends AbstractController
         return $this->redirectToRoute('party_show', ['slug' => $party->getSlug()]);
     }
 
+    #[Route('/party/date/validation/{id}', name: 'party_date_validation')]
+    public function dateValidation(PropositionDate $propositionDate, EntityManagerInterface $em): Response
+    {
+        $party = $propositionDate->getParty();
+        $propositionDate->setFinalDate($party);
+        $em->flush();
+        return $this->redirectToRoute('party_show', ['slug' => $party->getSlug()]);
+    }
 
 }

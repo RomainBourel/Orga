@@ -60,6 +60,7 @@ class ProductController extends AbstractController
                     'response' => [
                         'id' => $product->getId(),
                         'name' => $product->getName(),
+                        'unity' => $product->getUnity()->getName(),
                     ],
                 ]);
             }

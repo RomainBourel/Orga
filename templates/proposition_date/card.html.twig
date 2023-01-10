@@ -1,5 +1,10 @@
-<div class="party__reminder__card__section">
-    <div class="party__reminder__card__section--left">{{ date.startingAt|format_datetime('full', locale='fr')|slice(0, -3) }}</div>
-    <div class="party__reminder__card__section--right">
-    </div>
-</div>
+ <div class="card__section">
+        <div class="card__section--left">{{ date.startingAt|format_datetime('full', locale='fr')|slice(0, -3) }}</div>
+        <div class="card__section--right">
+            <a href="{{ path('party_date_validation', {id: date.id}) }}">
+                <button class="btn btn-primary" type="button">
+                    {{ 'button.party.proposition_date_confirm'|trans }}
+                </button>
+            </a>
+        </div>
+ </div>

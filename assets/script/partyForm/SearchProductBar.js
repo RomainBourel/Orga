@@ -29,7 +29,7 @@ class SearchProductBar {
                 this.propositionList.innerHTML = data.response.content;
                 Product.getAll().forEach(function(currentProduct) {Product.initOne(currentProduct.dataset.id)})
                 if (productData) {
-                    Product.add(productData.id, productData.name);
+                    Product.add(productData.id, productData.name, productData.unity);
                 }
             })
     }
