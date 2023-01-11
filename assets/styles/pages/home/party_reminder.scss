@@ -6,13 +6,16 @@
     border-radius: 5px;
     padding: 5px;
     margin: 2px;
+    background-color: $clr-white;
+    border: $clr-line solid 1px;
+    &--success {
+      border: none;
+      background-color: $clr-line-success;
+    }
     &__section {
       display: flex;
       flex-direction: row;
       justify-content: center;
-      padding: 5px;
-      border-radius: 5px;
-      border: $clr-line solid 1px;
       &--left {
         width: 60%;
         margin: 2px;

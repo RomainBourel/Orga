@@ -40,6 +40,7 @@ class Party
     private Collection $users;
 
     #[ORM\ManyToOne(inversedBy: 'parties')]
+    #[Assert\NotBlank]
     private ?Location $location = null;
 
     #[ORM\OneToMany(mappedBy: 'party', targetEntity: ProductParty::class, cascade:["persist", "remove"], orphanRemoval: true )]

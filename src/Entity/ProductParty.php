@@ -6,6 +6,7 @@ use App\Repository\ProductPartyRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: ProductPartyRepository::class)]
 #[ORM\HasLifecycleCallbacks]
@@ -20,6 +21,7 @@ class ProductParty
     private ?bool $sharing = false;
 
     #[ORM\Column]
+    #[Assert\NotBlank]
     private ?int $quantity = null;
 
     #[ORM\Column]
@@ -30,6 +32,7 @@ class ProductParty
 
     #[ORM\ManyToOne(inversedBy: 'productParties')]
     #[ORM\JoinColumn(nullable: false)]
+    #[Assert\NotBlank]
     private ?Product $product = null;
 
     #[ORM\ManyToOne(inversedBy: 'productsParty')]

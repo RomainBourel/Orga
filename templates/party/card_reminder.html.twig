@@ -1,4 +1,9 @@
-<a href="{{ path('party_show', {slug: party.slug}) }}" {% if party.creator is same as user %}class="bg-success party__reminder__card"{% endif %}>
+<a
+        href="{{ path('party_show', {slug: party.slug}) }}"
+        class="
+            party__reminder__card
+            {% if party.creator is same as user %}party__reminder__card--success{% endif %}"
+>
     <div class="party__reminder__card__section">
         <div class="party__reminder__card__section--left">{{ party.name }}</div>
         <div class="party__reminder__card__section--right">
