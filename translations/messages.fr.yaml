@@ -1,3 +1,8 @@
+bo.category: Categorie
+bo.location: Adresse
+bo.party: Evenement
+bo.return.website: Retour au site
+
 button.add.party: Créer un événement
 button.connection: Me connecter
 button.copy.link: Copier le lien
@@ -48,6 +53,7 @@ home.description:
 home.sign_in: Créer mon compte
 home.login: Déjà inscrit
 
+nav.admin: BO
 nav.home: accueil
 nav.login: se connecter
 nav.logout: se déconnecter
