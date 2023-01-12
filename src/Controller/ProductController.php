@@ -52,6 +52,9 @@ class ProductController extends AbstractController
             }
             $slug = $productRepository->findNextSlug($slugger->slug($product->getName()));
             $product->setSlug($slug);
+            if ($this->isGranted('ROLE_ADMIN')) {
+                $product->setIsPublished(true);
+            }
             $em->persist($product);
             $em->flush();
             if ($request->isXmlHttpRequest()) {

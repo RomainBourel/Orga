@@ -4,7 +4,9 @@ namespace App\Repository;
 
 use App\Entity\Product;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Doctrine\ORM\Query\Expr\Orx;
 use Doctrine\Persistence\ManagerRegistry;
+use Symfony\Component\Security\Core\Security;
 
 /**
  * @extends ServiceEntityRepository<Product>
@@ -16,7 +18,7 @@ use Doctrine\Persistence\ManagerRegistry;
  */
 class ProductRepository extends ServiceEntityRepository
 {
-    public function __construct(ManagerRegistry $registry)
+    public function __construct(ManagerRegistry $registry, private Security $security)
     {
         parent::__construct($registry, Product::class);
     }
@@ -67,8 +69,14 @@ class ProductRepository extends ServiceEntityRepository
     public function findWith(string $value): array
     {
         return $this->createQueryBuilder('p')
-            ->andWhere('p.name like :val')
-            ->setParameter('val', '%'.$value.'%')
+            ->where(new Orx([
+                'p.isPublished = :published',
+                'p.user = :user',
+            ]))
+            ->andWhere('p.name like :value')
+            ->setParameter('published', true)
+            ->setParameter('user', $this->security->getUser())
+            ->setParameter('value', '%'.$value.'%')
             ->setMaxResults('3')
             ->getQuery()
             ->getResult()

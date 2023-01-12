@@ -54,6 +54,12 @@ class Product
     #[ORM\OneToMany(mappedBy: 'product', targetEntity: ProductParty::class, orphanRemoval: true)]
     private Collection $productParties;
 
+    #[ORM\Column(nullable: true)]
+    private ?bool $isModerate = null;
+
+    #[ORM\Column(nullable: true)]
+    private ?bool $isPublished = null;
+
     public function __construct()
     {
         $this->productParties = new ArrayCollection();
@@ -202,6 +208,30 @@ class Product
                 $productParty->setProduct(null);
             }
         }
+
+        return $this;
+    }
+
+    public function isIsModerate(): ?bool
+    {
+        return $this->isModerate;
+    }
+
+    public function setIsModerate(?bool $isModerate): self
+    {
+        $this->isModerate = $isModerate;
+
+        return $this;
+    }
+
+    public function isIsPublished(): ?bool
+    {
+        return $this->isPublished;
+    }
+
+    public function setIsPublished(?bool $isPublished): self
+    {
+        $this->isPublished = $isPublished;
 
         return $this;
     }

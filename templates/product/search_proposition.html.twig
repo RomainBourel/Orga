@@ -3,13 +3,15 @@
         <div class="search-list__product" id="search-product-{{ product.id }}" data-id="{{ product.id }}">
             <div class="search-list__product__info">
                 <div class="search-list__product__image">
-                    <img
-                            class="table__image"
-                            src="{% if product.picture is defined and product.picture is not null %}{{ asset('uploads/'~product.picture) }}{% endif %}"
-                            alt="{{ product.name }} "
-                            width="50px"
-                            height="50px"
-                    >
+                    {% if product.picture is defined and product.picture is not null %}
+                        <img
+                                class="table__image"
+                                src="{{ asset('uploads/'~product.picture) }}"
+                                alt="{{ product.name }} "
+                                width="50px"
+                                height="50px"
+                        >
+                    {% endif %}
                 </div>
                 <div class="search-list__product__quantity d-flex align-items-center">
                     <button
