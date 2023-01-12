@@ -58,6 +58,9 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[Assert\NotBlank]
     private ?string $username = null;
 
+    #[ORM\ManyToMany(targetEntity: Product::class, mappedBy: 'reporters')]
+    private Collection $reportedProducts;
+
     public function __construct()
     {
         $this->createdParties = new ArrayCollection();
@@ -66,6 +69,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         $this->products = new ArrayCollection();
         $this->availables = new ArrayCollection();
         $this->reservedProducts = new ArrayCollection();
+        $this->reportedProducts = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -335,6 +339,33 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function setUsername(string $username): self
     {
         $this->username = $username;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Product>
+     */
+    public function getReportedProducts(): Collection
+    {
+        return $this->reportedProducts;
+    }
+
+    public function addReportedProduct(Product $reportedProduct): self
+    {
+        if (!$this->reportedProducts->contains($reportedProduct)) {
+            $this->reportedProducts->add($reportedProduct);
+            $reportedProduct->addReporter($this);
+        }
+
+        return $this;
+    }
+
+    public function removeReportedProduct(Product $reportedProduct): self
+    {
+        if ($this->reportedProducts->removeElement($reportedProduct)) {
+            $reportedProduct->removeReporter($this);
+        }
 
         return $this;
     }

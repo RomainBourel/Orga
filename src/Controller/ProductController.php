@@ -13,8 +13,14 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\String\Slugger\SluggerInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
+use Symfony\Contracts\Translation\TranslatorInterface;
+
 class ProductController extends AbstractController
 {
+    public function __construct(private TranslatorInterface $translator)
+    {
+    }
+
     #[Route('/product', name: 'product')]
     public function index(): Response
     {
@@ -98,5 +104,61 @@ class ProductController extends AbstractController
         return $this->json([
             'response' => $response,
         ]);
+    }
+
+    #[isGranted('ROLE_USER')]
+    #[Route('/product/report/{slug}', name: 'product_report')]
+    public function report(Product $product, EntityManagerInterface $em): Response
+    {
+        if ($product->getReporters()->contains($this->getUser())) {
+            $product->removeReporter($this->getUser());
+            $response = [
+                'flash' => [
+                    'message'=> $this->translator->trans('flash.product.unreport'),
+                    'type' => 'success',
+                ],
+                'newText' => $this->translator->trans('link.product.report'),
+            ];
+
+        } else {
+            $product->addReporter($this->getUser());
+            $response = [
+                'flash' => [
+                    'message'=> $this->translator->trans('flash.product.report'),
+                    'type' => 'success',
+                ],
+                'newText' => $this->translator->trans('link.product.unreport'),
+            ];
+        }
+        $em->flush();
+        return $this->json($response);
+    }
+
+    #[isGranted('ROLE_ADMIN')]
+    #[Route('/product/moderate/{slug}', name: 'product_moderate')]
+    public function moderate(Product $product, EntityManagerInterface $em): Response
+    {
+        if ($product->isIsModerate()) {
+            $product->setIsModerate(false);
+            $response = [
+                'flash' => [
+                    'message'=> $this->translator->trans('flash.product.unmoderate'),
+                    'type' => 'success',
+                ],
+                'newText' => $this->translator->trans('link.product.moderate'),
+            ];
+
+        } else {
+            $product->setIsModerate(true);
+            $response = [
+                'flash' => [
+                    'message'=> $this->translator->trans('flash.product.moderate'),
+                    'type' => 'success',
+                ],
+                'newText' => $this->translator->trans('link.product.unmoderate'),
+            ];
+        }
+        $em->flush();
+        return $this->json($response);
     }
 }

@@ -37,6 +37,14 @@
       flex-direction: row;
       justify-content: space-around;
     }
+    &--signal {
+      justify-content: end;
+
+    }
+    &__signal-link {
+      font-size: 0.7rem;
+      color: $clr-btn-delete;
+    }
   }
   &--success {
     border:$clr-line-success 2px solid;

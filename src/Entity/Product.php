@@ -60,9 +60,13 @@ class Product
     #[ORM\Column(nullable: true)]
     private ?bool $isPublished = null;
 
+    #[ORM\ManyToMany(targetEntity: User::class, inversedBy: 'reportedProducts')]
+    private Collection $reporters;
+
     public function __construct()
     {
         $this->productParties = new ArrayCollection();
+        $this->reporters = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -232,6 +236,30 @@ class Product
     public function setIsPublished(?bool $isPublished): self
     {
         $this->isPublished = $isPublished;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, User>
+     */
+    public function getReporters(): Collection
+    {
+        return $this->reporters;
+    }
+
+    public function addReporter(User $reporter): self
+    {
+        if (!$this->reporters->contains($reporter)) {
+            $this->reporters->add($reporter);
+        }
+
+        return $this;
+    }
+
+    public function removeReporter(User $reporter): self
+    {
+        $this->reporters->removeElement($reporter);
 
         return $this;
     }

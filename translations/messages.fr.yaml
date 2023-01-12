@@ -17,6 +17,10 @@ button.validate: Je m'inscris
 error.verified: Compte non vérifier veuillez regarder vos mail.
 
 flash.copy.link: Lien copiée
+flash.product.moderate: produit visible uniquement par le créateur
+flash.product.unmoderate: modération annulée
+flash.product.report: Produit signalé
+flash.product.unreport: Signalement du produit annulé
 flash.new.link: Nouveau lien créer
 
 form.agree_therms.label: j'accepte les termes et conditions d'utilisation
@@ -47,6 +51,11 @@ home.description:
   <p>et bien plus encore</p>
 home.sign_in: Créer mon compte
 home.login: Déjà inscrit
+
+link.product.moderate: modérer le produit
+link.product.unmoderate: annulé la modération du produit
+link.product.report: Signaler le produit
+link.product.unreport: retiré le signalement
 
 nav.home: accueil
 nav.login: se connecter

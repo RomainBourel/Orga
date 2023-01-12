@@ -51,4 +51,34 @@
                 </p>
         </div>
     {% endif %}
+    {% if product.product.user is not same as app.user or is_granted('ROLE_ADMIN') %}
+        <div class="card__section card__section--signal">
+            <a
+                    href="{{ path('product_report', {slug: product.product.slug}) }}"
+                    class="card__section__signal-link"
+                    data-fetch-link="true"
+            >
+                {% if product.product.reporters.contains(app.user) %}
+                    {{ 'link.product.unreport'|trans }}
+                {% else %}
+                    {{ 'link.product.report'|trans }}
+                {% endif %}
+            </a>
+        </div>
+        {% if is_granted('ROLE_ADMIN') %}
+            <div class="card__section card__section--signal">
+                <a
+                        href="{{ path('product_moderate', {slug: product.product.slug}) }}"
+                        class="card__section__signal-link"
+                        data-fetch-link="true"
+                >
+                    {% if product.product.isModerate %}
+                        {{ 'link.product.unmoderate'|trans }}
+                    {% else %}
+                        {{ 'link.product.moderate'|trans }}
+                    {% endif %}
+                </a>
+            </div>
+        {% endif %}
+    {% endif %}
 </div>
