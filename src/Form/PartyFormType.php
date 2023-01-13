@@ -15,7 +15,7 @@ use Symfony\Contracts\Translation\TranslatorInterface;
 
 class PartyFormType extends AbstractType
 {
-    public function __construct(private TranslatorInterface $translatorn, private Security $security)
+    public function __construct(private TranslatorInterface $translator, private Security $security)
     {
     }
 

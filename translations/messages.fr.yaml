@@ -24,6 +24,12 @@ flash.product.unreport: Signalement du produit annulé
 flash.new.link: Nouveau lien créer
 
 form.agree_therms.label: j'accepte les termes et conditions d'utilisation
+form.location.label.address: Adresse
+form.location.label.city: Ville
+form.location.label.name: Nom
+form.location.label.principal: Cochez pour définir comme adresse principale
+form.location.label.zip_code: Code postal
+form.location.title: Créer une adresse
 form.party.button.add_product: Ajouter un produit
 form.party.button.add_proposition_date: Ajouter une date
 form.party.button.create_party: Créer l'évènement

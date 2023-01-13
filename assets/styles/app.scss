@@ -3,9 +3,10 @@
 @import './base/index.scss';
 
 @import './utils/mixins/index.scss';
-@import './utils/variables/colors/button.scss';
+@import './utils/variables/color.scss';
 
 @import './components/button.scss';
+@import './components/flash.scss';
 @import './components/icon.scss';
 
 @import './layout/tabBar.scss';

@@ -5,7 +5,9 @@ namespace App\Controller;
 use App\Entity\Party;
 use App\Entity\PropositionDate;
 use App\Form\PartyFormType;
+use App\Repository\LocationRepository;
 use App\Repository\PartyRepository;
+use App\Repository\ProductRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -25,8 +27,15 @@ class PartyController extends AbstractController
 
     #[isGranted('ROLE_USER')]
     #[Route('/party/create', name: 'party_create')]
-    public function create(Request $request, EntityManagerInterface $em, PartyRepository $partyRepository, SluggerInterface $slugger): Response
+    public function create(Request $request, EntityManagerInterface $em, PartyRepository $partyRepository, SluggerInterface $slugger, LocationRepository $locationRepository): Response
     {
+        if (!$locationRepository->findOneBy(['user' => $this->getUser()])) {
+            $this->addFlash('flash', [
+                'message' => 'Vous devez créer une adresse avant de créer un événement',
+                'type' => 'warning',
+            ]);
+            return $this->redirectToRoute('location_create');
+        }
 
         $party = new Party();
 

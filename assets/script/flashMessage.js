@@ -1,23 +1,10 @@
 export function makeFlash(message, type) {
-    const flash = document.createElement('div');
-    flash.classList.add('alert', `alert-${type}`);
-    flash.innerText = message;
-    flash.style.position = 'absolute';
-    flash.style.width = '100%';
-    flash.style.textAlign = 'center';
-    document.querySelector('body').append(flash);
-    setTimeout(() => flash.remove(), 4000)
-    const transform = [
-        { transform: 'translateY(0px)' },
-        { transform: 'translateY(-100px)' }
-    ];
-
-    const timing = {
-        duration: 700,
-        iterations: 1,
-        fill: 'forwards',
-        delay: 2000,
-        easing: 'ease-in',
-    }
-    flash.animate(transform, timing);
+    const flashBox = document.querySelector('.flash');
+    let flashCard = flashBox.dataset.flashCardTemplate;
+    flashCard = flashCard.replace('__message__', message);
+    flashCard = flashCard.replace('__type__', type);
+    flashBox.innerHTML = flashCard;
+    flashBox.style.animation = 'none';
+    flashBox.offsetHeight;
+    flashBox.style.animation = null;
 }

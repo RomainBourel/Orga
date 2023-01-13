@@ -1,0 +1,28 @@
+.flash {
+  position: absolute;
+  left: 0;
+  right: 0;
+  display: flex;
+  flex-direction: column;
+  animation: 5s ease-in 2000ms 1 normal both running slide-out;
+  @keyframes slide-out { from { top: 0 } to { top: -2000px; }  }
+  &-card {
+    border-radius: 15px;
+    border: solid 2px;
+    padding: 8px 5px;
+    margin: 2px;
+    display: flex;
+    justify-content: center;
+  }
+  &__message {
+    text-align: justify;
+  }
+  &--success{
+    border-color: $success-border;
+    background-color: $success;
+  }
+  &--warning {
+    border-color: $warning-border;
+    background-color: $warning;
+  }
+}
