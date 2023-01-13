@@ -4,23 +4,18 @@ namespace App\Form;
 
 use App\Entity\Location;
 use App\Entity\Party;
-use App\Entity\Product;
-use App\Entity\ProductParty;
 use App\Repository\LocationRepository;
-use App\Repository\ProductPartyRepository;
-use App\Repository\ProductRepository;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\ChoiceList\ChoiceList;
-use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Security\Core\Security;
 use Symfony\Contracts\Translation\TranslatorInterface;
 
 class PartyFormType extends AbstractType
 {
-    public function __construct(private TranslatorInterface $translator)
+    public function __construct(private TranslatorInterface $translatorn, private Security $security)
     {
     }
 
@@ -39,6 +34,9 @@ class PartyFormType extends AbstractType
                 'choice_label' => 'name',
                 'query_builder' => function (LocationRepository $qb) {
                     return $qb->createQueryBuilder('l')
+                        ->join('l.user', 'u')
+                        ->where('u.id = :user')
+                        ->setParameter('user', $this->security->getUser()->getId())
                         ->addOrderBy('l.principal', 'DESC',)
                         ->addOrderBy('l.name', 'ASC')
                     ;
