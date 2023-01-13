@@ -1,0 +1,38 @@
+.agree-therms {
+  margin: 10px;
+  &__title {
+    font-size: 1rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+
+    &--principal {
+      font-size: 2rem;
+      font-weight: 700;
+      margin-bottom: 2rem;
+    }
+  }
+
+  &__content {
+    font-size: 1rem;
+    line-height: 1.5rem;
+    margin-bottom: 2rem;
+
+    &--principal {
+      font-size: 1.2rem;
+      line-height: 2rem;
+      margin-bottom: 2rem;
+    }
+  }
+
+  &__list {
+    font-size: 1rem;
+    line-height: 1.5rem;
+    margin-bottom: 2rem;
+    list-style: number;
+    padding-left: 20px;
+
+    &___item {
+      margin-bottom: 1rem;
+    }
+  }
+}

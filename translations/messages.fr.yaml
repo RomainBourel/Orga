@@ -30,7 +30,8 @@ flash.product.report: Produit signalé
 flash.product.unreport: Signalement du produit annulé
 flash.new.link: Nouveau lien créer
 
-form.agree_therms.label: j'accepte les termes et conditions d'utilisation
+form.agree_therms.label:
+  <p>j'accepte les <a href="%url%" class="link">termes et conditions d'utilisation</a></p>
 form.location.label.address: Adresse
 form.location.label.city: Ville
 form.location.label.name: Nom
@@ -64,6 +65,9 @@ home.description:
   <p>et bien plus encore</p>
 home.sign_in: Créer mon compte
 home.login: Déjà inscrit
+
+legal.notion :
+
 
 link.product.moderate: modérer le produit
 link.product.unmoderate: annulé la modération du produit

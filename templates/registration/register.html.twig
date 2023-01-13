@@ -27,7 +27,10 @@
                     <li class="form__clue"><span data-clue="length" class="icon__cross">✖</span> plus de 10 charactère</li>
                 </ul>
             </div>
-            {{ form_row(registrationForm.agreeTerms) }}
+            <div class="form__agree-terms">
+                {{ form_widget(registrationForm.agreeTerms) }}{{ 'form.agree_therms.label'|trans({'%url%': path('agree_therms')})|raw }}
+            </div>
+
             <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
             <div class="d-flex justify-content-center">
                 {{ form_row(registrationForm.submit) }}

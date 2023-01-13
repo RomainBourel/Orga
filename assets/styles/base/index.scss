@@ -15,6 +15,14 @@ body{
   align-items: center;
   width: 100%;
 }
+.link {
+  color: #2b52d7;
+  text-decoration: underline;
+  &:hover {
+    color: #603b9d;
+    text-decoration: none;
+  }
+}
 * {
   font-size: 1.2rem;
 h1 {

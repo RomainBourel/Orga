@@ -26,7 +26,9 @@ Encore
     .addEntry('party_index', './assets/script/partyIndex/index.js')
     .addEntry('location_update', './assets/script/locationUpdate.js')
 
+    .addEntry('agree_therms', './assets/styles/pages/agree_therms.scss')
     .addEntry('home', './assets/styles/pages/home/index.scss')
+    .addEntry('legal_notice', './assets/styles/pages/legal_notice.scss')
 
     // enables the Symfony UX Stimulus bridge (used in assets/bootstrap.js)
     .enableStimulusBridge('./assets/controllers.json')

@@ -71,7 +71,7 @@ class RegistrationFormType extends AbstractType
             ])
             ->add('agreeTerms', CheckboxType::class, [
                 'mapped' => false,
-                'label' => $this->translator->trans('form.agree_therms.label'),
+                'label' => false,
                 'constraints' => [
                     new IsTrue([
                         'message' => 'user.agree_therms',
