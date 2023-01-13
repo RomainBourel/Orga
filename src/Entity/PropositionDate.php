@@ -19,12 +19,15 @@ class PropositionDate
 
     #[ORM\Column(nullable: true)]
     #[Assert\NotBlank]
+    #[Assert\GreaterThan('today')]
     private ?\DateTimeImmutable $startingAt = null;
 
     #[ORM\Column(nullable: true)]
+    #[Assert\GreaterThan(propertyPath: "startingAt")]
     private ?\DateTimeImmutable $endingAt = null;
 
     #[ORM\Column(nullable: true)]
+    #[Assert\Positive]
     private ?int $numberMaxParticipant = null;
 
     #[ORM\Column]

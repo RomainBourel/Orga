@@ -2,7 +2,9 @@ import Maker from '../Maker.js';
 class PropositionDate {
     constructor() {
         this.id = 0;
-        this.createPropositionDateForm();
+        if (null === document.querySelector('[id^=party_form_propositionDates_]')) {
+            this.createPropositionDateForm();
+        }
         this.buttonAddPropositionDate = document.querySelector(`#add-proposition-date`);
         this.buttonAddPropositionDate.addEventListener('click', this.onClickAddPropositionDate);
     }
