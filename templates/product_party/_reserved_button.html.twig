@@ -1,9 +1,9 @@
 <a
-        id="{{ type }}-product-button-{{ product.id }}"
+        id="{{ type }}-product-button-{{ productParty.id }}"
         href="{{ path(('product_party_' ~ type), {id: id}) }}"
         data-listener="false"
         data-type="{{ type }}"
-        data-id="{{ product.id }}"
+        data-id="{{ productParty.id }}"
         {% if isHidden %}hidden="hidden"{% endif %}
 >
     <button class="btn {{ btnClass }}">

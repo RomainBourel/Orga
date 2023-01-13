@@ -35,9 +35,9 @@
     </div>
     {% if 0 < party.productsParty|length %}
         <div class="form__section">
-            {% for product in party.productsParty %}
-                {% if not product.product.isModerate %}
-                    {% include 'product/card.html.twig' with {products: party.productsParty} %}
+            {% for productParty in party.productsParty %}
+                {% if not productParty.product.isModerate %}
+                    {% include 'product_party/card.html.twig' %}
                 {% endif %}
             {% endfor %}
         </div>

@@ -1,37 +1,37 @@
 <div class="card">
     <div class="card__section">
-        {% if product.product.picture is defined and product.product.picture is not null %}
+        {% if productParty.product.picture is defined and productParty.product.picture is not null %}
             <img
                     class="table__image"
-                    src="{{ asset('uploads/'~product.product.picture) }}"
-                    alt="{{ product.product.name }} "
+                    src="{{ asset('uploads/'~productParty.product.picture) }}"
+                    alt="{{ productParty.product.name }} "
                     width="50px"
                     height="50px"
             >
         {% endif %}
         <div class="card__section--right">
-            <p>{{ product.quantity }} {{ product.product.unity.name }}</p>
+            <p>{{ productParty.quantity }} {{ productParty.product.unity.name }}</p>
         </div>
     </div>
     <div class="card__section">
-        {% set reservedProduct = product.reservedProductByUser(app.user) %}
-        {% if reservedProduct or product.quantityReserved is not same as product.quantity %}
-            <div id="reserved-button-{{ product.id }}-container">
+        {% set reservedProduct = productParty.reservedProductByUser(app.user) %}
+        {% if reservedProduct or productParty.quantityReserved is not same as productParty.quantity %}
+            <div id="reserved-button-{{ productParty.id }}-container">
 
-                {% include 'product/reserved_button.html.twig' with {
+                {% include '/product_party/_reserved_button.html.twig' with {
                     type: 'reserved',
-                    id: product.id,
+                    id: productParty.id,
                     isHidden: reservedProduct,
                     btnClass: 'btn__primary',
                 } %}
-                {% include 'product/reserved_button.html.twig' with {
+                {% include '/product_party/_reserved_button.html.twig' with {
                     type: 'unreserved',
-                    id: product.id,
+                    id: productParty.id,
                     isHidden: not reservedProduct or reservedProduct.status is same as constant('App\\Entity\\ReservedProduct::STATUS_BOUGHT'),
                     btnClass: 'btn__delete',
                 } %}
             </div>
-            <div id="buy-button-{{ product.id }}-container">
+            <div id="buy-button-{{ productParty.id }}-container">
                 {% if reservedProduct %}
                     {% include 'product_party/_buy_button.html.twig' %}
                 {% endif %}
@@ -39,26 +39,26 @@
         {% endif %}
     </div>
     <div class="card__section">
-        <h3>{{ product.product.name }}</h3>
+        <h3>{{ productParty.product.name }}</h3>
     </div>
-    {% if not reservedProduct and not product.reservedProducts.isEmpty %}
+    {% if not reservedProduct and not productParty.reservedProducts.isEmpty %}
         <div class="card__section">
                 <p>
-                    {% for reservedProduct in product.reservedProducts %}
+                    {% for reservedProduct in productParty.reservedProducts %}
                         {{ reservedProduct.user.username }}
                     {% endfor %}
                     s'en charge
                 </p>
         </div>
     {% endif %}
-    {% if product.product.user is not same as app.user or is_granted('ROLE_ADMIN') %}
+    {% if productParty.product.user is not same as app.user or is_granted('ROLE_ADMIN') %}
         <div class="card__section card__section--signal">
             <a
-                    href="{{ path('product_report', {slug: product.product.slug}) }}"
+                    href="{{ path('product_report', {slug: productParty.product.slug}) }}"
                     class="card__section__signal-link"
                     data-fetch-link="true"
             >
-                {% if product.product.reporters.contains(app.user) %}
+                {% if productParty.product.reporters.contains(app.user) %}
                     {{ 'link.product.unreport'|trans }}
                 {% else %}
                     {{ 'link.product.report'|trans }}
@@ -68,11 +68,11 @@
         {% if is_granted('ROLE_ADMIN') %}
             <div class="card__section card__section--signal">
                 <a
-                        href="{{ path('product_moderate', {slug: product.product.slug}) }}"
+                        href="{{ path('product_moderate', {slug: productParty.product.slug}) }}"
                         class="card__section__signal-link"
                         data-fetch-link="true"
                 >
-                    {% if product.product.isModerate %}
+                    {% if productParty.product.isModerate %}
                         {{ 'link.product.unmoderate'|trans }}
                     {% else %}
                         {{ 'link.product.moderate'|trans }}
