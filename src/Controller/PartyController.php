@@ -50,7 +50,7 @@ class PartyController extends AbstractController
         ]);
     }
 
-    #[isGranted('ROLE_USER')]
+    #[Security("is_granted('ROLE_ADMIN') or user == party.getCreator()")]
     #[Route('/party/remove/{slug}', name: 'party_remove')]
     public function remove(Party $party, EntityManagerInterface $em): Response
     {
@@ -99,6 +99,7 @@ class PartyController extends AbstractController
         ]);
     }
 
+    #[Security("is_granted('ROLE_USER')")]
     #[Route('/party/invitation/{invitationToken}', name: 'party_invitation')]
     public function invitation(Party $party, EntityManagerInterface $em): Response
     {
