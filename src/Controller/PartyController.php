@@ -31,7 +31,7 @@ class PartyController extends AbstractController
     {
         if (!$locationRepository->findOneBy(['user' => $this->getUser()])) {
             $this->addFlash('flash', [
-                'message' => 'Vous devez créer une adresse avant de créer un événement',
+                'message' => $this->translator->trans('flash.party.create.need_location.message'),
                 'type' => 'warning',
             ]);
             return $this->redirectToRoute('location_create');
@@ -52,6 +52,10 @@ class PartyController extends AbstractController
             }
             $em->persist($party);
             $em->flush();
+            $this->addFlash('flash', [
+                'message' => $this->translator->trans('flash.party.create.message'),
+                'type' => 'success',
+            ]);
             return $this->redirectToRoute('party_show', ['slug' => $slug]);
         }
         return $this->renderForm('party/create.html.twig', [
@@ -65,6 +69,10 @@ class PartyController extends AbstractController
     {
         $em->remove($party);
         $em->flush();
+        $this->addFlash('flash', [
+            'message' => $this->translator->trans('flash.party.remove.message'),
+            'type' => 'success',
+        ]);
         return $this->redirectToRoute('home');
     }
     #[Route('/party/{slug}', name: 'party_show')]
@@ -125,6 +133,10 @@ class PartyController extends AbstractController
         $party = $propositionDate->getParty();
         $propositionDate->setFinalDate($party);
         $em->flush();
+        $this->addFlash('flash', [
+            'message' => $this->translator->trans('flash.party.date_validation.message'),
+            'type' => 'success',
+        ]);
         return $this->redirectToRoute('party_show', ['slug' => $party->getSlug()]);
     }
 

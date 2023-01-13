@@ -35,7 +35,7 @@ class ProductPartyController extends AbstractController
         return $this->json([
             'buyButton' => $this->renderView('product_party/_buy_button.html.twig', [
                 'reservedProduct' => $productParty->getReservedProductByUser($this->getUser()),
-                'product' => $productParty,
+                'productParty' => $productParty,
             ]),
             'flash' => [
                 'message'=> 'Produit réservé',

@@ -1,11 +1,11 @@
 <div>
-    {% include 'product/reserved_button.html.twig' with {
+    {% include 'product_party/_reserved_button.html.twig' with {
         type: 'buy',
         id: reservedProduct.id,
         isHidden: reservedProduct.status is same as constant('App\\Entity\\ReservedProduct::STATUS_BOUGHT'),
         btnClass: 'btn__secondary',
     } %}
-    {% include 'product/reserved_button.html.twig' with {
+    {% include 'product_party/_reserved_button.html.twig' with {
         type: 'unbuy',
         id: reservedProduct.id,
         isHidden: reservedProduct.status is same as constant('App\\Entity\\ReservedProduct::STATUS_RESERVED'),

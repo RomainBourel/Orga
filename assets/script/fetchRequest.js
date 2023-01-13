@@ -2,7 +2,6 @@ import {makeFlash} from "./flashMessage";
 export default class FetchRequest {
     constructor() {
         this.fetchLinks = document.querySelectorAll('[data-fetch-link="true"]');
-        console.log(this.fetchLinks);
         this.bindLinks();
     }
 

@@ -57,13 +57,11 @@ export default class ReservedProduct {
             })
             .then((data) => {
                 if ('reserved' === button.dataset.type) {
-                    console.log(button.dataset.id);
                     document.querySelector(`#reserved-product-button-${button.dataset.id}`).hidden = true
                     document.querySelector(`#unreserved-product-button-${button.dataset.id}`).hidden = false
                     document.querySelector(`#buy-button-${button.dataset.id}-container`).innerHTML = data.buyButton;
                     this.initBuyButton();
                 } else if ('unreserved' === button.dataset.type) {
-                    console.log(button.dataset.id);
                     document.querySelector(`#reserved-product-button-${button.dataset.id}`).hidden = false
                     document.querySelector(`#unreserved-product-button-${button.dataset.id}`).hidden = true
                     document.querySelector(`#buy-button-${button.dataset.id}-container`).innerHTML = '';
@@ -72,7 +70,6 @@ export default class ReservedProduct {
                     document.querySelector(`#buy-product-button-${button.dataset.id}`).hidden = true
                     document.querySelector(`#unbuy-product-button-${button.dataset.id}`).hidden = false
                 } else if ('unbuy' === button.dataset.type) {
-                    console.log(button.dataset.id);
                     document.querySelector(`#unreserved-product-button-${button.dataset.id}`).hidden = false
                     document.querySelector(`#buy-product-button-${button.dataset.id}`).hidden = false
                     document.querySelector(`#unbuy-product-button-${button.dataset.id}`).hidden = true

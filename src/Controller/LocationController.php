@@ -11,10 +11,11 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Contracts\Translation\TranslatorInterface;
 
 class LocationController extends AbstractController
 {
-    public function __construct(private LocationRepository $locationRepository)
+    public function __construct(private LocationRepository $locationRepository, private TranslatorInterface $translator)
     {
     }
 
@@ -43,6 +44,10 @@ class LocationController extends AbstractController
             $location->setUser($this->getUser());
             $em->persist($location);
             $em->flush();
+            $this->addFlash('flash', [
+                'message' => $this->translator->trans('flash.location.create.message'),
+                'type' => 'success',
+            ]);
             return $this->redirectToRoute('user');
         }
         return $this->renderForm('location/create.html.twig', [
@@ -58,6 +63,10 @@ class LocationController extends AbstractController
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
             $em->flush();
+            $this->addFlash('flash', [
+                'message' => $this->translator->trans('flash.location.update.message'),
+                'type' => 'success',
+            ]);
             return $this->redirectToRoute('user');
         }
         return $this->renderForm('location/create.html.twig', [

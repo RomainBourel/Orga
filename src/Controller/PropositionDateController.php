@@ -22,7 +22,6 @@ class PropositionDateController extends AbstractController
         $reduce = $propositionDate->getAvailables()->reduce(function(bool $accumulator, Available $value): bool {
             return $accumulator || ($value->getUser() === $this->getUser() && $value->isIsAvailable());
         }, false);
-        dump($reduce);
 
         return $this->json($this->setAvailable($propositionDate, true));
     }
