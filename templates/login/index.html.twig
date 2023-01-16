@@ -13,10 +13,10 @@
     {% endif %}
 
     <form action="{{ path('login') }}" method="post">
-        <label class="form-label required" for="username">Email:</label>
+        <label class="form-label required" for="username">{{ 'form.login.email.label'|trans }}</label>
         <input type="text" id="username" class="form-control" name="_username" value="{{ last_username }}">
 
-        <label class="form-label required" for="password">Password:</label>
+        <label class="form-label required" for="password">{{ 'form.login.password.label'|trans }}</label>
         <div>
             <input type="password" id="password" class="form-control" name="_password">
         </div>

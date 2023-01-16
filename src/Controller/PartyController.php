@@ -116,10 +116,13 @@ class PartyController extends AbstractController
         ]);
     }
 
-    #[Security("is_granted('ROLE_USER')")]
     #[Route('/party/invitation/{invitationToken}', name: 'party_invitation')]
-    public function invitation(Party $party, EntityManagerInterface $em): Response
+    public function invitation(Party $party, EntityManagerInterface $em, Request $request): Response
     {
+        if (!$this->isGranted('ROLE_USER')) {
+            $request->getSession()->set('invitationToken', $party->getInvitationToken());
+            return $this->redirectToRoute('home');
+        }
         if (!$party->getUsers()->contains($this->getUser())) {
             $party->addUser($this->getUser());
             $em->flush();

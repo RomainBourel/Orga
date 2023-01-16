@@ -8,7 +8,7 @@ button.party.reserved_product.reserved: Je m'en charge
 button.party.reserved_product.unreserved: Je ne m'en charge plus
 button.party.reserved_product.buy: J'ai trouver
 button.party.reserved_product.unbuy: Je n'ai plus trouver
-button.party.share: Accèder au lien de partage
+button.party.share: Partager l'événement
 button.party.share.new: Créer un nouveau lien
 button.register: M'inscrire
 button.remove: Effacer
@@ -38,6 +38,8 @@ form.location.label.name: Nom
 form.location.label.principal: Cochez pour définir comme adresse principale
 form.location.label.zip_code: Code postal
 form.location.title: Créer une adresse
+form.login.email.label: E-mail
+form.login.password.label: Mot de passe
 form.party.button.add_product: Ajouter un produit
 form.party.button.add_proposition_date: Ajouter une date
 form.party.button.create_party: Créer l'évènement
@@ -54,6 +56,8 @@ form.proposition_date.placeholder.number_max_participant: Pas de maximum
 form.password.first_label: Mot de passe
 form.password.second_label: Confirmation mot de passe
 form.product_party.quantity: quantité
+form.registration.email.label: E-mail
+form.registration.username.label: Nom d'utilisateur
 
 home.title: ORGA
 home.sub_title: organise toi !!!
