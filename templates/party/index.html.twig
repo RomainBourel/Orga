@@ -5,6 +5,7 @@
 {% block javascripts %}
     {{ parent() }}
     {{ encore_entry_script_tags('party_index') }}
+    {{ encore_entry_link_tags('style_party_index') }}
 {% endblock %}
 
 {% block body %}
@@ -24,7 +25,7 @@
         </div>
     </div>
 
-    <div class="form__section">
+    <div class="form__section form__section--calendar">
         {% if party.finalDate %}
             {% include 'proposition_date/card.html.twig' with {date: party.finalDate, final: true}%}
         {% else %}

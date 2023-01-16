@@ -34,7 +34,7 @@ class PropositionDateController extends AbstractController
     private function setAvailable(PropositionDate $propositionDate, bool $isAvailable): array
     {
         if ($available = $this->availableRepository->findOneBy(['user' => $this->getUser(), 'propositionDate' => $propositionDate])) {
-            $available->setIsAvailable($isAvailable);
+            $available->getPropositionDate()->removeAvailable($available);
         } else {
             $available = (new Available())
                 ->setIsAvailable($isAvailable)

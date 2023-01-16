@@ -44,9 +44,9 @@ export default class Available {
                 document.querySelector(`#party-available-button-${id}`).hidden = data.isAvailable
                 document.querySelector(`#party-unavailable-button-${id}`).hidden = !data.isAvailable
                 if (data.isAvailable) {
-                    this.borderStyle = 'mediumseagreen 2px solid';
+                    document.querySelector(`#party-available-count-${id}`).innerHTML ++;
                 } else {
-                    this.borderStyle = 'grey 1px solid';
+                    document.querySelector(`#party-available-count-${id}`).innerHTML --;
                 }
                 document.querySelector(`#card-proposition-date-${id}`).style.border = this.borderStyle;
                 makeFlash(data.flash.message, data.flash.type);
