@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Condition d'utilisation{% endblock %}
+{% block title %}{{ parent() }}{{ "title.agree_therm"|trans }}{% endblock %}
 
 {% block javascripts %}
     {{ parent() }}
@@ -9,14 +9,14 @@
 
 {% block body %}
     <div class="agree-therms">
-        <h1 class="agree-therms__title--principal">Conditions d'utilisation</h1>
-        <p class="agree-therms__content--principal">En utilisant notre site Orga.romain-bourel.fr, vous acceptez les termes et conditions suivants. Si vous n'êtes pas d'accord avec ces termes, veuillez ne pas utiliser notre site.</p>
+        <h1 class="agree-therms__title--principal">{{ 'text.agree_therm.title_1'|trans }}</h1>
+        <p class="agree-therms__content--principal">{{ 'text.agree_therm.part_1'|trans }}</p>
         <ol class="agree-therms__list">
-            <li class="agree-therms__list__items">Utilisation du contenu : Le contenu de notre site, y compris les textes, images, vidéos et tout autre matériel, est la propriété de Orga.romain-bourel.fr et ne peut être utilisé sans notre autorisation expresse.</li>
-            <li class="agree-therms__list__items">Respect des règles de conduite : Vous êtes tenu de respecter les règles de conduite appropriées lors de l'utilisation de notre site, y compris en ne publiant pas de contenu choquant ou offensant.</li>
-            <li class="agree-therms__list__items">Responsabilité : Orga.romain-bourel.fr n'est pas responsable des dommages causés par l'utilisation de notre site.</li>
-            <li class="agree-therms__list__items">Modifications des termes : Orga.romain-bourel.fr se réserve le droit de modifier ces termes et conditions à tout moment, et il est de votre responsabilité de vérifier régulièrement pour des modifications.</li>
+            <li class="agree-therms__list__items">{{ 'text.agree_therm.list_1'|trans }}</li>
+            <li class="agree-therms__list__items">{{ 'text.agree_therm.list_2'|trans }}</li>
+            <li class="agree-therms__list__items">{{ 'text.agree_therm.list_3'|trans }}</li>
+            <li class="agree-therms__list__items">{{ 'text.agree_therm.list_4'|trans }}</li>
         </ol>
-        <p class="agree-therms__content">En utilisant Orga.romain-bourel.fr, vous acceptez d'être lié par les termes et conditions ci-dessus. Si vous avez des questions concernant ces termes, veuillez nous contacter à l'adresse romain@gmail.com."</p>
+        <p class="agree-therms__content">{{ 'text.agree_therm.part_2'|trans }}</p>
     </div>
 {% endblock %}

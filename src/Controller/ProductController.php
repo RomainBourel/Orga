@@ -21,14 +21,6 @@ class ProductController extends AbstractController
     {
     }
 
-    #[Route('/product', name: 'product')]
-    public function index(): Response
-    {
-        return $this->render('product/index.html.twig', [
-            'controller_name' => 'ProductController',
-        ]);
-    }
-
     #[isGranted('ROLE_USER')]
     #[Route('/product/create', name: 'product_create')]
     public function create(Request $request, EntityManagerInterface $em, SluggerInterface $slugger, ProductRepository $productRepository): Response

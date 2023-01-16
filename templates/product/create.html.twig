@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}{{ parent() }}-création{% endblock %}
+{% block title %}{{ parent() }}{{ "title.product.create"|trans }}{% endblock %}
 
 {% block body %}
     {% include "product/create_form.html.twig" %}

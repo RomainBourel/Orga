@@ -5,7 +5,7 @@
     {{ encore_entry_script_tags('password_checker') }}
 {% endblock %}
 
-{% block title %}{{ 'reset.pwd.reset.title'|trans }}{% endblock %}
+{% block title %}{{ parent() }}{{ 'reset.pwd.reset.title'|trans }}{% endblock %}
 
 {% block body %}
     <h1>{{ 'reset.pwd.reset.title'|trans }}</h1>

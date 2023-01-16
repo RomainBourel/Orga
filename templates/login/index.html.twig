@@ -5,7 +5,7 @@
     {{ encore_entry_script_tags('password_checker') }}
 {% endblock %}
 
-{% block title %}connexion{% endblock %}
+{% block title %}{{ parent() }}{{ "title.login"|trans }}{% endblock %}
 
 {% block body %}
     {% if error %}

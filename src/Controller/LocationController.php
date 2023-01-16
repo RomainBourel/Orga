@@ -19,15 +19,6 @@ class LocationController extends AbstractController
     {
     }
 
-    #[Route('/location', name: 'location')]
-    #[Security("is_granted('ROLE_USER')")]
-    public function index(): Response
-    {
-        return $this->render('location/index.html.twig', [
-            'location' => $this->getUser()->getLocations(),
-        ]);
-    }
-
     #[Route('/location/create', name: 'location_create')]
     #[Security("is_granted('ROLE_USER')")]
     public function create(Request $request, EntityManagerInterface $em): Response

@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello PartyController!{% endblock %}
+{% block title %}{{ parent() }}{{ "title.party"|trans }}{{ party.name }}{% endblock %}
 
 {% block javascripts %}
     {{ parent() }}

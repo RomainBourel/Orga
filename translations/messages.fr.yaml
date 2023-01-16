@@ -66,9 +66,8 @@ home.description:
 home.sign_in: Créer mon compte
 home.login: Déjà inscrit
 
-legal.notion :
-
-
+link.legal.notice : Mentions légales
+link.agree.them: Conditions d'utilisation
 link.product.moderate: modérer le produit
 link.product.unmoderate: annulé la modération du produit
 link.product.report: Signaler le produit
@@ -98,3 +97,37 @@ reset.pwd.request.title: Mot de passe oublié
 reset.pwd.request.text: Ecrivez votre adresse email un lien vous sera envoyé afin de créer un nouveau mot de passe
 reset.pwd.reset.title: Choix du nouveau mot de passe
 reset.pwd.reset.button: Modifier mon mot de passe
+
+text.agree_therm.title_1: Conditions d'utilisation
+text.agree_therm.part_1: "En utilisant notre site Orga.romain-bourel.fr, vous acceptez les termes et conditions suivants. Si vous n'êtes pas d'accord avec ces termes, veuillez ne pas utiliser notre site."
+text.agree_therm.part_2: "En utilisant Orga.romain-bourel.fr, vous acceptez d'être lié par les termes et conditions ci-dessus. Si vous avez des questions concernant ces termes, veuillez nous contacter à l'adresse romain@gmail.com."
+text.agree_therm.list_1: "Utilisation du contenu : Le contenu de notre site, y compris les textes, images, vidéos et tout autre matériel, est la propriété de Orga.romain-bourel.fr et ne peut être utilisé sans notre autorisation expresse."
+text.agree_therm.list_2: "Respect des règles de conduite : Vous êtes tenu de respecter les règles de conduite appropriées lors de l'utilisation de notre site, y compris en ne publiant pas de contenu choquant ou offensant."
+text.agree_therm.list_3: "Responsabilité : Orga.romain-bourel.fr n'est pas responsable des dommages causés par l'utilisation de notre site."
+text.agree_therm.list_4: "Modifications des termes : Orga.romain-bourel.fr se réserve le droit de modifier ces termes et conditions à tout moment, et il est de votre responsabilité de vérifier régulièrement pour des modifications."
+
+text.legal_notion.title_1: MENTIONS LÉGALES
+text.legal_notion.title_2: Édition
+text.legal_notion.title_3: Hébergement
+text.legal_notion.title_4: Données personnelles
+text.legal_notion.title_5: Règlement
+text.legal_notion.title_6: Contact
+text.legal_notion.part_1: "Bienvenue sur la page des mentions légales. Si vous êtes ici, c'est soit que vous vous êtes perdu, soit que vous êtes curieux ou alors c'est votre boulot. Dans tous les cas, mettez-vous à l'aise et faites-vous plaisir. C'est partiiiii !"
+text.legal_notion.part_2: "Ce site a été créé et est édité par Romain Bourel, habitant la belle ville de Roubaix. Vous pouvez prendre contact si besoin avec moi à l'adresse email suivante: romainboureldev@gmail.com"
+text.legal_notion.part_3: "Ce site est hébergé par Hostinger qui se situe: 61 Lordou Vironos st. 6023 Larnaca."
+text.legal_notion.part_4: "Ce site stockera en base de donnée votre adresse mail et les adresses que vous y ajouterez ainsi que les images que vous ajouterez sur les produits. Nous ne partagerons pas ces données avec des tiers. Ni ne les utiliserons à d'autre fin que le service de ce site. Les images pourront être visibles (après validation d'un administrateur) par tous les utilisateurs du site. Ormis cela seul les personnes à qui vous partagerez vos événements pourront voir les différentes informations que vous y aurez ajouté (à savoir les produits et leurs images ainsi que l'adresse). De plus, il est important de savoir que l'hébergeur peut techniquement collecter des données. On ne sait pas s'il le fait, mais ce serait pas très légal."
+text.legal_notion.part_5: "Nous vous prions de ne pas utiliser le site à des fins malveillantes. Nous ne sommes pas responsables de vos actes. Les images que vous ajouterez sur le site ne doivent pas être des images protégées par des droits d'auteur ou à caractère offensant ou choquant. Il en est de même pour ce que vous écrirez."
+text.legal_notion.part_6: "Si vous avez des questions, ou besoin d'infos, contactez-nous à l'adresse e-mail précédemment citée."
+
+title.agree_therm: Conditions d'utilisation
+title.base: "Orga - "
+title.home: Accueil
+title.legal_notice: Mentions légales
+title.location:
+title.location.create: Nouvelle adresse
+title.login: Connexion
+title.party: "événement : "
+title.party.create: Nouvel événement
+title.product.create: Création produit
+title.register: Inscription
+title.user: Profil

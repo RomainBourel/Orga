@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Mention légale{% endblock %}
+{% block title %}{{ parent() }}{{ "title.legal_notice"|trans }}{% endblock %}
 
 {% block javascripts %}
     {{ parent() }}
@@ -9,23 +9,23 @@
 
 {% block body %}
     <div class="legal-notice">
-        <h1 class="legal-notice__title--principal">MENTIONS LÉGALES</h1>
-        <p class="legal-notice__content--principal">Bienvenue sur la page des mentions légales. Si vous êtes ici, c'est soit que vous vous êtes perdu, soit que vous êtes curieux ou alors c'est votre boulot. Dans tous les cas, mettez-vous à l'aise et faites-vous plaisir. C'est partiiiii !</p>
+        <h1 class="legal-notice__title--principal">{{ 'text.legal_notion.title_1'|trans }}</h1>
+        <p class="legal-notice__content--principal">{{ 'text.legal_notion.part_1'|trans }}</p>
 
-        <h3 class="legal-notice__title">Édition</h3>
-        <p class="legal-notice__content">Ce site a été créé et est édité par Romain Bourel, habitant la belle ville de Roubaix. Vous pouvez prendre contact si besoin avec moi à l'adresse email suivante: romainboureldev@gmail.com</p>
+        <h3 class="legal-notice__title">{{ 'text.legal_notion.title_2'|trans }}</h3>
+        <p class="legal-notice__content">{{ 'text.legal_notion.part_2'|trans }}</p>
 
-        <h3 class="legal-notice__title">Hébergement</h3>
-        <p class="legal-notice__content">Ce site est hébergé par Hostinger qui se situe: 61 Lordou Vironos st. 6023 Larnaca.</p>
+        <h3 class="legal-notice__title">{{ 'text.legal_notion.title_3'|trans }}</h3>
+        <p class="legal-notice__content">{{ 'text.legal_notion.part_3'|trans }}</p>
 
 
-        <h3 class="legal-notice__title">Données personnelles</h3>
-        <p class="legal-notice__content">Ce site stockera en base de donnée votre adresse mail et les adresses que vous y ajouterez ainsi que les images que vous ajouterez sur les produits. Nous ne partagerons pas ces données avec des tiers. Ni ne les utiliserons à d'autre fin que le service de ce site. Les images pourront être visibles (après validation d'un administrateur) par tous les utilisateurs du site. Ormis cela seul les personnes à qui vous partagerez vos événements pourront voir les différentes informations que vous y aurez ajouté (à savoir les produits et leurs images ainsi que l'adresse). De plus, il est important de savoir que l'hébergeur peut techniquement collecter des données. On ne sait pas s'il le fait, mais ce serait pas très légal.</p>
+        <h3 class="legal-notice__title">{{ 'text.legal_notion.title_4'|trans }}</h3>
+        <p class="legal-notice__content">{{ 'text.legal_notion.part_4'|trans }}</p>
 
-        <h3 class="legal-notice__title">Règlement</h3>
-        <p class="legal-notice__content">Nous vous prions de ne pas utiliser le site à des fins malveillantes. Nous ne sommes pas responsables de vos actes. Les images que vous ajouterez sur le site ne doivent pas être des images protégées par des droits d'auteur ou à caractère offensant ou choquant. Il en est de même pour ce que vous écrirez.</p>
+        <h3 class="legal-notice__title">{{ 'text.legal_notion.title_5'|trans }}</h3>
+        <p class="legal-notice__content">{{ 'text.legal_notion.part_5'|trans }}</p>
 
-        <h3 class="legal-notice__title">Contact</h3>
-        <p class="legal-notice__content">Si vous avez des questions, ou besoin d'infos, contactez-nous à l'adresse e-mail précédemment citée.</p>
+        <h3 class="legal-notice__title">{{ 'text.legal_notion.title_6'|trans }}</h3>
+        <p class="legal-notice__content">{{ 'text.legal_notion.part_6'|trans }}</p>
     </div>
 {% endblock %}

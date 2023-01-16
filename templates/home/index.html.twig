@@ -5,6 +5,8 @@
     {{ encore_entry_link_tags('home') }}
 {% endblock %}
 
+{% block title %}{{ parent() }}{{ "title.home"|trans }}{% endblock %}
+
 {% block body %}
     {% if app.user %}
         {% include 'home/user.html.twig' %}

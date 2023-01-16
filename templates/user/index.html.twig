@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello UserController!{% endblock %}
+{% block title %}{{ parent() }}{{ "title.user"|trans }}{% endblock %}
 
 {% block body %}
     <h1>Profil</h1>
