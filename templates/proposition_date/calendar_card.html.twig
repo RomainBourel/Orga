@@ -1,0 +1,32 @@
+{% set isDoubleCalendar = date.endingAt is not null and date.startingAt|format_datetime(pattern="M/D/Y") is not same as date.endingAt|format_datetime(pattern="M/D/Y") %}
+{% set dateId = date.id %}
+{% set isUserAvailable = date.isUserAvailable(app.user) %}
+<div class="calendar">
+    <div class="calendar__body {% if isDoubleCalendar %}calendar__body--double{% endif %}">
+        <div id="party-available-count-{{ dateId }}" class="calendar__number-participant">{{ date.availables.count() + 1 }}</div>
+        {% if isDoubleCalendar %}
+            {% include '/proposition_date/card.html.twig' with {date: date.startingAt, double: 'left'} %}
+            {% include '/proposition_date/card.html.twig' with {date: date.endingAt, double: 'right'} %}
+        {% elseif date.endingAt is not null %}
+            {% include '/proposition_date/card.html.twig' with {date: date.startingAt, endingHour: date.endingAt|format_datetime(pattern="HH:mm")} %}
+        {% else %}
+            {% include '/proposition_date/card.html.twig' with {date: date.startingAt} %}
+        {% endif %}
+    </div>
+    <a class="calendar__bottom"
+            href="{{ path('proposition_date_available', {id: dateId}) }}"
+            id="party-available-button-{{ dateId }}"
+            data-id="{{ dateId }}"
+            {% if isUserAvailable %}hidden="hidden"{% endif %} class="calendar-card__bottom__action"
+    >
+        Je suis dispo
+    </a>
+    <a class="calendar__bottom"
+            href="{{ path('proposition_date_unavailable', {id: dateId}) }}"
+            id="party-unavailable-button-{{ dateId }}"
+            data-id="{{ dateId }}"
+            {% if not isUserAvailable %}hidden="hidden"{% endif %}
+    >
+        Je ne suis plus dispo
+    </a>
+</div>

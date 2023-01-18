@@ -27,10 +27,10 @@
 
     <div class="form__section form__section--calendar">
         {% if party.finalDate %}
-            {% include 'proposition_date/card.html.twig' with {date: party.finalDate, final: true}%}
+            {% include 'proposition_date/calendar_card.html.twig' with {date: party.finalDate, final: true}%}
         {% else %}
             {% for date in party.propositionDates %}
-                {% include 'proposition_date/card.html.twig' with {final: false} %}
+                {% include 'proposition_date/calendar_card.html.twig' with {final: false} %}
             {% endfor %}
         {% endif %}
     </div>

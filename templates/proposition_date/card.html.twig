@@ -1,116 +1,15 @@
-<div id="card-proposition-date-{{ date.id }}" class="card {% if date.isUserAvailable(app.user) %}card--success{% endif %}">
-    <div class="card__section">
-        <div class="card__section--left">{{ date.startingAt|format_datetime('full', locale='fr')|slice(0, -3) }}</div>
-        <div class="card__section--right">
-            {% if app.user is same as party.creator %}
-                {% if  not final %}
-                    <a href="{{ path('party_date_validation', {id: date.id}) }}">
-                        <button class="btn btn-primary" type="button">
-                            {{ 'button.party.proposition_date_confirm'|trans }}
-                        </button>
-                    </a>
-                {% endif %}
-            {% else %}
-                <a
-                        href="{{ path('proposition_date_available', {id: date.id}) }}"
-                        id="party-available-button-{{ date.id }}"
-                        data-id="{{ date.id }}"
-                        {% if date.isUserAvailable(app.user) %}hidden="hidden"{% endif %}
-                >
-                    <button class="btn btn-primary" type="button">
-                        {{ 'button.party.proposition_date_available'|trans }}
-                    </button>
-                </a>
-                <a
-                        href="{{ path('proposition_date_unavailable', {id: date.id}) }}"
-                        id="party-unavailable-button-{{ date.id }}"
-                        data-id="{{ date.id }}"
-                        {% if not date.isUserAvailable(app.user) %}hidden="hidden"{% endif %}
-                >
-                    <button class="btn btn-primary" type="button">
-                        {{ 'button.party.proposition_date_available.not'|trans }}
-                    </button>
-                </a>
-            {% endif %}
+<div class="calendar-card {% if double is defined %} calendar-card--double__{{ double }} {% endif %}">
+    {% if double is defined and double is same as 'right'  %}
+        <div class="date-separator">→</div>
+    {% endif %}
+    <div class="calendar-card__top">{{ date|format_datetime(pattern="EEEE") }}</div>
+    <div class="calendar-card__body">
+        <div class="calendar-card__body__day">
+            {{ date|format_datetime(pattern="dd") }}
         </div>
-    </div>
-    <div class="card__section">
-        <p>participants : </p>
-    </div>
-    <div class="card__section">
-        <ul class="card__section__list">
-            <li>{{ party.creator.username }}</li>
-            {% for available in date.availables %}
+        <div class="calendar-card__body__month">{{ date|format_datetime(pattern="MMMM") }}</div>
+        <div class="calendar-card__body__hour">{{ date|format_datetime(pattern="hh:mm") }}{% if endingHour is defined %} - {{ endingHour|format_datetime(pattern="hh:mm") }}{% endif %}</div>
 
-                    {% if available.user is same as app.user %}
-                        <li>Vous</li>
-                    {% else %}
-                        <li>{{ available.user.username }}</li>
-                    {% endif %}
-
-            {% endfor %}
-        </ul>
-    </div>
-</div>
-<div class="calendar">
-    <div class="calendar-card">
-        <div id="party-available-count-{{ date.id }}" class="calendar-card__number-participant">{{ date.availables.count() + 1 }}</div>
-        <div class="calendar-card__top">{{ date.startingAt|format_datetime(pattern="EEEE") }}</div>
-        <div class="calendar-card__body">
-            <div class="calendar-card__body__day">
-                {{ date.startingAt|format_datetime(pattern="dd") }}
-            </div>
-            <div class="calendar-card__body__month">{{ date.startingAt|format_datetime(pattern="MMMM") }}</div>
-            <div class="calendar-card__body__hour">{{ date.startingAt|format_datetime(pattern="hh:mm") }}</div>
-        </div>
-        <div class="calendar-card__bottom">
-            <a
-                    href="{{ path('proposition_date_available', {id: date.id}) }}"
-                    id="party-available-button-{{ date.id }}"
-                    data-id="{{ date.id }}"
-                    {% if date.isUserAvailable(app.user) %}hidden="hidden"{% endif %} class="calendar-card__bottom__action"
-            >
-                Je suis dispo
-            </a>
-            <a
-                    href="{{ path('proposition_date_unavailable', {id: date.id}) }}"
-                    id="party-unavailable-button-{{ date.id }}"
-                    data-id="{{ date.id }}"
-                    {% if not date.isUserAvailable(app.user) %}hidden="hidden"{% endif %}
-            >
-                Je ne suis plus dispo
-            </a>
-        </div>
-    </div>
-</div><div class="calendar">
-    <div class="calendar-card">
-        <div id="party-available-count-{{ date.id }}" class="calendar-card__number-participant">{{ date.availables.count() + 1 }}</div>
-        <div class="calendar-card__top">{{ date.startingAt|format_datetime(pattern="EEEE") }}</div>
-        <div class="calendar-card__body">
-            <div class="calendar-card__body__day">
-                {{ date.startingAt|format_datetime(pattern="dd") }}
-            </div>
-            <div class="calendar-card__body__month">{{ date.startingAt|format_datetime(pattern="MMMM") }}</div>
-            <div class="calendar-card__body__hour">{{ date.startingAt|format_datetime(pattern="hh:mm") }}</div>
-        </div>
-        <div class="calendar-card__bottom">
-            <a
-                    href="{{ path('proposition_date_available', {id: date.id}) }}"
-                    id="party-available-button-{{ date.id }}"
-                    data-id="{{ date.id }}"
-                    {% if date.isUserAvailable(app.user) %}hidden="hidden"{% endif %} class="calendar-card__bottom__action"
-            >
-                Je suis dispo
-            </a>
-            <a
-                    href="{{ path('proposition_date_unavailable', {id: date.id}) }}"
-                    id="party-unavailable-button-{{ date.id }}"
-                    data-id="{{ date.id }}"
-                    {% if not date.isUserAvailable(app.user) %}hidden="hidden"{% endif %}
-            >
-                Je ne suis plus dispo
-            </a>
-        </div>
     </div>
 </div>
 
