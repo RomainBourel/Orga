@@ -3,7 +3,7 @@
 {% set isUserAvailable = date.isUserAvailable(app.user) %}
 <div class="calendar">
     <div class="calendar__body {% if isDoubleCalendar %}calendar__body--double{% endif %}">
-        <div id="party-available-count-{{ dateId }}" class="calendar__number-participant">{{ date.availables.count() + 1 }}</div>
+        <div id="party-available-count-{{ dateId }}" class="calendar__number-participant {% if isDoubleCalendar %}calendar__number-participant--double{% endif %}">{{ date.availables.count() + 1 }}</div>
         {% if isDoubleCalendar %}
             {% include '/proposition_date/card.html.twig' with {date: date.startingAt, double: 'left'} %}
             {% include '/proposition_date/card.html.twig' with {date: date.endingAt, double: 'right'} %}

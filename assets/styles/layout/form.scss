@@ -23,8 +23,10 @@
     &--calendar {
       display: flex;
       flex-direction: row;
-      flex-wrap: wrap;
-      justify-content: space-around;
+      flex-wrap: nowrap;
+      justify-content: left;
+      overflow: scroll;
+      -webkit-overflow-scrolling: touch;
     }
   }
   &__agree-terms {
