@@ -1,32 +1,42 @@
-{% set isDoubleCalendar = date.endingAt is not null and date.startingAt|format_datetime(pattern="M/D/Y") is not same as date.endingAt|format_datetime(pattern="M/D/Y") %}
+{% set isDoubleCalendar = date.endingAt is not null and date.startingAt|date("m/d/Y") is not same as date.endingAt|date("m/d/Y") %}
 {% set dateId = date.id %}
 {% set isUserAvailable = date.isUserAvailable(app.user) %}
-<div class="calendar">
-    <div class="calendar__body {% if isDoubleCalendar %}calendar__body--double{% endif %}">
-        <div id="party-available-count-{{ dateId }}" class="calendar__number-participant {% if isDoubleCalendar %}calendar__number-participant--double{% endif %}">{{ date.availables.count() + 1 }}</div>
-        {% if isDoubleCalendar %}
-            {% include '/proposition_date/card.html.twig' with {date: date.startingAt, double: 'left'} %}
-            {% include '/proposition_date/card.html.twig' with {date: date.endingAt, double: 'right'} %}
-        {% elseif date.endingAt is not null %}
-            {% include '/proposition_date/card.html.twig' with {date: date.startingAt, endingHour: date.endingAt|format_datetime(pattern="HH:mm")} %}
-        {% else %}
-            {% include '/proposition_date/card.html.twig' with {date: date.startingAt} %}
+<div class="calendar__container">
+    <div id="party-available-count-{{ dateId }}" class="calendar__number-participant {% if isDoubleCalendar %}calendar__number-participant--double{% endif %}">{{ date.availables.count() + 1 }}</div>
+    <div class="calendar {% if isDoubleCalendar %}calendar--double{% endif %}">
+        <div class="calendar__body {% if isDoubleCalendar %}calendar__body--double{% endif %}">
+
+            {% if isDoubleCalendar %}
+                {% include '/proposition_date/card.html.twig' with {date: date.startingAt, double: 'left'} %}
+                {% include '/proposition_date/card.html.twig' with {date: date.endingAt, double: 'right'} %}
+            {% elseif date.endingAt is not null %}
+                {% dump(date.startingAt|date("m/d/Y")) %}
+                {% include '/proposition_date/card.html.twig' with {date: date.startingAt, endingHour: date.endingAt|date("H:i")} %}
+            {% else %}
+                {% include '/proposition_date/card.html.twig' with {date: date.startingAt} %}
+            {% endif %}
+        </div>
+        {% if not isCreator %}
+            <a class="calendar__bottom"
+               href="{{ path('proposition_date_available', {id: dateId}) }}"
+               id="party-available-button-{{ dateId }}"
+               data-id="{{ dateId }}"
+               {% if isUserAvailable %}hidden="hidden"{% endif %} class="calendar-card__bottom__action"
+            >
+                {{ 'calendar.response.available'|trans }}
+            </a>
+            <a class="calendar__bottom"
+               href="{{ path('proposition_date_unavailable', {id: dateId}) }}"
+               id="party-unavailable-button-{{ dateId }}"
+               data-id="{{ dateId }}"
+               {% if not isUserAvailable %}hidden="hidden"{% endif %}
+            >
+                {{ 'calendar.response.not_available'|trans }}
+            </a>
+        {% elseif not final %}
+            <a  class="calendar__bottom" href="{{ path('party_date_validation', {id: date.id}) }}">
+                {{ 'button.party.proposition_date_confirm'|trans }}
+            </a>
         {% endif %}
     </div>
-    <a class="calendar__bottom"
-            href="{{ path('proposition_date_available', {id: dateId}) }}"
-            id="party-available-button-{{ dateId }}"
-            data-id="{{ dateId }}"
-            {% if isUserAvailable %}hidden="hidden"{% endif %} class="calendar-card__bottom__action"
-    >
-        Je suis dispo
-    </a>
-    <a class="calendar__bottom"
-            href="{{ path('proposition_date_unavailable', {id: dateId}) }}"
-            id="party-unavailable-button-{{ dateId }}"
-            data-id="{{ dateId }}"
-            {% if not isUserAvailable %}hidden="hidden"{% endif %}
-    >
-        Je ne suis plus dispo
-    </a>
 </div>

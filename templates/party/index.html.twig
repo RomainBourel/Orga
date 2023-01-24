@@ -1,4 +1,5 @@
 {% extends 'base.html.twig' %}
+{% set isCreator = app.user is same as party.creator %}
 
 {% block title %}{{ parent() }}{{ "title.party"|trans }}{{ party.name }}{% endblock %}
 
@@ -30,7 +31,7 @@
             {% include 'proposition_date/calendar_card.html.twig' with {date: party.finalDate, final: true}%}
         {% else %}
             {% for date in party.propositionDates %}
-                {% include 'proposition_date/calendar_card.html.twig' with {final: false} %}
+                {% include 'proposition_date/calendar_card.html.twig' with {final: false, isCreator: isCreator } %}
             {% endfor %}
         {% endif %}
     </div>
@@ -43,7 +44,7 @@
             {% endfor %}
         </div>
     {% endif %}
-    {% if app.user is same as party.creator %}
+    {% if isCreator %}
         <div id="party-share" class="d-flex align-items-center flex-column">
             <a href="{{ path('party_invitation_create', {slug: party.slug}) }}" id="party-share-button">
                 <button class="btn btn-primary" type="button">

@@ -14,6 +14,9 @@ button.register: M'inscrire
 button.remove: Effacer
 button.validate: Je m'inscris
 
+calendar.response.available: Je suis dispo
+calendar.response.not_available: Je ne suis plus dispo
+
 error.verified: Compte non vérifier veuillez regarder vos mail.
 
 flash.copy.link: Lien copiée

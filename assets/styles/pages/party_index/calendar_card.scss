@@ -1,7 +1,18 @@
 .calendar {
   display: flex;
   flex-direction: column;
-  margin: 5px;
+  margin: 8px;
+  max-width: 140px;
+  height: 92%;
+  border: solid black 1px;
+  border-radius: 5% 5% 1% 1%;
+  overflow: clip;
+  &--double {
+    max-width: 280px;
+  }
+  &__container {
+    position: relative;
+  }
   &__number-participant {
     display: flex;
     align-items: center;
@@ -13,12 +24,9 @@
     border: solid black 1px;
     background-color: $clr-nb-participant;
     font-weight: bold;
-    right: -6%;
-    top: -8%;
+    right: -3px;
+    top: -3px;
     z-index: 1000;
-    &--double {
-      right: -3%;
-    }
   }
   &__body {
     position: relative;
@@ -40,10 +48,10 @@
     }
   }
   &__bottom {
-    border: solid black 1px;
     border-top: dashed black 1px;
     text-align: center;
     padding: 5px;
+    height: auto;
   }
 }
 
@@ -55,9 +63,6 @@
   max-height: 140px;
   min-height: 115px;
   overflow: hidden;
-  border: solid black 1px;
-  border-bottom: none;
-  border-radius: 5% 5% 1% 1%;
 
   &--double {
     &__left {

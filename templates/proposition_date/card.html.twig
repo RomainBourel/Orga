@@ -5,10 +5,10 @@
     <div class="calendar-card__top">{{ date|format_datetime(pattern="EEEE") }}</div>
     <div class="calendar-card__body">
         <div class="calendar-card__body__day">
-            {{ date|format_datetime(pattern="dd") }}
+            {{ date|date("d") }}
         </div>
         <div class="calendar-card__body__month">{{ date|format_datetime(pattern="MMMM") }}</div>
-        <div class="calendar-card__body__hour">{{ date|format_datetime(pattern="hh:mm") }}{% if endingHour is defined %} - {{ endingHour|format_datetime(pattern="hh:mm") }}{% endif %}</div>
+        <div class="calendar-card__body__hour">{{ date|date("h:i") }}{% if endingHour is defined %} - {{ endingHour }}{% endif %}</div>
 
     </div>
 </div>

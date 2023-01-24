@@ -1,0 +1,15 @@
+<div class="calendar-mini-card">
+    <div class="calendar-mini-card__top">{{ date|format_datetime(pattern="EEEE") }}</div>
+    <div class="calendar-mini-card__body">
+        {% if double is defined and double is same as 'right'  %}
+            <div class="mini-date-separator">→</div>
+        {% endif %}
+        <div class="calendar-mini-card__body__day">
+            {{ date|date("d") }}
+        </div>
+        <div class="calendar-mini-card__body__month">{{ date|format_datetime(pattern="MMMM") }}</div>
+        <div class="calendar-mini-card__body__hour">
+            {{ date|date("H:i") }}{% if endingHour is defined %} - {{ endingHour }}{% endif %}
+        </div>
+    </div>
+</div>

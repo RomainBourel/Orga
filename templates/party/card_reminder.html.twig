@@ -1,53 +1,38 @@
-{#<a#}
-{#        href="{{ path('party_show', {slug: party.slug}) }}"#}
-{#        class="#}
-{#            party__reminder__card#}
-{#            {% if party.creator is same as user %}party__reminder__card--success{% endif %}"#}
-{#>#}
-{#    <div class="party__reminder__card__section">#}
-{#        <div class="party__reminder__card__section--left">{{ party.name }}</div>#}
-{#        <div class="party__reminder__card__section--right">#}
-{#            <div class="party__reminder__card__section__detail">{{ party.location.city }}</div>#}
-{#            <div class="party__reminder__card__section__detail">Lundi 12 février 20h00</div>#}
-{#            </div><div class="calendar-mini">#}
-{#                <div class="calendar-mini-card">#}
-{#                    <div class="calendar-mini-card__top">{{ party.propositionDates[0].startingAt|format_datetime(pattern="EEEE") }}</div>#}
-{#                    <div class="calendar-mini-card__body">#}
-{#                        <div class="calendar-mini-card__body__day">#}
-{#                            {{ party.propositionDates[0].startingAt|format_datetime(pattern="dd") }}#}
-{#                        </div>#}
-{#                        <div class="calendar-mini-card__body__month">{{ party.propositionDates[0].startingAt|format_datetime(pattern="MMMM") }}</div>#}
-{#                        <div class="calendar-mini-card__body__hour">{{ party.propositionDates[0].startingAt|format_datetime(pattern="hh:mm") }}</div>#}
-{#                    </div>#}
-{#                </div>#}
-{#            </div>#}
-{#        </div>#}
-{#    </div>#}
-{#</a>#}
-
+{% set isFinalDate = party.finalDate is not null %}
 <a
         href="{{ path('party_show', {slug: party.slug}) }}"
         class="
             party__reminder__card
-            {% if party.creator is same as user %}party__reminder__card--success{% endif %}"
+            {% if party.creator is same as user and isFinalDate %}party__reminder__card--success{% endif %}"
 >
     <div class="party__reminder__card__section">
         <div class="party__reminder__card__section--left">{{ party.name }}</div>
         <div class="party__reminder__card__section--right">
-{#            <div class="party__reminder__card__section__detail">{{ party.location.city }}</div>#}
-{#            <div class="party__reminder__card__section__detail">Lundi 12 février 20h00</div>#}
-            </div><div class="calendar-mini">
-                <div class="calendar-mini-card calendar-mini-card">
-                    <div class="calendar-mini-card__top">{{ party.propositionDates[0].startingAt|format_datetime(pattern="EEEE") }}</div>
-                    <div class="calendar-mini-card__body">
-                        <div class="calendar-mini-card__body__day">
-                            {{ party.propositionDates[0].startingAt|format_datetime(pattern="dd") }}
+            {% if isFinalDate %}
+                {% set date = party.finalDate %}
+                {% set isDoubleCalendar = date.endingAt is not null and date.startingAt|date("m/d/Y") is not same as date.endingAt|date("m/d/Y") %}
+                <div class="calendar-mini {% if isDoubleCalendar %}calendar-mini--double{% endif %}">
+                    {% if isDoubleCalendar %}
+                        {% include 'proposition_date/calendar_mini_card.html.twig' with {date: date.startingAt, double: 'left' } %}
+                        {% include 'proposition_date/calendar_mini_card.html.twig' with {date: date.endingAt, double: 'right' } %}
+                    {% elseif date.endingAt is not null %}
+                        {% include 'proposition_date/calendar_mini_card.html.twig' with {date: date.startingAt, endingHour: date.endingAt|date("H:i")} %}
+                    {% else %}
+                        {% include 'proposition_date/calendar_mini_card.html.twig' with {date: date.startingAt} %}
+                    {% endif %}
+                </div>
+            {% else %}
+                <div class="calendar-mini">
+                    <div class="calendar-mini-card">
+                        <div class="calendar-mini-card__top"></div>
+                        <div class="calendar-mini-card__body">
+                            <div class="calendar-mini-card__body__day">?</div>
+                            <div class="calendar-mini-card__body__month">vote</div>
+                            <div class="calendar-mini-card__body__hour">en cours</div>
                         </div>
-                        <div class="calendar-mini-card__body__month">{{ party.propositionDates[0].startingAt|format_datetime(pattern="MMMM") }}</div>
-                        <div class="calendar-mini-card__body__hour">{{ party.propositionDates[0].startingAt|format_datetime(pattern="hh:mm") }}</div>
                     </div>
                 </div>
-            </div>
+            {% endif %}
         </div>
     </div>
 </a>
