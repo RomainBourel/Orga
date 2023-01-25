@@ -50,4 +50,8 @@
       @include hover-clr($clr-btn-edit);
     }
   }
+  &__disabled {
+    background-color: transparent;
+    border: none;
+  }
 }

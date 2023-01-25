@@ -9,7 +9,7 @@
 
 {% block body %}
     {% if error %}
-        <div>{{ error.message|trans }}</div>
+        <div class="flash-card flash--warning d-flex flex-column align-items-center">{{ error.message|raw }}</div>
     {% endif %}
 
     <form action="{{ path('login') }}" method="post">

@@ -17,11 +17,27 @@ button.validate: Je m'inscris
 calendar.response.available: Je suis dispo
 calendar.response.not_available: Je ne suis plus dispo
 
-error.verified: Compte non vérifier veuillez regarder vos mail.
+confirmation.email.footer: Bonne journée!
+confirmation.email.title: Confirmation de votre adresse email
+confirmation.email.message:
+  "Veuillez confirmer votre mail en cliquant sur le lien ci-dessous: <br><br>
+    <a href=\"%url%\">Confirmer mon email</a>.<br>
+    Ce lien expire dans %expiresAtMessage%."
+
+email.confirmation.subject: Confirmation de votre inscription
+
+error.verified:
+  <p>Compte non vérifier veuillez regarder vos mail.</p>
+  <form type="POST" action="/send/verify/email"> 
+    <input type="hidden" name="email" value="%email%"/> 
+    <button class="btn__disabled link" type="submit">Renvoyer le mail de vérification</button> 
+  </form>
 
 flash.copy.link: Lien copiée
+flash.email.verified: Votre email a bien été vérifié
 flash.location.create.message: L'adresse a bien été créée
 flash.location.update.message: L'adresse a bien été mise à jour
+flash.new.link: Nouveau lien créer
 flash.party.create.message: l'événement a bien été créé
 flash.party.create.need_location.message: Vous devez créer une adresse avant de créer un événement
 flash.party.date_validation.message: La date a bien été validée
@@ -31,7 +47,7 @@ flash.product.moderate: produit visible uniquement par le créateur
 flash.product.unmoderate: modération annulée
 flash.product.report: Produit signalé
 flash.product.unreport: Signalement du produit annulé
-flash.new.link: Nouveau lien créer
+flash.registration.success: 'Votre inscription a bien été prise en compte'
 
 form.agree_therms.label:
   <p>j'accepte les <a href="%url%" class="link">termes et conditions d'utilisation</a></p>

@@ -20,10 +20,12 @@ use SymfonyCasts\Bundle\VerifyEmail\Exception\VerifyEmailExceptionInterface;
 class RegistrationController extends AbstractController
 {
     private EmailVerifier $emailVerifier;
+    private TranslatorInterface $translator;
 
-    public function __construct(EmailVerifier $emailVerifier)
+    public function __construct(EmailVerifier $emailVerifier, TranslatorInterface $translator)
     {
         $this->emailVerifier = $emailVerifier;
+        $this->translator = $translator;
     }
 
     #[Route('/register', name: 'app_register')]
@@ -50,10 +52,14 @@ class RegistrationController extends AbstractController
                 (new TemplatedEmail())
                     ->from(new Address('nePasRepondre@orga.romain-bourel.fr', 'nePasRepondre'))
                     ->to($user->getEmail())
-                    ->subject('Please Confirm your Email')
+                    ->subject($this->translator->trans('email.confirmation.subject'))
                     ->htmlTemplate('registration/confirmation_email.html.twig')
             );
-            // do anything else you need here, like send an email
+
+            $this->addFlash('flash', [
+                'message' => $this->translator->trans('flash.registration.success'),
+                'type' => 'success',
+            ]);
 
             return $this->redirectToRoute('login');
         }
@@ -61,6 +67,24 @@ class RegistrationController extends AbstractController
         return $this->render('registration/register.html.twig', [
             'registrationForm' => $form->createView(),
         ]);
+    }
+
+    #[Route('/send/verify/email', name: 'app_send_verify_email')]
+    public function resendVerifyEmail(Request $request, UserRepository $userRepository): Response
+{
+        $user = $userRepository->findOneBy(['email' => $request->get('email')]);
+        if (!empty($user)) {
+            // generate a signed url and email it to the user
+            $this->emailVerifier->sendEmailConfirmation('app_verify_email', $user,
+                (new TemplatedEmail())
+                    ->from(new Address('nePasRepondre@orga.romain-bourel.fr', 'nePasRepondre'))
+                    ->to($user->getEmail())
+                    ->subject($this->translator->trans('email.confirmation.subject'))
+                    ->htmlTemplate('registration/confirmation_email.html.twig')
+            );
+        }
+
+        return $this->redirectToRoute('login');
     }
 
     #[Route('/verify/email', name: 'app_verify_email')]
@@ -88,7 +112,10 @@ class RegistrationController extends AbstractController
         }
 
         // @TODO Change the redirect on success and handle or remove the flash message in your templates
-        $this->addFlash('success', 'Your email address has been verified.');
+        $this->addFlash('flash', [
+            'message' => $this->translator->trans('flash.email.verified'),
+            'type' => 'success',
+        ]);
 
         return $this->redirectToRoute('login');
     }
