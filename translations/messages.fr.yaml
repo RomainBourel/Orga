@@ -1,3 +1,11 @@
+bo.category: Categorie
+bo.location: Adresse
+bo.party: Evenement
+bo.product: Produit
+bo.return.website: Retour au site
+bo.unity: Unité
+bo.user: Utilisateur
+
 button.add.party: Créer un événement
 button.connection: Me connecter
 button.copy.link: Copier le lien
@@ -96,6 +104,7 @@ link.product.unmoderate: annulé la modération du produit
 link.product.report: Signaler le produit
 link.product.unreport: retiré le signalement
 
+nav.admin: BO
 nav.home: accueil
 nav.login: se connecter
 nav.logout: se déconnecter

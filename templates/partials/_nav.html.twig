@@ -46,5 +46,13 @@
                 </a>
             </li>
         {% endif %}
-    </ul>
+        {% if is_granted('ROLE_ADMIN') %}
+            <li class="tab-bar__list__link {% if app.request.get('_route') is same as 'admin' %}tab-bar__list__link--active{% endif %}"><a href="{{ path('admin') }}">
+                    <div class="d-flex flex-column align-items-center">
+                        <p class="tab-bar__icon"><i class="fa-solid fa-user"></i></p>
+                        <p class="tab-bar__text">{{ 'nav.admin'|trans }}</p>
+                    </div>
+                </a>
+            </li>
+        {% endif %}
 </nav>

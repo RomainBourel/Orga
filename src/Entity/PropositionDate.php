@@ -51,6 +51,14 @@ class PropositionDate
         $this->availables = new ArrayCollection();
     }
 
+    public function __toString(): string
+    {
+        if ($this->startingAt && $this->endingAt) {
+            return $this->startingAt->format('d/m/Y H:i') . ' - ' . $this->endingAt->format('d/m/Y H:i');
+        }
+        return $this->startingAt->format('d/m/Y H:i');
+    }
+
     public function getId(): ?int
     {
         return $this->id;

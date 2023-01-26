@@ -47,6 +47,11 @@ class ProductParty
         $this->reservedProducts = new ArrayCollection();
     }
 
+    public function __toString(): string
+    {
+        return $this->product->getName();
+    }
+
     public function getId(): ?int
     {
         return $this->id;
