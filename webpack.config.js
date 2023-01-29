@@ -20,6 +20,7 @@ Encore
      * Each entry will result in one JavaScript file (e.g. app.js)
      * and one CSS file (e.g. app.css) if your JavaScript imports CSS.
      */
+    .addEntry('admin_location_index', './assets/script/admin/location/index.js')
     .addEntry('app', './assets/app.js')
     .addEntry('location_update', './assets/script/locationUpdate.js')
     .addEntry('party_form', './assets/script/partyForm/index.js')

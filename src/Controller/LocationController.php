@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Location;
+use App\Entity\User;
 use App\Form\LocationFormType;
 use App\Repository\LocationRepository;
 use Doctrine\ORM\EntityManagerInterface;
@@ -30,7 +31,7 @@ class LocationController extends AbstractController
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
             if ($location->isPrincipal()) {
-                $this->removeActualPrincipal();
+                $this->removeActualPrincipal($this->locationRepository, $this->getUser());
             }
             $location->setUser($this->getUser());
             $em->persist($location);
@@ -71,7 +72,7 @@ class LocationController extends AbstractController
     public function updatePrincipal(Location $location, EntityManagerInterface $em, Request $request): Response
     {
             $location->setPrincipal(true);
-            $this->removeActualPrincipal();
+            $this->removeActualPrincipal($this->locationRepository, $this->getUser());
             $em->flush();
             if ($request->isXmlHttpRequest()) {
                 return $this->json(['message'=> 'résidence principal modifier', 'type' => 'success']);
@@ -88,9 +89,12 @@ class LocationController extends AbstractController
         return $this->redirectToRoute('user');
     }
 
-    private function removeActualPrincipal(): void
+    static function removeActualPrincipal(LocationRepository $locationRepository, ?User $user): void
     {
-        $this->locationRepository->findOneBy(['principal' => true, 'user' => $this->getUser()])
+        if (null === $user) {
+            return;
+        }
+        $locationRepository->findOneBy(['principal' => true, 'user' => $user])
             ?->setPrincipal(false);
     }
 }

@@ -30,7 +30,7 @@ class DashboardController extends AbstractDashboardController
         // Option 1. You can make your dashboard redirect to some common page of your backend
         //
          $adminUrlGenerator = $this->container->get(AdminUrlGenerator::class);
-         return $this->redirect($adminUrlGenerator->setController(CategoryCrudController::class)->generateUrl());
+         return $this->redirect($adminUrlGenerator->setController(ProductCrudController::class)->generateUrl());
 
         // Option 2. You can make your dashboard redirect to different pages depending on the user
         //
@@ -54,7 +54,7 @@ class DashboardController extends AbstractDashboardController
     {
         yield MenuItem::linkToRoute($this->translator->trans('bo.return.website'), 'fa fa-home', 'home');
         yield MenuItem::linkToCrud($this->translator->trans('bo.product'), 'fa-solid fa-basket-shopping', Product::class);
-        yield MenuItem::linkToCrud($this->translator->trans('bo.category'), 'fa-solid fa-basket-shopping', Category::class);
+        yield MenuItem::linkToCrud($this->translator->trans('bo.category'), 'fas fa-box-open', Category::class);
         yield MenuItem::linkToCrud($this->translator->trans('bo.location'), 'fa-sharp fa-solid fa-location-dot', Location::class);
         yield MenuItem::linkToCrud($this->translator->trans('bo.party'), 'fa-solid fa-calendar-days', Party::class);
         yield MenuItem::linkToCrud($this->translator->trans('bo.unity'), 'fa-solid fa-scale-unbalanced-flip', Unity::class);
