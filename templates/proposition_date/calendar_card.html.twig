@@ -10,7 +10,6 @@
                 {% include '/proposition_date/card.html.twig' with {date: date.startingAt, double: 'left'} %}
                 {% include '/proposition_date/card.html.twig' with {date: date.endingAt, double: 'right'} %}
             {% elseif date.endingAt is not null %}
-                {% dump(date.startingAt|date("m/d/Y")) %}
                 {% include '/proposition_date/card.html.twig' with {date: date.startingAt, endingHour: date.endingAt|date("H:i")} %}
             {% else %}
                 {% include '/proposition_date/card.html.twig' with {date: date.startingAt} %}

@@ -4,6 +4,7 @@
 /.env.prod
 /.env.local.php
 /.env.*.local
+/PRODUCTION.md
 /config/secrets/prod/prod.decrypt.private.php
 /public/bundles/
 /var/
