@@ -36,7 +36,7 @@ class Available
         return $this->id;
     }
 
-    public function isIsAvailable(): ?bool
+    public function isAvailable(): ?bool
     {
         return $this->isAvailable;
     }

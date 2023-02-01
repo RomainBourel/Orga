@@ -8,17 +8,30 @@
     margin: 2px;
     background-color: $clr-white;
     border: $clr-line solid 1px;
-    &--success {
-      border: none;
-      background-color: $clr-line-success;
-    }
     &__section {
       display: flex;
       flex-direction: row;
-      justify-content: center;
-      &--left {
-        width: 60%;
-        margin: 2px;
+      justify-content: left;
+      @media (min-width: 600px) {
+        justify-content: space-around;
+      }
+      &--left{
+        //width: 30%;
+        margin: 8px 16px;
+        @media (min-width: 600px) {
+          display: flex;
+          justify-content: center;
+          width: 25%;
+        }
+      }
+      &--center{
+        margin: 8px 16px;
+      }
+      &--right{
+        margin: 8px 16px;
+        @media (min-width: 600px) {
+          width: 25%;
+        }
       }
       &__detail {
         font-size: 0.7rem;

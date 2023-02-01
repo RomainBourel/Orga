@@ -20,7 +20,7 @@ class PropositionDateController extends AbstractController
     public function available(PropositionDate $propositionDate): Response
     {
         $reduce = $propositionDate->getAvailables()->reduce(function(bool $accumulator, Available $value): bool {
-            return $accumulator || ($value->getUser() === $this->getUser() && $value->isIsAvailable());
+            return $accumulator || ($value->getUser() === $this->getUser() && $value->isAvailable());
         }, false);
 
         return $this->json($this->setAvailable($propositionDate, true));
@@ -34,7 +34,7 @@ class PropositionDateController extends AbstractController
     private function setAvailable(PropositionDate $propositionDate, bool $isAvailable): array
     {
         if ($available = $this->availableRepository->findOneBy(['user' => $this->getUser(), 'propositionDate' => $propositionDate])) {
-            $available->getPropositionDate()->removeAvailable($available);
+            $available->setIsAvailable($isAvailable);
         } else {
             $available = (new Available())
                 ->setIsAvailable($isAvailable)

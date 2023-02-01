@@ -1,0 +1,26 @@
+.card {
+  &--success {
+    margin-top: 4px;
+    padding: 8px;
+    border-radius: 4px;
+    background-color: $clr-card-success;
+  }
+  &--danger {
+    margin-top: 4px;
+    padding: 8px;
+    border-radius: 4px;
+    background-color: $clr-card-danger;
+  }
+  &--warning {
+    margin-top: 4px;
+    padding: 8px;
+    border-radius: 4px;
+    background-color: $clr-card-warning;
+  }
+  &--wait {
+    margin-top: 4px;
+    padding: 8px;
+    border-radius: 4px;
+    background-color: $clr-card-wait;
+  }
+}

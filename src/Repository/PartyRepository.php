@@ -3,9 +3,11 @@
 namespace App\Repository;
 
 use App\Entity\Party;
+use App\Entity\User;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Doctrine\ORM\Query\Expr\Andx;
+use Doctrine\ORM\Query\Expr\Orx;
 use Doctrine\Persistence\ManagerRegistry;
-use http\Encoding\Stream\Inflate;
 
 /**
  * @extends ServiceEntityRepository<Party>
@@ -81,5 +83,39 @@ class PartyRepository extends ServiceEntityRepository
             return $slug . $slugNumber;
         }
         return $slug;
+    }
+
+    public function findNextPartiesByUser(User $user, ?int $limit = null): array
+    {
+        $qb = $this->createQueryBuilder('p')
+            ->join('p.users', 'u')
+            ->join('p.propositionDates', 'pd')
+            ->leftJoin('p.finalDate', 'fd')
+            ->leftJoin('u.availables', 'a')
+            ->where(new Orx([
+                'p.creator = :user',
+                'u = :user',
+            ]))
+            ->andWhere(new Orx(
+                [
+                    new Andx([
+                        'fd IS NULL',
+                        'pd.startingAt > :now',
+                    ]),
+                    'fd.startingAt > :now',
+                ]
+            ))
+            ->setParameter('user', $user)
+            ->setParameter('now', new \DateTime())
+            ->orderBy('CASE WHEN fd IS NOT NULL THEN fd.startingAt ELSE MIN(pd.startingAt) END', 'ASC')
+            ->groupBy('p.id')
+        ;
+        if (null !== $limit) {
+            $qb->setMaxResults($limit);
+        }
+
+        return $qb->getQuery()
+            ->getResult()
+        ;
     }
 }

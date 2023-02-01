@@ -221,7 +221,7 @@ class Product
         return $this;
     }
 
-    public function isIsModerate(): ?bool
+    public function isModerate(): ?bool
     {
         return $this->isModerate;
     }
@@ -233,7 +233,7 @@ class Product
         return $this;
     }
 
-    public function isIsPublished(): ?bool
+    public function isPublished(): ?bool
     {
         return $this->isPublished;
     }

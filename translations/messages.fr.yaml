@@ -113,6 +113,14 @@ nav.product.create: créer un objet
 nav.profil: profil
 nav.register: s'inscrire
 
+party.reminder.status.message.accepted: invitation accepté
+party.reminder.status.message.my_party: Mon événement
+party.reminder.status.message.not_define_date: Date à définir
+party.reminder.status.message.refused: invitation refusé
+party.reminder.status.message.wait: invitation en attente
+
+product.moderate.message: Le produit n'est plus visible car il ne respecte pas les conditions d'utilisation
+
 reset.pwd.button: Mot de passe oublié
 reset.pwd.check_email.title: Mail envoyé
 reset.pwd.check_email.message: Si vous dispose d'un compte sur l'addresse email renseigner un mail contenant le lien de modification du mot de passe vous a été envoyé.

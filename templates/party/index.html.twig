@@ -38,8 +38,12 @@
     {% if 0 < party.productsParty|length %}
         <div class="form__section">
             {% for productParty in party.productsParty %}
-                {% if not productParty.product.isModerate %}
+                {% if not productParty.product.isModerate or productParty.product.user is same as app.user or is_granted('ROLE_ADMIN') %}
                     {% include 'product_party/card.html.twig' %}
+                {% else %}
+                    <div class="card--danger">
+                        <p>{{ 'product.moderate.message'|trans }}</p>
+                    </div>
                 {% endif %}
             {% endfor %}
         </div>

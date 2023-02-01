@@ -1,7 +1,7 @@
 {% set user = app.user %}
 <h1>Bienvenue dans ton espace {{ user.username }}</h1>
 <div class="party__reminder">
-    {% for party in user.parties %}
+    {% for party in parties %}
         {% include "party/card_reminder.html.twig" %}
     {% endfor %}
 </div>

@@ -184,7 +184,14 @@ class PropositionDate
     public function isUserAvailable(User $user): bool
     {
         return $this->availables->reduce(function(bool $accumulator, Available $value) use ($user) : bool {
-            return $accumulator || ($value->getUser() === $user && $value->isIsAvailable());
+            return $accumulator || ($value->getUser() === $user && $value->isAvailable());
+        }, false);
+    }
+
+    public function isUserRefused(User $user): bool
+    {
+        return $this->availables->reduce(function(bool $accumulator, Available $value) use ($user) : bool {
+            return $accumulator || ($value->getUser() === $user && !$value->isAvailable());
         }, false);
     }
 }

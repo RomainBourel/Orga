@@ -130,7 +130,7 @@ class ProductController extends AbstractController
     #[Route('/product/moderate/{slug}', name: 'product_moderate')]
     public function moderate(Product $product, EntityManagerInterface $em): Response
     {
-        if ($product->isIsModerate()) {
+        if ($product->isModerate()) {
             $product->setIsModerate(false);
             $response = [
                 'flash' => [
