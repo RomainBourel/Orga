@@ -40,7 +40,9 @@
         class="
             d-flex
             justify-content-center
-            {% if party.creator is same as app.user or isFinalDate and party.finalDate.isUserAvailable(app.user) %}
+            {% if party.creator is same as app.user %}
+                card--self
+            {% elseif isFinalDate and party.finalDate.isUserAvailable(app.user) %}
                 card--success
             {% elseif not isFinalDate %}
                 card--wait
