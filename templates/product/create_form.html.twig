@@ -1,6 +1,12 @@
-<h1 class="title section__title">mon form</h1>
+<h1 class="title section__title">
+    {# form.product.create.title #}
+    {{ ("form.product.title." ~ formType)|trans }}
+</h1>
 {{ form_start(form) }}
-{{ form_errors(form) }}
-{{form_rest(form) }}
-<button class="btn__secondary btn" type="submit">Créer</button>
+    {{ form_errors(form) }}
+    {{form_rest(form) }}
+    <button class="btn__secondary btn" type="submit">
+        {# button.create.party #}
+        {{ ("button.product." ~ formType)|trans }}
+    </button>
 {{ form_end(form) }}

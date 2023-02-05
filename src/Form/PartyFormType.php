@@ -49,6 +49,7 @@ class PartyFormType extends AbstractType
                 'by_reference' => false,
             ])
             ->add('productsParty', CollectionType::class, [
+
                 'entry_type' => ProductPartyFormType::class,
                 'label' => false,
                 'allow_add' => true,

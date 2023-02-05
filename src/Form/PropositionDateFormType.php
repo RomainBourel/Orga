@@ -5,6 +5,7 @@ namespace App\Form;
 use App\Entity\PropositionDate;
 use Doctrine\DBAL\Types\DateTimeImmutableType;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Contracts\Translation\TranslatorInterface;
@@ -20,6 +21,7 @@ class PropositionDateFormType extends AbstractType
         $builder
             ->add('startingAt', null, [
                 'label' => $this->translator->trans('form.proposition_date.label.starting_at'),
+                'required' => false,
                 'widget' => 'single_text',
             ])
             ->add('endingAt', null, [
@@ -27,10 +29,20 @@ class PropositionDateFormType extends AbstractType
                 'widget' => 'single_text',
                 'required' => false,
             ])
-            ->add('numberMaxParticipant', null, [
-                'attr' => ['placeholder' => $this->translator->trans('form.proposition_date.placeholder.number_max_participant')],
-                'label' => $this->translator->trans('form.proposition_date.label.number_max_participant'),
+            ->add('remove', CheckboxType::class, [
+                'label' => $this->translator->trans('button.remove'),
+                'mapped' => false,
+                'label_attr' => [
+                    'class' => 'btn btn__delete',
+                    'data-proposition-date-remove' => '',
+                ],
+                'attr' => ['class' => 'hidden'],
+                'required' => false,
             ])
+//            ->add('numberMaxParticipant', null, [
+//                'attr' => ['placeholder' => $this->translator->trans('form.proposition_date.placeholder.number_max_participant')],
+//                'label' => $this->translator->trans('form.proposition_date.label.number_max_participant'),
+//            ])
         ;
     }
 

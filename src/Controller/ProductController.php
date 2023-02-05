@@ -67,13 +67,9 @@ class ProductController extends AbstractController
             }
             return $this->redirectToRoute('home');
         }
-        if ($request->isXmlHttpRequest()) {
-            return $this->renderForm('product/create_form.html.twig', [
+        return $this->render('product/create.html.twig', [
             'form' => $form,
-        ]);
-        }
-        return $this->renderForm('product/create.html.twig', [
-            'form' => $form,
+            'formType' => 'create',
         ]);
     }
 

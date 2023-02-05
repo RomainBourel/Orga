@@ -1,26 +1,48 @@
 import Maker from '../Maker.js';
-class PropositionDate {
+export default class PropositionDate {
     constructor() {
-        this.id = 0;
+        this.id = document.querySelector('#proposition-date-list').dataset.currentId;
+        this.buttonAddPropositionDate = document.querySelector(`#add-proposition-date`);
+        this.list = document.querySelector('#proposition-date-list');
+        this.defaultDate = this.list.dataset.defaultDate;
+        this.init();
+    }
+
+    init() {
         if (null === document.querySelector('[id^=party_form_propositionDates_]')) {
             this.createPropositionDateForm();
         }
-        this.buttonAddPropositionDate = document.querySelector(`#add-proposition-date`);
         this.buttonAddPropositionDate.addEventListener('click', this.onClickAddPropositionDate);
+        this.initPropositionDates();
     }
 
-    getList() {
-        return document.querySelector('#proposition-date-list');
+    initPropositionDates() {
+        document.querySelectorAll('[data-proposition-date-remove]').forEach((button, key) => {
+            if (0 === key) {
+                button.parentElement.parentElement.classList.add('hidden');
+            } else {
+                button.addEventListener('click', this.onClickRemovePropositionDate);
+            }
+            button.parentElement.parentElement.parentElement.classList.add('form__section');
+        });
     }
+
+    onClickRemovePropositionDate = ({target}) => {
+        const propositionDate = target.parentElement.parentElement.parentElement;
+        propositionDate.classList.add('hidden');
+        propositionDate.querySelector(`[id$="startingAt"]`).value = this.defaultDate;
+    }
+
     getFormTemplate() {
-        const formTemplate = Maker.nodeElementByString(this.getList().dataset.template.replace(/__name__/g, this.id++));
+        const formTemplate = Maker.nodeElementByString(this.list.dataset.template.replace(/__name__/g, this.id++));
         formTemplate.classList.add('form__section')
+        formTemplate.querySelector('[data-proposition-date-remove]').addEventListener('click', this.onClickRemovePropositionDate);
         return formTemplate;
     }
 
-    onClickAddPropositionDate = (e) => {
-        if ('false' === this.buttonAddPropositionDate.dataset.listener) {
-            this.buttonAddPropositionDate.dataset.listener = "true";
+    onClickAddPropositionDate = () => {
+        if ('true' !== this.buttonAddPropositionDate.dataset.listener) {
+            this.buttonAddPropositionDate.dataset.listener = 'true';
             this.updateTextButton();
         }
         this.createPropositionDateForm();
@@ -30,7 +52,6 @@ class PropositionDate {
         this.buttonAddPropositionDate.innerText = this.buttonAddPropositionDate.dataset.addPropositionText;
     }
     createPropositionDateForm() {
-        this.getList().append(this.getFormTemplate());
+        this.list.append(this.getFormTemplate());
     }
 }
-export default new PropositionDate();

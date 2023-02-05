@@ -1,6 +1,12 @@
 <div class="search-list">
     {% for product in products %}
-        <div class="search-list__product" id="search-product-{{ product.id }}" data-id="{{ product.id }}">
+        <div
+            class="search-list__product"
+            id="card-search-product-{{ product.id }}"
+            data-id="{{ product.id }}"
+            data-name="{{ product.name }}"
+            data-unity="{{ product.unity.shortname }}"
+        >
             <div class="search-list__product__info">
                 <div class="search-list__product__image">
                     {% if product.picture is defined and product.picture is not null %}
@@ -18,19 +24,15 @@
                             id="remove-product-{{ product.id }}"
                             class="btn btn-outline-info search-list__quantity-btn"
                             type="button"
-                            data-product-id="{{ product.id }}"
                     >
                         -
                     </button>
-                    <div class="product-quantity">
+                    <div class="search-product-quantity">
                         <input
                                 type="number"
-                                id="nb-product-{{ product.id }}"
+                                id="search-product-quantity-input-{{ product.id }}"
                                 class="product-quantity__input"
                                 placeholder="0"
-                                data-product-id="{{ product.id }}"
-                                data-product-name="{{ product.name }}"
-                                data-product-unity="{{ product.unity.shortname }}"
                         />
                         <p class="product-quantity">{{ product.unity.shortname }}</p>
                     </div>
@@ -38,9 +40,6 @@
                             id="add-product-{{ product.id }}"
                             class="btn btn-outline-info fa-solid fa-plus search-list__quantity-btn"
                             type="button"
-                            data-product-id="{{ product.id }}"
-                            data-product-name="{{ product.name }}"
-                            data-product-unity="{{ product.unity.shortname }}"
                     >
 
                     </button>

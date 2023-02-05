@@ -58,15 +58,16 @@ class Party
     #[Assert\Valid]
     private Collection $propositionDates;
 
-    #[ORM\OneToOne(mappedBy: 'finalDate', cascade: ['persist', 'remove'])]
-    private ?PropositionDate $finalDate = null;
-
-
     public function __construct()
     {
         $this->users = new ArrayCollection();
         $this->productsParty = new ArrayCollection();
         $this->propositionDates = new ArrayCollection();
+    }
+
+    public function __toString(): string
+    {
+        return $this->id;
     }
 
     public function getId(): ?int
@@ -258,15 +259,32 @@ class Party
         return $this;
     }
 
+    public function isFinalDate(): bool
+    {
+        return $this->propositionDates->exists(function($key, $propositionDate) {
+                return $propositionDate->isValid();
+            });
+    }
     public function getFinalDate(): ?PropositionDate
     {
-        return $this->finalDate;
+        $finalDate = $this->propositionDates->filter(function($propositionDate) {
+            return $propositionDate->isFinalDate();
+        })->first();
+        return $finalDate ? $finalDate : null;
     }
 
-    public function setFinalDate(?PropositionDate $finalDate): self
+    public function setFinalDate(?PropositionDate $propositionDate = null): self
     {
-        $this->finalDate = $finalDate;
-
-        return $this;
+        if ($propositionDate === null) {
+            $this->propositionDates->map(function($propositionDate) {
+                $propositionDate->setFinalDate(null);
+            });
+            return $this;
+        }
+        $this->propositionDates->map(function($propositionDate) {
+            $propositionDate->setFinalDate(false);
+        });
+        return $this->addPropositionDate($propositionDate->setFinalDate(true));
     }
+
 }

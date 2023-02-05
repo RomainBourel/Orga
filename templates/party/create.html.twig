@@ -12,7 +12,7 @@
         <h1 class="title">{{ 'form.party.title'|trans }}</h1>
     </div>
 
-    {{ form_start(form) }}
+    {{ form_start(form, {'attr': {'id': 'form-party'}}) }}
     {{ form_errors(form) }}
     <div class="form__section">
         {{ form_row(form.name) }}
@@ -26,7 +26,12 @@
         {% for date in form.propositionDates %}
             {{ form_widget(date) }}
         {% endfor %}
-        <div id="proposition-date-list" data-template='{{ form_widget(form.propositionDates.vars.prototype)|raw }}'></div>
+        <div
+            id="proposition-date-list"
+            data-template='{{ form_widget(form.propositionDates.vars.prototype)|raw }}'
+            data-current-id="{{ form.propositionDates|length }}"
+            data-default-date="{{ "tomorrow"|date('Y-m-d') }}T{{ "now"|date('H:i') }}"
+        ></div>
         <button
                 id="add-proposition-date"
                 class="btn btn__primary"
@@ -60,22 +65,29 @@
         >
             {{ 'form.party.button.add_product'|trans }}
         </button>
-        <div id="products-list" data-template='{{ form_widget(form.productsParty.vars.prototype)|raw }}'></div>
+        <div
+            id="products-list"
+            data-template='{{ form_widget(form.productsParty.vars.prototype)|raw }}'
+            data-current-id="{{ form.productsParty|length }}"
+            data-delete-button-text="{{ 'button.remove'|trans }}"
+        ></div>
         {% for productParty in form.productsParty %}
             {{ form_widget(productParty, {
                 'attr': {
                     'data-unity':  productParty.vars.value.product.unity.name,
                     'data-name': productParty.vars.value.product.name,
-                    'data-id': productParty.vars.value.product.id,
+                    'data-id': loop.index0,
+                    'data-product-id' : productParty.vars.value.product.id,
                 }
             }) }}
         {% endfor %}
     </div>
 
     <div class="d-flex flex-column align-items-center">
-        <button class="btn__secondary btn" type="submit">{{ 'form.party.button.create_party'|trans }}</button>
+        <button class="btn__secondary btn" type="submit">
+            {{ ('button.party.save.' ~ formType)|trans }}
+        </button>
     </div>
     {{ form_end(form) }}
-    <div id="new-product-form" class="modal" data-modal="true" data-url="{{ path('product_create') }}"></div>
-    {% include "partials/_modal.html.twig" %}
+    {% include "partials/_modal.html.twig" with {content: modalContent, openButton: '#add-product'} %}
 {% endblock %}

@@ -2,7 +2,10 @@
 {% set dateId = date.id %}
 {% set isUserAvailable = date.isUserAvailable(app.user) %}
 <div class="calendar__container">
-    <div id="party-available-count-{{ dateId }}" class="calendar__number-participant {% if isDoubleCalendar %}calendar__number-participant--double{% endif %}">{{ date.availables.count() + 1 }}</div>
+    <div id="party-available-count-{{ dateId }}" class="calendar__number-participant{% if isDoubleCalendar %} calendar__number-participant--double{% endif %}">
+        {% set numberOfParticipant = date.availables.count() + 1 %}
+        {{ 'calendar.number.participant'|trans({'%count%': date.countAvailables}) }}
+    </div>
     <div class="calendar {% if isDoubleCalendar %}calendar--double{% endif %}">
         <div class="calendar__body {% if isDoubleCalendar %}calendar__body--double{% endif %}">
 

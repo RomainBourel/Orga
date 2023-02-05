@@ -1,4 +1,10 @@
-import './ProductForm';
-import './PropositionDate';
-import Product from "./Product";
-Product.prepareAll();
+import PropositionDate from "./PropositionDate";
+import ProductForm from "./ProductForm";
+import SearchProductBar from "./SearchProductBar";
+import ProductPartyList from "./ProductPartyList";
+
+
+new PropositionDate()
+new ProductForm()
+new ProductPartyList();
+new SearchProductBar()

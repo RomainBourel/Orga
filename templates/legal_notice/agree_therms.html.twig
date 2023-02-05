@@ -2,11 +2,6 @@
 
 {% block title %}{{ parent() }}{{ "title.agree_therm"|trans }}{% endblock %}
 
-{% block javascripts %}
-    {{ parent() }}
-    {{ encore_entry_link_tags('agree_therms') }}
-{% endblock %}
-
 {% block body %}
     <div class="agree-therms">
         <h1 class="agree-therms__title--principal">{{ 'text.agree_therm.title_1'|trans }}</h1>

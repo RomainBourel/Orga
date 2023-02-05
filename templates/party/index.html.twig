@@ -6,7 +6,6 @@
 {% block javascripts %}
     {{ parent() }}
     {{ encore_entry_script_tags('party_index') }}
-    {{ encore_entry_link_tags('style_party_index') }}
 {% endblock %}
 
 {% block body %}
@@ -56,6 +55,7 @@
                 </button>
             </a>
         </div>
+        <a href="{{ path('party_edit', {slug: party.slug}) }}" class="btn btn__edit">{{ 'button.edit'|trans }}</a>
         <a href="{{ path('party_remove', {slug: party.slug}) }}" class="btn btn__delete">{{ 'button.remove'|trans }}</a>
     {% endif %}
 {% endblock %}

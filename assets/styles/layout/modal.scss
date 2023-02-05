@@ -1,0 +1,23 @@
+.modal {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: -1;
+  &--open {
+    background-color: rgba(0, 0, 0, 0.50);
+    z-index: 1;
+  }
+  &__content {
+    background-color: white;
+    border: black solid 1px;
+    border-radius: 4px;
+    width: 95%;
+    height: 80%;
+    overflow: scroll;
+    padding: 16px;
+    @media (min-width: 1000px) {
+      width: 50%;
+      height: auto;
+    }
+  }
+}

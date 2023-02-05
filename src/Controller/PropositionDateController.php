@@ -9,10 +9,15 @@ use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Contracts\Translation\TranslatorInterface;
 
 class PropositionDateController extends AbstractController
 {
-    public function __construct(private AvailableRepository $availableRepository, private EntityManagerInterface $em)
+    public function __construct(
+        private AvailableRepository $availableRepository,
+        private EntityManagerInterface $em,
+        private TranslatorInterface $translator
+    )
     {
     }
 
@@ -45,12 +50,17 @@ class PropositionDateController extends AbstractController
         }
 
         $this->em->flush();
+
         return [
             'isAvailable' => $isAvailable,
             'flash' => [
                 'message'=> $isAvailable ? 'Disponibilité prise en compte' : 'Indisponibilité prise en compte',
                 'type' => 'success',
             ],
+            'participantText' => $this->translator->trans(
+                'calendar.number.participant',
+                ['%count%' => $propositionDate->countAvailables()]
+            ),
         ];
     }
 }

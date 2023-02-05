@@ -1,12 +1,18 @@
 import Modal from '../Modal';
 import SearchProductBar from './SearchProductBar';
-class ProductForm {
+export default class ProductForm {
     constructor() {
         this.buttonCreate = document.querySelector('#add-product');
+        this.searchInput = document.querySelector('#search-product');
+        this.nameInput = document.querySelector('#product_form_name')
+        this.descriptionInput = document.querySelector('#product_form_description')
+        this.pictureInput = document.querySelector('#product_form_picture')
+        this.url = this.buttonCreate.dataset.url;
+        this.isModalCreated = false;
         this.init();
     }
     init() {
-        this.buttonCreate.addEventListener('click', this.onClickMakeNew);
+        this.buttonCreate.addEventListener('click', this.onClickInitModal);
     }
     getNameInput() {
         return document.querySelector('#product_form_name');
@@ -14,25 +20,18 @@ class ProductForm {
     getFormData() {
         return new FormData(document.querySelector('[name=product_form]'));
     }
-    onClickMakeNew = ({target}) => {
-        const url = target.dataset.url;
-        fetch(url, {
-            method: "POST",
-            credentials: "include",
-            headers: {
-                "X-Requested-With": "XMLHttpRequest",
-            },
-        })
-            .then(response => response.text())
-            .then((data) => {
-                Modal.body.innerHTML = data;
-                Modal.transformFormButton(url);
-                Modal.getFormButton().addEventListener("click", this.onClickCreateProduct);
-               this.getNameInput().value = SearchProductBar.input.value;
-            })
+    onClickInitModal = () => {
+        if (!this.isModalCreated) {
+            new Modal(this.onClickCreateProduct);
+            this.isModalCreated = true;
+        }
+        this.nameInput.value = this.searchInput.value;
+        this.descriptionInput.value = '';
+        this.pictureInput.value = '';
     }
-    onClickCreateProduct = ({target}) => {
-        fetch(target.dataset.url, {
+    onClickCreateProduct = (e) => {
+        e.preventDefault();
+        fetch(this.url, {
             method: "POST",
             body:this.getFormData(),
             credentials: "include",
@@ -42,8 +41,8 @@ class ProductForm {
         })
             .then(response => response.json())
             .then((data) => {
-                SearchProductBar.search(this.getNameInput().value, data.response);
+                SearchProductBar.search(data.response);
+                this.searchInput.value = '';
             })
     }
 }
-export default new ProductForm();

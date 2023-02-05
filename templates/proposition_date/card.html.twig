@@ -8,7 +8,7 @@
             {{ date|date("d") }}
         </div>
         <div class="calendar-card__body__month">{{ date|format_datetime(pattern="MMMM") }}</div>
-        <div class="calendar-card__body__hour">{{ date|date("h:i") }}{% if endingHour is defined %} - {{ endingHour }}{% endif %}</div>
+        <div class="calendar-card__body__hour">{{ date|date("H:i") }}{% if endingHour is defined %} - {{ endingHour }}{% endif %}</div>
 
     </div>
 </div>

@@ -90,24 +90,18 @@ class PartyRepository extends ServiceEntityRepository
         $qb = $this->createQueryBuilder('p')
             ->join('p.users', 'u')
             ->join('p.propositionDates', 'pd')
-            ->leftJoin('p.finalDate', 'fd')
-            ->leftJoin('u.availables', 'a')
             ->where(new Orx([
                 'p.creator = :user',
                 'u = :user',
             ]))
-            ->andWhere(new Orx(
-                [
-                    new Andx([
-                        'fd IS NULL',
-                        'pd.startingAt > :now',
-                    ]),
-                    'fd.startingAt > :now',
-                ]
-            ))
             ->setParameter('user', $user)
-            ->setParameter('now', new \DateTime())
-            ->orderBy('CASE WHEN fd IS NOT NULL THEN fd.startingAt ELSE MIN(pd.startingAt) END', 'ASC')
+            ->andWhere('pd.startingAt > :today')
+            ->andWhere(new Orx([
+                'pd.finalDate = true',
+                'pd.finalDate is null',
+            ]))
+            ->setParameter('today', new \DateTime('today'))
+            ->addOrderBy('pd.startingAt', 'ASC')
             ->groupBy('p.id')
         ;
         if (null !== $limit) {

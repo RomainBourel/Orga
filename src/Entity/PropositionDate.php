@@ -40,11 +40,12 @@ class PropositionDate
     #[ORM\JoinColumn(nullable: false, onDelete: "cascade")]
     private ?Party $party = null;
 
-    #[ORM\OneToOne(inversedBy: 'finalDate', cascade: ['persist', 'remove'])]
-    private ?Party $finalDate = null;
 
     #[ORM\OneToMany(mappedBy: 'propositionDate', targetEntity: Available::class, orphanRemoval: true)]
     private Collection $availables;
+
+    #[ORM\Column(nullable: true)]
+    private ?bool $finalDate = null;
 
     public function __construct()
     {
@@ -139,24 +140,19 @@ class PropositionDate
         return $this;
     }
 
-    public function getFinalDate(): ?Party
-    {
-        return $this->finalDate;
-    }
-
-    public function setFinalDate(?Party $finalDate): self
-    {
-        $this->finalDate = $finalDate;
-
-        return $this;
-    }
-
     /**
      * @return Collection<int, Available>
      */
     public function getAvailables(): Collection
     {
         return $this->availables;
+    }
+
+    public function countAvailables(): int
+    {
+        return $this->availables->filter(function($available) {
+            return $available->isAvailable();
+        })->count() +1;
     }
 
     public function addAvailable(Available $available): self
@@ -193,5 +189,18 @@ class PropositionDate
         return $this->availables->reduce(function(bool $accumulator, Available $value) use ($user) : bool {
             return $accumulator || ($value->getUser() === $user && !$value->isAvailable());
         }, false);
+    }
+
+    public function isFinalDate(): bool
+    {
+
+        return $this->finalDate ?? false;
+    }
+
+    public function setFinalDate(?bool $finalDate): self
+    {
+        $this->finalDate = $finalDate;
+
+        return $this;
     }
 }

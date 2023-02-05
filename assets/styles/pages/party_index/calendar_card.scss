@@ -11,21 +11,22 @@
     max-width: 280px;
   }
   &__container {
+    margin: 4px;
     position: relative;
   }
   &__number-participant {
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 1.5rem;
-    height: 1.5rem;
+    width: 100%;
     position: absolute;
-    border-radius: 50%;
+    border-radius: 1rem;
+    padding: 4px;
     border: solid black 1px;
     background-color: $clr-nb-participant;
     font-weight: bold;
-    right: -3px;
-    top: -3px;
+    left: auto;
+    bottom: -15px;
     z-index: 1000;
   }
   &__body {

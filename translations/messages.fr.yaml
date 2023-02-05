@@ -8,7 +8,12 @@ bo.user: Utilisateur
 
 button.add.party: Créer un événement
 button.connection: Me connecter
+button.create.party: Créer l'événement
 button.copy.link: Copier le lien
+button.edit: Modifier
+button.party.save.create: Créer l'évènement
+button.party.edit: Mettre à jour l'évènement
+button.party.save.edit: Valider les modifications
 button.party.proposition_date_available: Je suis disponible
 button.party.proposition_date_available.not: Je suis indisponible
 button.party.proposition_date_confirm: définir comme date final
@@ -18,12 +23,14 @@ button.party.reserved_product.buy: J'ai trouver
 button.party.reserved_product.unbuy: Je n'ai plus trouver
 button.party.share: Partager l'événement
 button.party.share.new: Créer un nouveau lien
+button.product.create: Créer le produit
 button.register: M'inscrire
 button.remove: Effacer
 button.validate: Je m'inscris
 
-calendar.response.available: Je suis dispo
-calendar.response.not_available: Je ne suis plus dispo
+calendar.number.participant: '{1} %count% participant|]1,Inf] %count% participants'
+calendar.response.available: Participer
+calendar.response.not_available: Ne plus participer
 
 confirmation.email.footer: Bonne journée!
 confirmation.email.title: Confirmation de votre adresse email
@@ -69,13 +76,13 @@ form.login.email.label: E-mail
 form.login.password.label: Mot de passe
 form.party.button.add_product: Ajouter un produit
 form.party.button.add_proposition_date: Ajouter une date
-form.party.button.create_party: Créer l'évènement
 form.party.button.make_proposition: Proposer plusieurs date
 form.party.label.description: Information complèmentaire
 form.party.label.location: Adresse
 form.party.label.name: Nom de l'évènement
 form.party.placeholder.search_product: chercher un produit
 form.party.title: Créer un événement
+form.product.title.create: Créer un produit
 form.proposition_date.label.starting_at: Date d'arrivée
 form.proposition_date.label.ending_at: Date de fin
 form.proposition_date.label.number_max_participant: Nombre de participant maximum

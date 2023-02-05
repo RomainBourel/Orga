@@ -1,11 +1,5 @@
 {% extends "./base.html.twig" %}
 
-{% block stylesheets %}
-    {{ parent() }}
-    {{ encore_entry_link_tags('home') }}
-    {{ encore_entry_link_tags('style_party_index') }}
-{% endblock %}
-
 {% block title %}{{ parent() }}{{ "title.home"|trans }}{% endblock %}
 
 {% block body %}

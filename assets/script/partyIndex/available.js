@@ -40,15 +40,13 @@ export default class Available {
                 }
             })
             .then((data) => {
-
                 document.querySelector(`#party-available-button-${id}`).hidden = data.isAvailable
                 document.querySelector(`#party-unavailable-button-${id}`).hidden = !data.isAvailable
                 if (data.isAvailable) {
-                    document.querySelector(`#party-available-count-${id}`).innerHTML ++;
+                    document.querySelector(`#party-available-count-${id}`).innerHTML = data.participantText;
                 } else {
-                    document.querySelector(`#party-available-count-${id}`).innerHTML --;
+                    document.querySelector(`#party-available-count-${id}`).innerHTML = data.participantText;
                 }
-                document.querySelector(`#card-proposition-date-${id}`).style.border = this.borderStyle;
                 makeFlash(data.flash.message, data.flash.type);
             })
     }

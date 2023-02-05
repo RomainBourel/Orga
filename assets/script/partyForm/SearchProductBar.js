@@ -1,37 +1,50 @@
-import Product from './Product.js';
-class SearchProductBar {
+import Product from './ProductParty.js';
+import PropositionProduct from "./PropositionProduct";
+export default class SearchProductBar {
     constructor() {
         this.input = document.querySelector('#search-product');
-        this.formData = new FormData();
-        this.propositionList = document.querySelector('#product-proposition-table');
         this.init();
     }
     init() {
         this.input.addEventListener('input', this.onInputSearch)
     }
-    onInputSearch = (e) => {
+    onInputSearch = () => {
         if (2 < this.input.value.length) {
-            this.search(this.input.value);
+            SearchProductBar.search();
         }
     }
-    search(value, productData = null) {
-        this.formData.delete('id');
-        this.formData.set('q', value)
+    static getAllSearchProduct() {
+        return document.querySelectorAll('[id^=card-search-product-]');
+    }
+    static search(productData = null) {
+        const formData = new FormData();
+        const input = document.querySelector('#search-product');
+        const propositionList = document.querySelector('#product-proposition-table');
+        formData.set('q', input.value)
+        let isNewProduct = false;
         if (productData) {
-            this.formData.set('id', productData.id);
+            formData.set('id', productData.id);
+            isNewProduct = true;
         }
-        fetch(this.input.dataset.url, {
+        fetch(input.dataset.url, {
             method: "POST",
-            body: this.formData,
+            body: formData,
         })
             .then(response => response.json())
             .then((data) => {
-                this.propositionList.innerHTML = data.response.content;
-                Product.getAll().forEach(function(currentProduct) {Product.initOne(currentProduct.dataset.id)})
-                if (productData) {
-                    Product.add(productData.id, productData.name, productData.unity);
-                }
+                propositionList.innerHTML = data.response.content;
+                SearchProductBar.getAllSearchProduct().forEach(function(currentProduct) {
+                    new PropositionProduct(currentProduct, isNewProduct);
+                })
             })
     }
+
+    static isInSearchList(productId) {
+        return !!document.querySelector('#card-search-product-' + productId);
+    }
+
+    static updateQuantityOfProduct(productId, quantity) {
+        document.querySelector('#search-product-quantity-input-' + productId).value = quantity;
+    }
 }
-export default new SearchProductBar();
+

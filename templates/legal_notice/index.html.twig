@@ -2,11 +2,6 @@
 
 {% block title %}{{ parent() }}{{ "title.legal_notice"|trans }}{% endblock %}
 
-{% block javascripts %}
-    {{ parent() }}
-    {{ encore_entry_link_tags('legal_notice') }}
-{% endblock %}
-
 {% block body %}
     <div class="legal-notice">
         <h1 class="legal-notice__title--principal">{{ 'text.legal_notion.title_1'|trans }}</h1>
