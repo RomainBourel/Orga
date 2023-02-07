@@ -18,11 +18,14 @@
         <header>
             {% block header %}{% include "partials/_header.html.twig" %}{% endblock %}
         </header>
-        <div class="flash" data-flash-card-template="{{ include("partials/_flash.html.twig", {type: '__type__', message: '__message__'})|escape }}">
-            {% for flashCard in app.flashes('flash') %}
-                {% include "partials/_flash.html.twig" with {type: flashCard.type, message: flashCard.message} %}
-            {% endfor %}
+        <div class="flash__container">
+            <div class="flash" data-flash-card-template="{{ include("partials/_flash.html.twig", {type: '__type__', message: '__message__'})|escape }}">
+                {% for flashCard in app.flashes('flash') %}
+                    {% include "partials/_flash.html.twig" with {type: flashCard.type, message: flashCard.message} %}
+                {% endfor %}
+            </div>
         </div>
+
 
         <div class="body">
             {% block body %}{% endblock %}

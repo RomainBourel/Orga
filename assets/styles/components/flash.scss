@@ -1,3 +1,6 @@
+.flash__container {
+  position: relative;
+}
 .flash {
   position: absolute;
   left: 0;
@@ -13,6 +16,7 @@
     margin: 2px;
     display: flex;
     justify-content: center;
+    z-index: 1;
   }
   &__message {
     text-align: justify;

@@ -9,7 +9,7 @@
     background: #fff;
     z-index: 1000;
     @media (min-width: 1000px) {
-      position: initial;
+      top: 0;
       border-top: none;
       border-bottom: solid $clr-line 2px;
     }
@@ -25,5 +25,10 @@
   }
   &__text {
     font-size: 0.6rem;
+  }
+  &__spacer {
+    @media (min-width: 1000px) {
+      height: 3rem;
+    }
   }
 }
