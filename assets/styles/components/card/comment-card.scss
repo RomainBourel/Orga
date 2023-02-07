@@ -1,0 +1,20 @@
+.comment-card {
+  width: 90%;
+  margin: 4px;
+  padding: 8px;
+  border-radius: 4px;
+  background-color: $clr-comment;
+  align-self: start;
+  line-height: 1.5rem;
+  &--self {
+    background-color: $clr-comment-self;
+    align-self: end;
+  }
+  &__info {
+    margin: 0 8px;
+    font-size: 0.6rem;
+    &--self {
+      align-self: end;
+    }
+  }
+}

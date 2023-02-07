@@ -6,6 +6,7 @@
 {% block javascripts %}
     {{ parent() }}
     {{ encore_entry_script_tags('party_index') }}
+    {{ encore_entry_script_tags('comment_form') }}
 {% endblock %}
 
 {% block body %}
@@ -18,7 +19,7 @@
                 <p>description</p>
                 <p>{{ party.description }}</p>
             {% endif %}
-            <p>Lieux de rendez-vous :</p>
+            <p>{{ 'party.location'|trans }}</p>
         </div>
         <div class="card__section">
             <p>{{ party.location.address }} {{ party.location.city }} {{ party.location.zipCode }}</p>
@@ -47,15 +48,37 @@
             {% endfor %}
         </div>
     {% endif %}
+    <div class="form__section">
+        <div id="comment-list" class="comment__section">
+            {{ 'default.message'|trans|raw }}
+            {% set commentDate = '' %}
+            {% set commentHour = '' %}
+            {% for comment in party.comments %}
+                {% if comment.createdAt|date('d/m/Y') is not same as commentDate %}
+                    {% set commentDate = comment.createdAt|date('d/m/Y') %}
+                    <div class="comment__date-separator">{{ 'comment.date.separator'|trans({'%date%': commentDate}) }}</div>
+                {% endif %}
+                {% include 'comment/card.html.twig' %}
+            {% endfor %}
+        </div>
+        {% include 'comment/_form.html.twig' with {'form': formComment} %}
+    </div>
+
     {% if isCreator %}
-        <div id="party-share" class="d-flex align-items-center flex-column">
-            <a href="{{ path('party_invitation_create', {slug: party.slug}) }}" id="party-share-button">
-                <button class="btn btn-primary" type="button">
-                    {{ 'button.party.share'|trans }}
-                </button>
+        <div class="card__section__action">
+            <a href="{{ path('party_edit', {slug: party.slug}) }}" class="btn btn__edit">{{ 'button.edit'|trans }}</a>
+            <a href="{{ path('party_remove', {slug: party.slug}) }}" class="btn btn__delete">{{ 'button.remove'|trans }}</a>
+        </div>
+        <div class="">
+            <a
+                href="{{ path('party_invitation_create', {slug: party.slug}) }}"
+                id="party-share-button"
+                class="btn btn-primary"
+            >
+                {{ 'button.party.share'|trans }}
             </a>
         </div>
-        <a href="{{ path('party_edit', {slug: party.slug}) }}" class="btn btn__edit">{{ 'button.edit'|trans }}</a>
-        <a href="{{ path('party_remove', {slug: party.slug}) }}" class="btn btn__delete">{{ 'button.remove'|trans }}</a>
+        <div id="party-share" class="form__section hidden"></div>
+
     {% endif %}
 {% endblock %}

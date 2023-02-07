@@ -36,7 +36,10 @@ export default class PartyShareLink {
                     makeFlash(data.flash.message, data.flash.type);
                     return;
                 }
-                document.querySelector('#party-share').innerHTML = data.template;
+                const partyShare = document.querySelector('#party-share');
+                partyShare.innerHTML = data.template;
+                partyShare.classList.remove('hidden');
+
                 this.partyShareNewButton = document.querySelector('#party-share-new');
                 this.partyShareNewButton.addEventListener('click', this.onClickCreateNewLink);
                 document.querySelector('#copy-button').addEventListener('click', (e) => {this.onClickCopyLink(e, data.flash)});

@@ -58,11 +58,15 @@ class Party
     #[Assert\Valid]
     private Collection $propositionDates;
 
+    #[ORM\OneToMany(mappedBy: 'party', targetEntity: Comment::class, orphanRemoval: true)]
+    private Collection $comments;
+
     public function __construct()
     {
         $this->users = new ArrayCollection();
         $this->productsParty = new ArrayCollection();
         $this->propositionDates = new ArrayCollection();
+        $this->comments = new ArrayCollection();
     }
 
     public function __toString(): string
@@ -285,6 +289,36 @@ class Party
             $propositionDate->setFinalDate(false);
         });
         return $this->addPropositionDate($propositionDate->setFinalDate(true));
+    }
+
+    /**
+     * @return Collection<int, Comment>
+     */
+    public function getComments(): Collection
+    {
+        return $this->comments;
+    }
+
+    public function addComment(Comment $comment): self
+    {
+        if (!$this->comments->contains($comment)) {
+            $this->comments->add($comment);
+            $comment->setParty($this);
+        }
+
+        return $this;
+    }
+
+    public function removeComment(Comment $comment): self
+    {
+        if ($this->comments->removeElement($comment)) {
+            // set the owning side to null (unless already changed)
+            if ($comment->getParty() === $this) {
+                $comment->setParty(null);
+            }
+        }
+
+        return $this;
     }
 
 }

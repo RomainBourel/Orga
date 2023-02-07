@@ -1,0 +1,17 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ parent() }}{{ 'title.comment.create'|trans }}{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    {{ encore_entry_script_tags('comment_form') }}
+{% endblock %}
+
+{% block body %}
+    <div class="section__title">
+        <h1 class="title">{{ 'form.comment.title'|trans }}</h1>
+    </div>
+
+    {% include "comment/_form.html.twig" %}
+    {% include "partials/_modal.html.twig" with {content: modalContent, openButton: '#add-product'} %}
+{% endblock %}

@@ -5,9 +5,10 @@ class Maker {
         div.innerHTML = string;
         return div.firstElementChild;
     }
-    element(tag, text) {
+    element(tag, text, className = []) {
         const  newElement = document.createElement(tag);
         newElement.innerText = text;
+        newElement.classList.add(...className);
         return newElement;
     }
 }

@@ -26,11 +26,15 @@ button.party.share.new: Créer un nouveau lien
 button.product.create: Créer le produit
 button.register: M'inscrire
 button.remove: Effacer
+button.send.comment: Envoyer le message
 button.validate: Je m'inscris
 
 calendar.number.participant: '{1} %count% participant|]1,Inf] %count% participants'
 calendar.response.available: Participer
 calendar.response.not_available: Ne plus participer
+
+comment.card.info: '%username% à %hour%'
+comment.date.separator: Le %date%
 
 confirmation.email.footer: Bonne journée!
 confirmation.email.title: Confirmation de votre adresse email
@@ -38,6 +42,13 @@ confirmation.email.message:
   "Veuillez confirmer votre mail en cliquant sur le lien ci-dessous: <br><br>
     <a href=\"%url%\">Confirmer mon email</a>.<br>
     Ce lien expire dans %expiresAtMessage%."
+
+default.message: '<div class="comment-card">
+            <p>Ceci est le début de vos échange pour organiser le meilleur des événements</p>
+        </div>
+        <p class="comment-card__info">
+            Le bot à 00:42
+        </p>'
 
 email.confirmation.subject: Confirmation de votre inscription
 
@@ -49,6 +60,8 @@ error.verified:
   </form>
 
 flash.copy.link: Lien copiée
+flash.comment.send: Commentaire envoyé
+flash.comment.error: Une erreur s'est produite
 flash.email.verified: Votre email a bien été vérifié
 flash.location.create.message: L'adresse a bien été créée
 flash.location.update.message: L'adresse a bien été mise à jour
@@ -66,6 +79,7 @@ flash.registration.success: 'Votre inscription a bien été prise en compte'
 
 form.agree_therms.label:
   <p>j'accepte les <a href="%url%" class="link">termes et conditions d'utilisation</a></p>
+form.comment.title: Créer un commentaire
 form.location.label.address: Adresse
 form.location.label.city: Ville
 form.location.label.name: Nom
@@ -120,6 +134,7 @@ nav.product.create: créer un objet
 nav.profil: profil
 nav.register: s'inscrire
 
+party.location: 'Lieux de rendez-vous :'
 party.reminder.status.message.accepted: invitation accepté
 party.reminder.status.message.my_party: Mon événement
 party.reminder.status.message.not_define_date: Date à définir
@@ -168,6 +183,7 @@ text.legal_notion.part_6: "Si vous avez des questions, ou besoin d'infos, contac
 
 title.agree_therm: Conditions d'utilisation
 title.base: "Orga - "
+"title.comment.create": Commentaire
 title.home: Accueil
 title.legal_notice: Mentions légales
 title.location:

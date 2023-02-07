@@ -1,0 +1,13 @@
+<div class="comment-card{% if comment.user is same as app.user %} comment-card--self{% endif %}">
+    <p>{{ comment.message|nl2br }}</p>
+</div>
+<p
+    class="comment-card__info{% if comment.user is same as app.user %} comment-card__info--self{% endif %}"
+    data-day="{{ comment.createdAt|date('d/m/Y') }}"
+>
+    {% set username = "" %}
+    {% if comment.user is not same as app.user %}
+        {% set username = comment.user.username %}
+    {% endif %}
+    {{ 'comment.card.info'|trans({'%username%': username, '%hour%': comment.createdAt|date('H:i')}) }}
+</p>

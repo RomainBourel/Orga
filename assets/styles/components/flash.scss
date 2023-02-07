@@ -29,4 +29,8 @@
     border-color: $warning-border;
     background-color: $warning;
   }
+  &--error {
+    border-color: $error-border;
+    background-color: $error;
+  }
 }

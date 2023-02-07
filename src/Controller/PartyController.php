@@ -2,14 +2,15 @@
 
 namespace App\Controller;
 
+use App\Entity\Comment;
 use App\Entity\Party;
 use App\Entity\Product;
 use App\Entity\PropositionDate;
+use App\Form\CommentFormType;
 use App\Form\PartyFormType;
 use App\Form\ProductFormType;
 use App\Repository\LocationRepository;
 use App\Repository\PartyRepository;
-use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\EntityManagerInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -208,6 +209,7 @@ class PartyController extends AbstractController
     {
         return $this->render('party/index.html.twig', [
             'party' => $party,
+            'formComment' => $this->createForm(CommentFormType::class, (new Comment())),
         ]);
     }
 

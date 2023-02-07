@@ -1,0 +1,7 @@
+{{ form_start(form, {'attr': {'id': 'form-comment', 'class': 'form__comment', 'action': path('comment_create', {id: party.id})}}) }}
+    {{ form_label(form.message) }}
+    {{ form_widget(form.message, {'attr': {'placeholder': 'Votre commentaire'}}) }}
+    <div class="form__comment__button">
+        {{ form_widget(form.submit, {'attr': {'class': 'btn btn__primary btn__message'}}) }}
+    </div>
+{{ form_end(form) }}

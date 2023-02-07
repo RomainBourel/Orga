@@ -1,0 +1,22 @@
+.comment {
+  &__section {
+    border: 3px $clr-comment-table solid;
+    border-radius: 4px;
+    margin: 5px;
+    padding: 5px;
+    width: 98%;
+    max-height: 50vh;
+    display: flex;
+    flex-direction: column;
+    overflow: scroll;
+  }
+  &__date-separator {
+    padding: 4px;
+    margin: 8px;
+    font-size: 0.8rem;
+    border-bottom: solid $clr-line 2px;
+    width: 70%;
+    text-align: center;
+    align-self: center;
+  }
+}
