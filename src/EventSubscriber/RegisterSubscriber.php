@@ -4,14 +4,10 @@ namespace App\EventSubscriber;
 
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\Security\Core\Event\AuthenticationSuccessEvent;
-use Symfony\Component\Security\Core\Exception\AuthenticationException;
-use Symfony\Contracts\Translation\TranslatorInterface;
+use Symfony\Component\Security\Core\Exception\CustomUserMessageAuthenticationException;
 
 class RegisterSubscriber implements EventSubscriberInterface
 {
-    public function __construct(private TranslatorInterface $translator)
-    {
-    }
     public static function getSubscribedEvents()
     {
         return [
@@ -22,7 +18,7 @@ class RegisterSubscriber implements EventSubscriberInterface
     {
         $user = $event->getAuthenticationToken()->getUser();
         if (!$user->isVerified()) {
-            throw new AuthenticationException($this->translator->trans('error.verified', ['%email%' => $user->getEmail()]));
+            throw  new CustomUserMessageAuthenticationException('count not verrified please check your mail.', ['%email%' => $user->getEmail()]);
         }
     }
 }
