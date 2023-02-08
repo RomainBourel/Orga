@@ -62,6 +62,7 @@ error.verified:
 flash.copy.link: Lien copiée
 flash.comment.send: Commentaire envoyé
 flash.comment.error: Une erreur s'est produite
+flash.email.resent: Un nouveau mail de vérification vous a été envoyé
 flash.email.verified: Votre email a bien été vérifié
 flash.location.create.message: L'adresse a bien été créée
 flash.location.update.message: L'adresse a bien été mise à jour
@@ -75,7 +76,7 @@ flash.product.moderate: produit visible uniquement par le créateur
 flash.product.unmoderate: modération annulée
 flash.product.report: Produit signalé
 flash.product.unreport: Signalement du produit annulé
-flash.registration.success: 'Votre inscription a bien été prise en compte'
+flash.registration.success: 'Votre inscription a bien été prise en compte, Aller le valider avant de vous connecter'
 
 form.agree_therms.label:
   <p>j'accepte les <a href="%url%" class="link">termes et conditions d'utilisation</a></p>

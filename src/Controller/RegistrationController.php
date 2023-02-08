@@ -70,7 +70,7 @@ class RegistrationController extends AbstractController
     }
 
     #[Route('/send/verify/email', name: 'app_send_verify_email')]
-    public function resendVerifyEmail(Request $request, UserRepository $userRepository): Response
+    public function resendVerifyEmail(Request $request, UserRepository $userRepository, TranslatorInterface $translator): Response
 {
         $user = $userRepository->findOneBy(['email' => $request->get('email')]);
         if (!empty($user)) {
@@ -82,6 +82,10 @@ class RegistrationController extends AbstractController
                     ->subject($this->translator->trans('email.confirmation.subject'))
                     ->htmlTemplate('registration/confirmation_email.html.twig')
             );
+            $this->addFlash('flash', [
+                'message' => $this->translator->trans('flash.email.resent'),
+                'type' => 'success',
+            ]);
         }
 
         return $this->redirectToRoute('login');

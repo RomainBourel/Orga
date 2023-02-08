@@ -18,7 +18,7 @@ class RegisterSubscriber implements EventSubscriberInterface
     {
         $user = $event->getAuthenticationToken()->getUser();
         if (!$user->isVerified()) {
-            throw  new CustomUserMessageAuthenticationException('count not verrified please check your mail.', ['%email%' => $user->getEmail()]);
+            throw  new CustomUserMessageAuthenticationException('count not verified please check your mail.', ['%email%' => $user->getEmail()]);
         }
     }
 }

@@ -26,7 +26,7 @@ Encore
     .addEntry('location_update', './assets/script/LocationUpdate.js')
     .addEntry('party_form', './assets/script/partyForm/index.js')
     .addEntry('party_index', './assets/script/partyIndex/index.js')
-    .addEntry('password_checker', './assets/script/passwordChecker.js')
+    .addEntry('password_checker', './assets/script/PasswordChecker.js')
 
     // enables the Symfony UX Stimulus bridge (used in assets/bootstrap.js)
     .enableStimulusBridge('./assets/controllers.json')
