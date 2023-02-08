@@ -1,4 +1,5 @@
-import {makeFlash} from "../flashMessage";
+import Maker from "../Maker";
+
 export default class Available {
     constructor() {
         this.partyAvailableButton = document.querySelectorAll('[id^=party-available-button-]');
@@ -47,7 +48,7 @@ export default class Available {
                 } else {
                     document.querySelector(`#party-available-count-${id}`).innerHTML = data.participantText;
                 }
-                makeFlash(data.flash.message, data.flash.type);
+                Maker.flash(data.flash.message, data.flash.type);
             })
     }
 }

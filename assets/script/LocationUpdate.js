@@ -1,4 +1,5 @@
-import {makeFlash} from "./flashMessage";
+import Maker from "./Maker";
+
 class LocationUpdate {
     constructor() {
         document.querySelector('#locationPrincipalButton')?.addEventListener('click', this.onClickUpdateLocationPrincipal);
@@ -19,7 +20,7 @@ class LocationUpdate {
                 }
             })
             .then((data) => {
-                makeFlash(data.message, data.type)
+                Maker.flash(data.message, data.type)
             })
     }
 }

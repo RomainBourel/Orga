@@ -1,5 +1,4 @@
 import Maker from './Maker.js';
-import {makeFlash} from "./flashMessage";
 
 class CommentForm {
     constructor() {
@@ -35,12 +34,12 @@ class CommentForm {
             })
             .then((data) => {
                 if (data.error) {
-                    makeFlash(data.flash.message, data.flash.type);
+                    Maker.flash(data.flash.message, data.flash.type);
                     return;
                 }
                 this.resetTextArea()
                 this.insertComment(data);
-                makeFlash(data.flash.message, data.flash.type);
+                Maker.flash(data.flash.message, data.flash.type);
                 this.scrollToLastComment();
             })
     }

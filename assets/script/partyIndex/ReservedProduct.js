@@ -1,36 +1,37 @@
-import {makeFlash} from "../flashMessage";
+import Maker from "../Maker";
+
 export default class ReservedProduct {
     constructor() {
-        this.reservedProductButton = document.querySelectorAll('[id^=reserved-product-button-]');
-        this.buyProductButton = document.querySelectorAll('[id^=buy-product-button-]');
-        this.unreservedProductButton = document.querySelectorAll('[id^=unreserved-product-button-]');
-        this.unbuyProductButton = document.querySelectorAll('[id^=unbuy-product-button-]');
+        this.reservedProductButtons = document.querySelectorAll('[id^=reserved-product-button-]');
+        this.buyProductButtons = document.querySelectorAll('[id^=buy-product-button-]');
+        this.unreservedProductButtons = document.querySelectorAll('[id^=unreserved-product-button-]');
+        this.unbuyProductButtons = document.querySelectorAll('[id^=unbuy-product-button-]');
         this.bindButtons();
     }
 
     initBuyButton() {
-        this.buyProductButton = document.querySelectorAll('[id^=buy-product-button-]');
-        this.unbuyProductButton = document.querySelectorAll('[id^=unbuy-product-button-]');
+        this.buyProductButtons = document.querySelectorAll('[id^=buy-product-button-]');
+        this.unbuyProductButtons = document.querySelectorAll('[id^=unbuy-product-button-]');
         this.bindBuyButtons();
     }
 
     bindButtons()
     {
-        this.reservedProductButton.forEach((button) => {
+        this.reservedProductButtons.forEach((button) => {
             button.addEventListener('click', (e) => {this.onClickCallLink(e, button)});
         });
 
-        this.unreservedProductButton.forEach((button) => {
+        this.unreservedProductButtons.forEach((button) => {
             button.addEventListener('click', (e) => {this.onClickCallLink(e, button)});
         });
         this.bindBuyButtons();
     }
 
     bindBuyButtons() {
-        this.buyProductButton.forEach((button) => {
+        this.buyProductButtons.forEach((button) => {
         button.addEventListener('click', (e) => {this.onClickCallLink(e, button)});
     });
-        this.unbuyProductButton.forEach((button) => {
+        this.unbuyProductButtons.forEach((button) => {
             button.addEventListener('click', (e) => {this.onClickCallLink(e, button)});
         });
     }
@@ -75,7 +76,7 @@ export default class ReservedProduct {
                     document.querySelector(`#unbuy-product-button-${button.dataset.id}`).hidden = true
                 }
                 button.dataset.listener = 'false';
-                makeFlash(data.flash.message, data.flash.type);
+                Maker.flash(data.flash.message, data.flash.type);
             })
     }
 }

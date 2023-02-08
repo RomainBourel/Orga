@@ -1,9 +1,9 @@
-import PartyShareLink from "./partyShareLink";
-import Available from "./available";
-import ReservedProduct from "./reservedProduct";
-import FetchRequest from "../fetchRequest";
+import PartyShareLink from "./PartyShareLink";
+import Available from "./Available";
+import ReservedProduct from "./ReservedProduct";
+import LinkAssync from "../LinkAssync";
 
 new Available();
 new ReservedProduct();
-new FetchRequest();
+new LinkAssync();
 new PartyShareLink();

@@ -56,7 +56,7 @@ class PartyController extends AbstractController
                 ->setSlug($slug)
             ;
             if (1 === count($party->getPropositionDates())) {
-                $party->getPropositionDates()[0]->setFinalDate($party);
+                $party->setFinalDate($party->getPropositionDates()[0]);
             }
             $em->persist($party);
             $em->flush();

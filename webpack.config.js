@@ -22,8 +22,8 @@ Encore
      */
     .addEntry('admin_location_index', './assets/script/admin/location/index.js')
     .addEntry('app', './assets/app.js')
-    .addEntry('comment_form', './assets/script/commentForm.js')
-    .addEntry('location_update', './assets/script/locationUpdate.js')
+    .addEntry('comment_form', './assets/script/CommentForm.js')
+    .addEntry('location_update', './assets/script/LocationUpdate.js')
     .addEntry('party_form', './assets/script/partyForm/index.js')
     .addEntry('party_index', './assets/script/partyIndex/index.js')
     .addEntry('password_checker', './assets/script/passwordChecker.js')

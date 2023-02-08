@@ -1,5 +1,5 @@
-import {makeFlash} from "../flashMessage";
 import Maker from "../Maker";
+
 export default class PartyShareLink {
     constructor() {
         this.partyShareButton = document.querySelector('#party-share-button');
@@ -33,7 +33,7 @@ export default class PartyShareLink {
             .then((data) => {
                 if (newLink) {
                     document.querySelector('#party-share-link').value = data.link;
-                    makeFlash(data.flash.message, data.flash.type);
+                    Maker.flash(data.flash.message, data.flash.type);
                     return;
                 }
                 const partyShare = document.querySelector('#party-share');
@@ -48,6 +48,6 @@ export default class PartyShareLink {
 
     onClickCopyLink(e, flash) {
         navigator.clipboard.writeText(document.querySelector('#party-share-link').value);
-        makeFlash(flash.message, flash.type);
+        Maker.flash(flash.message, flash.type);
     }
 }

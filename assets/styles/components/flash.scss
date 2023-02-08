@@ -2,13 +2,18 @@
   position: relative;
 }
 .flash {
-  position: absolute;
-  left: 0;
-  right: 0;
+  position: fixed;
+  left: 24px;
+  right: 24px;
   display: flex;
   flex-direction: column;
+  z-index: 2;
   animation: 5s ease-in 2000ms 1 normal both running slide-out;
-  @keyframes slide-out { from { top: 0 } to { top: -2000px; }  }
+  @media (min-width: 768px) {
+    animation: 5s ease-in 2000ms 1 normal both running slide-out-monitor;
+  }
+  @keyframes slide-out { from { top: 0.5rem } to { top: -2000px; }  }
+  @keyframes slide-out-monitor { from { top: 3.5rem } to { top: -2000px; }  }
   &-card {
     border-radius: 15px;
     border: solid 2px;
@@ -16,7 +21,7 @@
     margin: 2px;
     display: flex;
     justify-content: center;
-    z-index: 1;
+    z-index: 2;
   }
   &__message {
     text-align: justify;

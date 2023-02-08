@@ -1,5 +1,10 @@
-import {makeFlash} from "./flashMessage";
-export default class FetchRequest {
+import Maker from "./Maker";
+
+/**
+ * This class is used to call a link with fetch and replace the text of the link.
+ * The link must have the data-fetch-link="true" attribute
+ */
+export default class LinkAssync {
     constructor() {
         this.fetchLinks = document.querySelectorAll('[data-fetch-link="true"]');
         this.bindLinks();
@@ -31,7 +36,10 @@ export default class FetchRequest {
                 }
             })
             .then((data) => {
-                makeFlash(data.flash.message, data.flash.type);
+                if (data.flash) {
+                    Maker.flash(data.flash.message, data.flash.type);
+                }
+
                 if (data.newText) {
                     link.innerText = data.newText;
                 }

@@ -30,9 +30,8 @@ export default class ProductParty {
     }
 
     initDeleteButton() {
-        const buttonDelete = Maker.element('button', ProductPartyList.getList().dataset.deleteButtonText);
+        const buttonDelete = Maker.element('button', ProductPartyList.getList().dataset.deleteButtonText, ['btn', 'btn__delete']);
         buttonDelete.addEventListener('click', this.deleteProduct);
-        buttonDelete.classList.add('btn', 'btn__delete');
         buttonDelete.style.marginTop = '0';
         buttonDelete.type = 'button';
         this.card.appendChild(buttonDelete);
