@@ -26,7 +26,6 @@ class PartyController extends AbstractController
 {
     public function __construct(
         private TranslatorInterface    $translator,
-        private EntityManagerInterface $em,
         private PartyRepository        $partyRepository,
         private SluggerInterface       $slugger
     )
@@ -80,7 +79,7 @@ class PartyController extends AbstractController
         ]);
     }
 
-    #[isGranted('ROLE_USER')]
+    #[Security("is_granted('ROLE_ADMIN') or user == party.getCreator()")]
     #[Route('/party/edit/{slug}', name: 'party_edit')]
     public function edit(Party $party, Request $request, EntityManagerInterface $em, PartyRepository $partyRepository, SluggerInterface $slugger, LocationRepository $locationRepository): Response
     {
