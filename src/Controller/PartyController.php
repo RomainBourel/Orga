@@ -69,13 +69,13 @@ class PartyController extends AbstractController
 
         $productForm = $this->createForm(ProductFormType::class, (new Product()));
         $formType = 'create';
-        $modalContent = $this->render('product/create_form.html.twig', [
+        $productForm = $this->render('product/create_form.html.twig', [
             'form' => $productForm,
             'formType' => $formType,
         ]);
         return $this->render('party/create.html.twig', [
             'form' => $form,
-            'modalContent' => $modalContent,
+            'productForm' => $productForm,
             'formType' => $formType,
         ]);
     }
@@ -115,13 +115,13 @@ class PartyController extends AbstractController
             return $this->redirectToRoute('party_show', ['slug' => $party->getSlug()]);
         }
         $productForm = $this->createForm(ProductFormType::class, (new Product()));
-        $modalContent = $this->renderView('product/create_form.html.twig', [
+        $productForm = $this->renderView('product/create_form.html.twig', [
             'form' => $productForm,
             'formType' => 'create',
         ]);
         return $this->render('party/create.html.twig', [
             'form' => $form,
-            'modalContent' => $modalContent,
+            'productForm' => $productForm,
             'formType' => 'edit',
         ]);
     }

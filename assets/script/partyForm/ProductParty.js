@@ -41,7 +41,6 @@ export default class ProductParty {
         this.card.classList.add('hidden');
         this.quantityInput.value = 0;
         if (SearchProductBar.isInSearchList(this.id)) {
-            console.log('delete')
             SearchProductBar.updateQuantityOfProduct(this.id, 0);
         }
     }

@@ -111,11 +111,13 @@ form.registration.username.label: Nom d'utilisateur
 home.title: ORGA
 home.sub_title: organise toi !!!
 home.description:
-  <p>Invite des convives</p>
-  <p>Décidez de la date ensemble</p>
-  <p>Partagez en temps réel la liste de course</p></br>
-  <p>Donne leur accès a toute les information importante (lieux, contact, horaire)</p></br>
-  <p>et bien plus encore</p>
+  <div class="paragraph__content">
+    <p>Invite des convives</p>
+    <p>Décidez de la date ensemble</p>
+    <p>Partagez en temps réel la liste de course</p>
+  </div>
+  <p class="paragraph__content">Donne leur accès a toute les information importante (lieux, contact, horaire)</p>
+  <p class="paragraph__content">Et bien plus encore...</p>
 home.sign_in: Créer mon compte
 home.login: Déjà inscrit
 

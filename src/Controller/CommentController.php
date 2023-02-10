@@ -29,7 +29,6 @@ class CommentController extends AbstractController
         $form = $this->createForm(CommentFormType::class, $comment);
 
         $form->handleRequest($request);
-        dump($comment->getMessage());
         if ("" === $comment->getMessage() || null === $comment->getMessage()) {
             return $this->json([
                 'error' => true,

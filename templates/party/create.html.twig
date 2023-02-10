@@ -89,5 +89,5 @@
         </button>
     </div>
     {{ form_end(form) }}
-    {% include "partials/_modal.html.twig" with {content: modalContent, openButton: '#add-product'} %}
+    {% include "partials/_modal.html.twig" with {content: productForm.content, openButton: '#add-product'} %}
 {% endblock %}
