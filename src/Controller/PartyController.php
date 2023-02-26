@@ -68,7 +68,7 @@ class PartyController extends AbstractController
 
         $productForm = $this->createForm(ProductFormType::class, (new Product()));
         $formType = 'create';
-        $productForm = $this->render('product/create_form.html.twig', [
+        $productForm = $this->renderView('product/create_form.html.twig', [
             'form' => $productForm,
             'formType' => $formType,
         ]);
