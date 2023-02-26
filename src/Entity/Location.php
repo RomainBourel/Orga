@@ -27,10 +27,12 @@ class Location
 
     #[ORM\Column(length: 255)]
     #[Assert\NotBlank]
+    #[Assert\Regex(pattern: '/^[a-zA-Z\-\s]+$/')]
     private ?string $city = null;
 
     #[ORM\Column(length: 255)]
     #[Assert\NotBlank]
+    #[Assert\Regex(pattern: '/^[\d]{4,5}$/')]
     private ?string $zipCode = null;
 
     #[ORM\Column]
