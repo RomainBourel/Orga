@@ -11,19 +11,16 @@
 
 {% block body %}
     <div class="card__title">
-        <div class="card__section">
-            <h2>{{ party.name }}</h2>
+        <h2>{{ party.name }}</h2>
+    </div>
+    {% if party.description %}
+        <div class="form__section">
+            <p>{{ party.description }}</p>
         </div>
-        <div class="card__section">
-            {% if party.description %}
-                <p>description</p>
-                <p>{{ party.description }}</p>
-            {% endif %}
-            <p>{{ 'party.location'|trans }}</p>
-        </div>
-        <div class="card__section">
-            <p>{{ party.location.address }} {{ party.location.city }} {{ party.location.zipCode }}</p>
-        </div>
+    {% endif %}
+    <div class="form__section">
+        <h3>{{ 'party.location'|trans }}</h3>
+        <p>{{ party.location.address }} {{ party.location.city }} {{ party.location.zipCode }}</p>
     </div>
 
     <div class="form__section form__section--calendar">
