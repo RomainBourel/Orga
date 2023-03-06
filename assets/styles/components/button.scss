@@ -14,40 +14,37 @@
   }
   &__primary {
     background-color: $clr-btn-primary;
-    @include text-clr($clr-btn-primary);
     &:hover {
-      @include hover-clr($clr-btn-primary);
+      background-color: $clr-btn-primary-hover;
     }
   }
   &__secondary {
     background-color: $clr-btn-secondary;
-    @include text-clr($clr-btn-secondary);
 
     &:hover {
-      @include hover-clr($clr-btn-secondary);
+      background-color: $clr-btn-secondary-hover;
     }
   }
   &__tertiary {
     background-color: $clr-btn-tertiary;
-    @include text-clr($clr-btn-tertiary);
 
     &:hover {
-      @include hover-clr($clr-btn-tertiary);
+      color: $clr-white;
+      background-color: $clr-btn-tertiary-hover;
     }
   }
   &__delete {
     background-color: $clr-btn-delete;
-    @include text-clr($clr-btn-delete);
 
     &:hover {
-      @include hover-clr($clr-btn-delete);
+      color: $clr-white;
+      background-color: $clr-btn-delete-hover;
     }
   }
   &__edit {
     background-color: $clr-btn-edit;
-    @include text-clr($clr-btn-edit);
     &:hover {
-      @include hover-clr($clr-btn-edit);
+      background-color: $clr-btn-edit-hover;
     }
   }
   &__disabled {

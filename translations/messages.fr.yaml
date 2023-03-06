@@ -161,6 +161,8 @@ party.reminder.status.message.wait: invitation en attente
 product.moderate.message: Le produit n'est plus visible car il ne respecte pas les conditions d'utilisation
 
 
+qr_code.alt: QR code
+
 reset.pwd.button: Mot de passe oublié
 reset.pwd.check_email.title: Mail envoyé
 reset.pwd.check_email.message: Si vous disposez d'un compte sur l'adresse email renseignée, un mail contenant le lien de modification du mot de passe vous a été envoyé.

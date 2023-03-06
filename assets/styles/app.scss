@@ -1,9 +1,9 @@
 @import './vendors/index.scss';
 @import './base/reset.scss';
 
-@import './utils/mixins/index.scss';
 @import './utils/variables/color.scss';
 
+@import './base/font.scss';
 @import './base/index.scss';
 
 @import './components/button.scss';
