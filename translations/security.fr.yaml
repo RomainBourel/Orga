@@ -1,7 +1,7 @@
-"Invalid credentials.": "Information de connexion incorrect."
+"Invalid credentials.": "Informations de connexion incorrectes."
 "Too many failed login attempts, please try again in %minutes% minute.": "Trop de tentatives de connexion, veuillez réessayer dans %minutes% minute(s)."
 "count not verified please check your mail.":
-  <p>Compte non vérifier veuillez regarder vos mail.</p>
+  <p>Compte non vérifié veuillez regarder vos mails.</p>
   <form type="POST" action="/send/verify/email">
   <input type="hidden" name="email" value="%email%"/>
   <button class="btn__disabled link" type="submit">Renvoyer le mail de vérification</button>

@@ -1,14 +1,15 @@
-bo.category: Categorie
+bo.category: Catégorie
 bo.location: Adresse
-bo.party: Evenement
+bo.party: Evènement
 bo.product: Produit
 bo.return.website: Retour au site
 bo.unity: Unité
 bo.user: Utilisateur
 
-button.add.party: Créer un événement
+
+button.add.party: Créer un évènement
 button.connection: Me connecter
-button.create.party: Créer l'événement
+button.create.party: Créer l'évènement
 button.copy.link: Copier le lien
 button.edit: Modifier
 button.party.save.create: Créer l'évènement
@@ -16,12 +17,12 @@ button.party.edit: Mettre à jour l'évènement
 button.party.save.edit: Valider les modifications
 button.party.proposition_date_available: Je suis disponible
 button.party.proposition_date_available.not: Je suis indisponible
-button.party.proposition_date_confirm: définir comme date final
+button.party.proposition_date_confirm: définir comme date finale
 button.party.reserved_product.reserved: Je m'en charge
 button.party.reserved_product.unreserved: Je ne m'en charge plus
-button.party.reserved_product.buy: J'ai trouver
-button.party.reserved_product.unbuy: Je n'ai plus trouver
-button.party.share: Partager l'événement
+button.party.reserved_product.buy: J'ai trouvé
+button.party.reserved_product.unbuy: Je n'ai pas trouvé
+button.party.share: Partager l'évènement
 button.party.share.new: Créer un nouveau lien
 button.product.create: Créer le produit
 button.register: M'inscrire
@@ -29,44 +30,51 @@ button.remove: Effacer
 button.send.comment: Envoyer le message
 button.validate: Je m'inscris
 
+
 calendar.number.participant: '{1} %count% participant|]1,Inf] %count% participants'
 calendar.response.available: Participer
 calendar.response.not_available: Ne plus participer
 
+
 comment.card.info: '%username% à %hour%'
 comment.date.separator: Le %date%
+
 
 confirmation.email.footer: Bonne journée!
 confirmation.email.title: Confirmation de votre adresse email
 confirmation.email.message:
   "Veuillez confirmer votre mail en cliquant sur le lien ci-dessous: <br><br>
-    <a href=\"%url%\">Confirmer mon email</a>.<br>
-    Ce lien expire dans %expiresAtMessage%."
+   <a href=\"%url%\">Confirmer mon email</a>.<br>
+   Ce lien expire dans %expiresAtMessage%."
+
 
 default.message: '<div class="comment-card">
-            <p>Ceci est le début de vos échange pour organiser le meilleur des événements</p>
-        </div>
-        <p class="comment-card__info">
-            Le bot à 00:42
-        </p>'
+           <p>Ceci est le début de vos échanges pour organiser le meilleur des évènements</p>
+       </div>
+       <p class="comment-card__info">
+           Le bot à 00:42
+       </p>'
+
 
 email.confirmation.subject: Confirmation de votre inscription
 
+
 error.verified:
-  <p>Compte non vérifier veuillez regarder vos mail.</p>
-  <form type="POST" action="/send/verify/email"> 
-    <input type="hidden" name="email" value="%email%"/> 
-    <button class="btn__disabled link" type="submit">Renvoyer le mail de vérification</button> 
+  <p>Compte non vérifié veuillez regarder vos mails.</p>
+  <form type="POST" action="/send/verify/email">
+  <input type="hidden" name="email" value="%email%"/>
+  <button class="btn__disabled link" type="submit">Renvoyer le mail de vérification</button>
   </form>
 
-flash.copy.link: Lien copiée
+
+flash.copy.link: Lien copié
 flash.comment.send: Commentaire envoyé
 flash.comment.error: Une erreur s'est produite
 flash.email.resent: Un nouveau mail de vérification vous a été envoyé
 flash.email.verified: Votre email a bien été vérifié
 flash.location.create.message: L'adresse a bien été créée
 flash.location.update.message: L'adresse a bien été mise à jour
-flash.new.link: Nouveau lien créer
+flash.new.link: Nouveau lien créé
 flash.party.create.message: l'événement a bien été créé
 flash.party.create.need_location.message: Vous devez créer une adresse avant de créer un événement
 flash.party.date_validation.message: La date a bien été validée
@@ -76,7 +84,8 @@ flash.product.moderate: produit visible uniquement par le créateur
 flash.product.unmoderate: modération annulée
 flash.product.report: Produit signalé
 flash.product.unreport: Signalement du produit annulé
-flash.registration.success: 'Votre inscription a bien été prise en compte, Aller le valider avant de vous connecter'
+flash.registration.success: 'Votre inscription a bien été prise en compte, un mail vous a été envoyé, allez le valider avant de vous connecter'
+
 
 form.agree_therms.label:
   <p>j'accepte les <a href="%url%" class="link">termes et conditions d'utilisation</a></p>
@@ -91,8 +100,8 @@ form.login.email.label: E-mail
 form.login.password.label: Mot de passe
 form.party.button.add_product: Ajouter un produit
 form.party.button.add_proposition_date: Ajouter une date
-form.party.button.make_proposition: Proposer plusieurs date
-form.party.label.description: Information complèmentaire
+form.party.button.make_proposition: Proposer plusieurs dates
+form.party.label.description: Informations complémentaires
 form.party.label.location: Adresse
 form.party.label.name: Nom de l'évènement
 form.party.placeholder.search_product: chercher un produit
@@ -100,7 +109,7 @@ form.party.title: Créer un événement
 form.product.title.create: Créer un produit
 form.proposition_date.label.starting_at: Date d'arrivée
 form.proposition_date.label.ending_at: Date de fin
-form.proposition_date.label.number_max_participant: Nombre de participant maximum
+form.proposition_date.label.number_max_participant: Nombre de participants maximum
 form.proposition_date.placeholder.number_max_participant: Pas de maximum
 form.password.first_label: Mot de passe
 form.password.second_label: Confirmation mot de passe
@@ -108,48 +117,54 @@ form.product_party.quantity: quantité
 form.registration.email.label: E-mail
 form.registration.username.label: Nom d'utilisateur
 
+
 home.title: ORGA
 home.sub_title: organise toi !!!
 home.description:
   <div class="paragraph__content">
-    <p>Invite des convives</p>
-    <p>Décidez de la date ensemble</p>
-    <p>Partagez en temps réel la liste de course</p>
+  <p>Invite des convives</p>
+  <p>Décidez de la date ensemble</p>
+  <p>Partagez en temps réel la liste de courses</p>
   </div>
-  <p class="paragraph__content">Donne leur accès a toute les information importante (lieux, contact, horaire)</p>
+  <p class="paragraph__content">Donne leur accès à toute les informations importantes (lieux, contact, horaire)</p>
   <p class="paragraph__content">Et bien plus encore...</p>
 home.sign_in: Créer mon compte
 home.login: Déjà inscrit
 
+
 link.legal.notice : Mentions légales
 link.agree.them: Conditions d'utilisation
 link.product.moderate: modérer le produit
-link.product.unmoderate: annulé la modération du produit
+link.product.unmoderate: annuler la modération du produit
 link.product.report: Signaler le produit
-link.product.unreport: retiré le signalement
+link.product.unreport: retirer le signalement
+
 
 nav.admin: BO
 nav.home: accueil
 nav.login: se connecter
 nav.logout: se déconnecter
-nav.party.create: organiser une événement
+nav.party.create: organiser une évènement
 nav.product.create: créer un objet
 nav.profil: profil
 nav.register: s'inscrire
 
+
 party.location: 'Lieux de rendez-vous :'
-party.reminder.status.message.accepted: invitation accepté
-party.reminder.status.message.my_party: Mon événement
+party.reminder.status.message.accepted: invitation acceptée
+party.reminder.status.message.my_party: Mon évènement
 party.reminder.status.message.not_define_date: Date à définir
-party.reminder.status.message.refused: invitation refusé
+party.reminder.status.message.refused: invitation refusée
 party.reminder.status.message.wait: invitation en attente
+
 
 product.moderate.message: Le produit n'est plus visible car il ne respecte pas les conditions d'utilisation
 
+
 reset.pwd.button: Mot de passe oublié
 reset.pwd.check_email.title: Mail envoyé
-reset.pwd.check_email.message: Si vous dispose d'un compte sur l'addresse email renseigner un mail contenant le lien de modification du mot de passe vous a été envoyé.
-  Si vous ne trouvez pas le mail vérifiez vos spam.
+reset.pwd.check_email.message: Si vous disposez d'un compte sur l'adresse email renseignée, un mail contenant le lien de modification du mot de passe vous a été envoyé.
+  Si vous ne trouvez pas le mail, vérifiez vos spams.
   Ce lien expirera dans
 reset.pwd.check_email.not_receive: Si vous n'avez pas reçu de mail
 reset.pwd.check_email.button: Réessayez
@@ -159,9 +174,10 @@ reset.pwd.email.top:
 reset.pwd.email.expire: Ce lien expire dans
 reset.pwd.email.bottom: <p>Merci</p>
 reset.pwd.request.title: Mot de passe oublié
-reset.pwd.request.text: Ecrivez votre adresse email un lien vous sera envoyé afin de créer un nouveau mot de passe
+reset.pwd.request.text: Ecrivez votre adresse email. Un lien vous sera envoyé afin de créer un nouveau mot de passe
 reset.pwd.reset.title: Choix du nouveau mot de passe
 reset.pwd.reset.button: Modifier mon mot de passe
+
 
 text.agree_therm.title_1: Conditions d'utilisation
 text.agree_therm.part_1: "En utilisant notre site Orga.romain-bourel.fr, vous acceptez les termes et conditions suivants. Si vous n'êtes pas d'accord avec ces termes, veuillez ne pas utiliser notre site."
@@ -170,6 +186,7 @@ text.agree_therm.list_1: "Utilisation du contenu : Le contenu de notre site, y c
 text.agree_therm.list_2: "Respect des règles de conduite : Vous êtes tenu de respecter les règles de conduite appropriées lors de l'utilisation de notre site, y compris en ne publiant pas de contenu choquant ou offensant."
 text.agree_therm.list_3: "Responsabilité : Orga.romain-bourel.fr n'est pas responsable des dommages causés par l'utilisation de notre site."
 text.agree_therm.list_4: "Modifications des termes : Orga.romain-bourel.fr se réserve le droit de modifier ces termes et conditions à tout moment, et il est de votre responsabilité de vérifier régulièrement pour des modifications."
+
 
 text.legal_notion.title_1: MENTIONS LÉGALES
 text.legal_notion.title_2: Édition
@@ -180,9 +197,10 @@ text.legal_notion.title_6: Contact
 text.legal_notion.part_1: "Bienvenue sur la page des mentions légales. Si vous êtes ici, c'est soit que vous vous êtes perdu, soit que vous êtes curieux ou alors c'est votre boulot. Dans tous les cas, mettez-vous à l'aise et faites-vous plaisir. C'est partiiiii !"
 text.legal_notion.part_2: "Ce site a été créé et est édité par Romain Bourel, habitant la belle ville de Roubaix. Vous pouvez prendre contact si besoin avec moi à l'adresse email suivante: romainboureldev@gmail.com"
 text.legal_notion.part_3: "Ce site est hébergé par Hostinger qui se situe: 61 Lordou Vironos st. 6023 Larnaca."
-text.legal_notion.part_4: "Ce site stockera en base de donnée votre adresse mail et les adresses que vous y ajouterez ainsi que les images que vous ajouterez sur les produits. Nous ne partagerons pas ces données avec des tiers. Ni ne les utiliserons à d'autre fin que le service de ce site. Les images pourront être visibles (après validation d'un administrateur) par tous les utilisateurs du site. Ormis cela seul les personnes à qui vous partagerez vos événements pourront voir les différentes informations que vous y aurez ajouté (à savoir les produits et leurs images ainsi que l'adresse). De plus, il est important de savoir que l'hébergeur peut techniquement collecter des données. On ne sait pas s'il le fait, mais ce serait pas très légal."
+text.legal_notion.part_4: "Ce site stockera en base de données votre adresse mail et les adresses que vous y ajouterez ainsi que les images que vous ajouterez sur les produits. Nous ne partagerons pas ces données avec des tiers. Ni ne les utiliserons à d'autre fin que le service de ce site. Les images pourront être visibles (après validation d'un administrateur) par tous les utilisateurs du site. Hormis cela seules les personnes à qui vous partagerez vos évènements pourront voir les différentes informations que vous y aurez ajoutées (à savoir les produits et leurs images ainsi que l'adresse). De plus, il est important de savoir que l'hébergeur peut techniquement collecter des données. On ne sait pas s'il le fait, mais ce ne serait pas très légal."
 text.legal_notion.part_5: "Nous vous prions de ne pas utiliser le site à des fins malveillantes. Nous ne sommes pas responsables de vos actes. Les images que vous ajouterez sur le site ne doivent pas être des images protégées par des droits d'auteur ou à caractère offensant ou choquant. Il en est de même pour ce que vous écrirez."
-text.legal_notion.part_6: "Si vous avez des questions, ou besoin d'infos, contactez-nous à l'adresse e-mail précédemment citée."
+text.legal_notion.part_6: "Si vous avez des questions, ou besoin d'informations, contactez-nous à l'adresse e-mail précédemment citée."
+
 
 title.agree_therm: Conditions d'utilisation
 title.base: "Orga - "
