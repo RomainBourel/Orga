@@ -1,6 +1,6 @@
 {% set shareLink = url('party_invitation', {invitationToken: party.invitationToken}) %}
-<div class="d-flex align-items-center flex-column">
-    <div class="d-flex flex-row">
+<div class="share-link">
+    <div class="share-link__input">
         <input type="text" id="party-share-link" class="form-control" value="{{ shareLink }}"  readonly="readonly" />
         <button id="copy-button" class="w-100 btn btn-primary" type="button">{{ 'button.copy.link'|trans }}</button>
     </div>

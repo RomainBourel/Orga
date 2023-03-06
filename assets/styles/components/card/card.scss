@@ -1,4 +1,6 @@
-.card {
+.card__info {
+  display: flex;
+  justify-content: center;
   &--success {
     margin-top: 4px;
     padding: 8px;

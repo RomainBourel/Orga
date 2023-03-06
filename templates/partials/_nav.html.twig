@@ -1,7 +1,7 @@
 <nav class="tab-bar">
-    <ul class="tab-bar__list d-flex flex-row justify-content-around">
+    <ul class="tab-bar__list">
         <li class="tab-bar__list__link {% if app.request.get('_route') is same as 'home' %}tab-bar__list__link--active{% endif %}"><a href="{{ path('home') }}">
-                <div class="d-flex flex-column align-items-center">
+                <div class="tab-bar__list__link__content">
                     <p class="tab-bar__icon"><i class="fa-solid fa-house-chimney"></i></p>
                     <p class="tab-bar__text">{{ 'nav.home'|trans }}</p>
                 </div>
@@ -10,14 +10,14 @@
         </li>
         {% if app.user %}
             <li class="tab-bar__list__link {% if app.request.get('_route') is same as 'party_create' %}tab-bar__list__link--active{% endif %}"><a href="{{ path('party_create') }}">
-                    <div class="d-flex flex-column align-items-center">
+                    <div class="tab-bar__list__link__content">
                         <p class="tab-bar__icon"><i class="fa-solid fa-plus"></i></p>
                         <p class="tab-bar__text">{{ 'nav.party.create'|trans }}</p>
                     </div>
                 </a>
             </li>
             <li class="tab-bar__list__link {% if app.request.get('_route') is same as 'user' %}tab-bar__list__link--active{% endif %}"><a href="{{ path('user') }}">
-                    <div class="d-flex flex-column align-items-center">
+                    <div class="tab-bar__list__link__content">
                         <p class="tab-bar__icon"><i class="fa-solid fa-user"></i></p>
                         <p class="tab-bar__text">{{ 'nav.profil'|trans }}</p>
                     </div>
@@ -25,15 +25,15 @@
             </li>
             {% if is_granted('ROLE_ADMIN') %}
                 <li class="tab-bar__list__link {% if app.request.get('_route') is same as 'admin' %}tab-bar__list__link--active{% endif %}"><a href="{{ path('admin') }}">
-                        <div class="d-flex flex-column align-items-center">
-                            <p class="tab-bar__icon"><i class="fa-solid fa-user"></i></p>
+                        <div class="tab-bar__list__link__content">
+                            <p class="tab-bar__icon"><i class="fa-solid fa-building"></i></p>
                             <p class="tab-bar__text">{{ 'nav.admin'|trans }}</p>
                         </div>
                     </a>
                 </li>
             {% endif %}
             <li class="tab-bar__list__link"><a href="{{ path('logout') }}">
-                    <div class="d-flex flex-column align-items-center">
+                    <div class="tab-bar__list__link__content">
                         <p class="tab-bar__icon"><i class="fa-solid fa-right-from-bracket"></i></p>
                         <p class="tab-bar__text">{{ 'nav.logout'|trans }}</p>
                     </div>
@@ -41,14 +41,14 @@
             </li>
         {% else %}
             <li class="tab-bar__list__link {% if app.request.get('_route') is same as 'app_register' %}tab-bar__list__link--active{% endif %}"><a href="{{ path('app_register') }}">
-                    <div class="d-flex flex-column align-items-center">
+                    <div class="tab-bar__list__link__content">
                         <p class="tab-bar__icon"><i class="fa-solid fa-file"></i></p>
                         <p class="tab-bar__text">{{ 'nav.register'|trans }}</p>
                     </div>
                 </a>
             </li>
             <li class="tab-bar__list__link {% if app.request.get('_route') is same as 'login' %}tab-bar__list__link--active{% endif %}"><a href="{{ path('login') }}">
-                    <div class="d-flex flex-column align-items-center">
+                    <div class="tab-bar__list__link__content">
                         <p class="tab-bar__icon"><i class="fa-solid fa-right-to-bracket"></i></p>
                         <p class="tab-bar__text">{{ 'nav.login'|trans }}</p>
                     </div>

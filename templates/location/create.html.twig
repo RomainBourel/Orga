@@ -9,7 +9,7 @@
 
 {% block body %}
     <h1 class="title section__title">{{ 'form.location.title'|trans }}</h1>
-    {{ form_start(form) }}
+    {{ form_start(form, {'attr': {'class': 'form'}}) }}
         {{ form_errors(form) }}
         {{form_rest(form) }}
 

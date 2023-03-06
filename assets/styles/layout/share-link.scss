@@ -1,0 +1,9 @@
+.share-link {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  &__input {
+    display: flex;
+    flex-direction: row;
+  }
+}

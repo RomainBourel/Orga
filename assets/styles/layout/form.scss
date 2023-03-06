@@ -4,6 +4,12 @@
   align-items: center;
   align-self: center;
   flex-direction: column;
+  &__modal {
+    display: flex;
+    align-items: center;
+    align-self: center;
+    flex-direction: column;
+  }
   &-control {
     border: solid $clr-line 3px;
     border-radius: 25px;
@@ -21,6 +27,11 @@
     margin-bottom: 48px;
     padding: 5px;
     width: 98%;
+    &__button {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
     &--calendar {
       display: flex;
       flex-direction: row;

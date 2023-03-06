@@ -13,8 +13,8 @@
     {% endfor %}
 
     <h1>Register</h1>
-    <div class="form">
-        {{ form_start(registrationForm) }}
+    <div>
+        {{ form_start(registrationForm, {'attr': {'class': 'form'}}) }}
             {{ form_row(registrationForm.email) }}
             {{ form_row(registrationForm.username) }}
             {{ form_row(registrationForm.plainPassword) }}
@@ -32,9 +32,7 @@
             </div>
 
             <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
-            <div class="d-flex justify-content-center">
-                {{ form_row(registrationForm.submit) }}
-            </div>
+            {{ form_row(registrationForm.submit) }}
         {{ form_end(registrationForm) }}
     </div>
     <template id="eye-template">

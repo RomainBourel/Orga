@@ -2,7 +2,7 @@
     {# form.product.create.title #}
     {{ ("form.product.title." ~ formType)|trans }}
 </h1>
-{{ form_start(form) }}
+{{ form_start(form, {'attr': {'class': 'form__modal'}}) }}
     {{ form_errors(form) }}
     {{form_rest(form) }}
     <button class="btn__secondary btn" type="submit">

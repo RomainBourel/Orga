@@ -22,6 +22,10 @@
       align-items: center;
       margin: 5px;
     }
+    &__quantity {
+      display: flex;
+      align-items: center;
+    }
   }
   &__quantity-btn {
     border-radius: 50%;

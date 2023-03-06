@@ -3,15 +3,12 @@
 {% block title %}{{ parent() }}{{ 'reset.pwd.check_email.title'|trans }}{% endblock %}
 
 {% block body %}
-    <div class="section__description d-flex flex-column justify-content-around h-75">
-        <p>
-            {{ 'reset.pwd.check_email.message'|trans }} {{ resetToken.expirationMessageKey|trans(resetToken.expirationMessageData, 'ResetPasswordBundle') }}.
-        </p>
-        <div class="d-flex flex-column">
+    <div class="main">
+        <p class="paragraph__content">{{ 'reset.pwd.check_email.message'|trans }} {{ resetToken.expirationMessageKey|trans(resetToken.expirationMessageData, 'ResetPasswordBundle') }}.</p>
+        <div class="main__center">
             <p>{{ 'reset.pwd.check_email.not_receive'|trans }} .</p>
             <a class="btn btn-primary" href="{{ path('app_forgot_password_request') }}"> {{'reset.pwd.check_email.button'|trans}} </a>
         </div>
-
     </div>
 
 {% endblock %}

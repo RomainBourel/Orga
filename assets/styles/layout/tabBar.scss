@@ -5,6 +5,9 @@
     bottom: 0;
     width: 100%;
     align-self: center;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
     border-top: solid $clr-line 3px;
     background: #fff;
     z-index: 1000;
@@ -18,6 +21,12 @@
 
       &--active {
         text-decoration: underline;
+      }
+
+      &__content {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
       }
     }
   }

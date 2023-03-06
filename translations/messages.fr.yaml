@@ -28,6 +28,7 @@ button.product.create: Créer le produit
 button.register: M'inscrire
 button.remove: Effacer
 button.send.comment: Envoyer le message
+button.send.mail: Envoyer le mail
 button.validate: Je m'inscris
 
 
@@ -106,6 +107,11 @@ form.party.label.location: Adresse
 form.party.label.name: Nom de l'évènement
 form.party.placeholder.search_product: chercher un produit
 form.party.title: Créer un événement
+form.product.label.name: Nom du produit
+form.product.label.description: Description
+form.product.label.picture: Image
+form.product.label.unity: Unité
+form.product.label.category: Catégorie
 form.product.title.create: Créer un produit
 form.proposition_date.label.starting_at: Date d'arrivée
 form.proposition_date.label.ending_at: Date de fin

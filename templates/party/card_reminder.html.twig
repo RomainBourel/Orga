@@ -31,25 +31,24 @@
                 </div>
             {% endif %}
         </div>
-        <div class="party__reminder__card__section--center d-flex align-items-center">
+        <div class="party__reminder__card__section--center">
             <p>{{ party.name }}</p>
         </div>
         <div class="party__reminder__card__section--right"></div>
     </div>
     <div
         class="
-            d-flex
-            justify-content-center
+            card__info
             {% if party.creator is same as app.user %}
-                card--self
+                card__info--self
             {% elseif isFinalDate and party.finalDate.isUserAvailable(app.user) %}
-                card--success
+                card__info--success
             {% elseif not isFinalDate %}
-                card--wait
+                card__info--wait
             {% elseif isFinalDate and party.finalDate.isUserRefused(app.user) %}
-                card--danger
+                card__info--danger
             {% else %}
-                card--warning
+                card__info--warning
             {% endif %}
         "
     >

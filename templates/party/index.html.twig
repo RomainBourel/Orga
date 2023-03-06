@@ -38,7 +38,7 @@
                 {% if not productParty.product.isModerate or productParty.product.user is same as app.user or is_granted('ROLE_ADMIN') %}
                     {% include 'product_party/card.html.twig' %}
                 {% else %}
-                    <div class="card--danger">
+                    <div class="card__info--danger">
                         <p>{{ 'product.moderate.message'|trans }}</p>
                     </div>
                 {% endif %}

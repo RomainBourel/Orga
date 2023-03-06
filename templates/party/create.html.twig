@@ -12,7 +12,7 @@
         <h1 class="title">{{ 'form.party.title'|trans }}</h1>
     </div>
 
-    {{ form_start(form, {'attr': {'id': 'form-party'}}) }}
+    {{ form_start(form, {'attr': {'id': 'form-party', 'class': 'form'}}) }}
     {{ form_errors(form) }}
     <div class="form__section">
         {{ form_row(form.name) }}
@@ -32,18 +32,20 @@
             data-current-id="{{ form.propositionDates|length }}"
             data-default-date="{{ "tomorrow"|date('Y-m-d') }}T{{ "now"|date('H:i') }}"
         ></div>
-        <button
-                id="add-proposition-date"
-                class="btn btn__primary"
-                type="button"
-                data-add-proposition-text="{{ 'form.party.button.add_proposition_date'|trans }}"
-                data-listener="false"
-        >
-            {{ 'form.party.button.make_proposition'|trans }}
-        </button>
+        <div class="form__section__button">
+            <button
+                    id="add-proposition-date"
+                    class="btn btn__primary"
+                    type="button"
+                    data-add-proposition-text="{{ 'form.party.button.add_proposition_date'|trans }}"
+                    data-listener="false"
+            >
+                {{ 'form.party.button.make_proposition'|trans }}
+            </button>
+        </div>
     </div>
 
-    <div class="form__section d-flex flex-column align-items-center">
+    <div class="form__section">
         <input
                 id="search-product"
                 placeholder="{{ 'form.party.placeholder.search_product'|trans }}"
@@ -54,17 +56,19 @@
                 list="search-list"
         />
         <div id="product-proposition-table"></div>
-        <button
-            id="add-product"
-            class="btn btn__primary"
-            type="button"
-            data-url="{{ path('product_create') }}"
-            data-template='{{ form_widget(form.product.vars.prototype)|raw }}'
-            data-toggle="modal"
-            data-target="#modal"
-        >
-            {{ 'form.party.button.add_product'|trans }}
-        </button>
+        <div class="form__section__button">
+            <button
+                    id="add-product"
+                    class="btn btn__primary"
+                    type="button"
+                    data-url="{{ path('product_create') }}"
+                    data-template='{{ form_widget(form.product.vars.prototype)|raw }}'
+                    data-toggle="modal"
+                    data-target="#modal"
+            >
+                {{ 'form.party.button.add_product'|trans }}
+            </button>
+        </div>
         <div
             id="products-list"
             data-template='{{ form_widget(form.productsParty.vars.prototype)|raw }}'
@@ -83,7 +87,7 @@
         {% endfor %}
     </div>
 
-    <div class="d-flex flex-column align-items-center">
+    <div>
         <button class="btn__secondary btn" type="submit">
             {{ ('button.party.save.' ~ formType)|trans }}
         </button>
