@@ -1,0 +1,22 @@
+{# templates/bundles/TwigBundle/Exception/error404.html.twig #}
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>{{ 'error.404.title'|trans }}</h1>
+    <div class="calendar__container">
+        <div class="calendar">
+            <div class="calendar__body">
+                <div class="calendar-card">
+                    <div class="calendar-card__top">{{ "now"|format_datetime(pattern="EEEE") }}</div>
+                    <div class="calendar-card__body">
+                        <div class="calendar-card__body__day">404</div>
+                        <div class="calendar-card__body__month">{{ "now"|format_datetime(pattern="MMMM") }}</div>
+                        <div class="calendar-card__body__hour">not found</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <p>{{ 'error.404.message'|trans }}</p>
+    <a class="btn btn__primary" href="{{ path('home') }}">{{ 'error.404.button'|trans }}</a>
+{% endblock %}

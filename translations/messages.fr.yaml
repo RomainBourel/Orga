@@ -63,6 +63,10 @@ default.message: '<div class="comment-card">
 
 email.confirmation.subject: Confirmation de votre inscription
 
+
+error.404.message: La page demandée n'existe pas
+error.404.title: Page introuvable
+error.404.button: Retour à l'accueil
 error.password.invalid: Mot de passe incorrect
 error.verified:
   <p>Compte non vérifié veuillez regarder vos mails.</p>
