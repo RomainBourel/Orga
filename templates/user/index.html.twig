@@ -3,13 +3,16 @@
 {% block title %}{{ parent() }}{{ "title.user"|trans }}{% endblock %}
 
 {% block body %}
-    <h1>Profil</h1>
-    <p>{{ user.username }}</p>
-    <p>adresse</p>
+    <h1>{{ "title.user"|trans }}</h1>
+    <p>{{ 'user.username'|trans }} {{ user.username }}</p>
+    <p>{{ 'user.email'|trans }} {{ user.email }}</p>
+    <a href="{{ path('user_edit') }}" class="btn btn__primary">{{ 'button.user.edit'|trans }}</a>
+    <a href="{{ path('user_password_edit') }}" class="btn btn__secondary">{{ 'button.user.password.edit'|trans }}</a>
+    <p>{{ 'user.address'|trans }}</p>
     <div class="block__overview">
         {% for location in user.locations %}
             {% include "location/card_overview.html.twig" %}
         {% endfor %}
     </div>
-    <a href="{{ path('location_create') }}" class="btn btn__primary">ajouter une adresse</a>
+    <a href="{{ path('location_create') }}" class="btn btn__primary">{{ 'button.address.add'|trans }}</a>
 {% endblock %}

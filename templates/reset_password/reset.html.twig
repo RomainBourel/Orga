@@ -11,6 +11,9 @@
     <h1>{{ 'reset.pwd.reset.title'|trans }}</h1>
     <div class="form">
         {{ form_start(resetForm, {'attr': {'class': 'form'}}) }}
+        {% if resetForm.currentPassword is defined %}
+            {{ form_row(resetForm.currentPassword) }}
+        {% endif %}
         {{ form_row(resetForm.plainPassword) }}
         <div>
             <ul>

@@ -1,0 +1,10 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ parent() }}{{ "title.user"|trans }}{% endblock %}
+
+{% block body %}
+    <h1>{{ "title.user.edit"|trans }}</h1>
+    <p class="flash-card flash--warning">{{ 'form.user.email.caution'|trans }}</p>
+    {{ form_start(form, {'attr': {'class': 'form'}}) }}
+    {{ form_end(form) }}
+{% endblock %}

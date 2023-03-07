@@ -8,6 +8,7 @@ bo.user: Utilisateur
 
 
 button.add.party: Créer un évènement
+button.address.add: Ajouter une adresse
 button.connection: Me connecter
 button.create.party: Créer l'évènement
 button.copy.link: Copier le lien
@@ -29,6 +30,8 @@ button.register: M'inscrire
 button.remove: Effacer
 button.send.comment: Envoyer le message
 button.send.mail: Envoyer le mail
+button.user.edit: Mettre à jour le profil
+button.user.password.edit: Modifier le mot de passe
 button.validate: Je m'inscris
 
 
@@ -59,7 +62,7 @@ default.message: '<div class="comment-card">
 
 email.confirmation.subject: Confirmation de votre inscription
 
-
+error.password.invalid: Mot de passe incorrect
 error.verified:
   <p>Compte non vérifié veuillez regarder vos mails.</p>
   <form type="POST" action="/send/verify/email">
@@ -81,11 +84,14 @@ flash.party.create.need_location.message: Vous devez créer une adresse avant de
 flash.party.date_validation.message: La date a bien été validée
 flash.party.remove.message: l'événement a bien été supprimé
 flash.party.update.message: l'événement a bien été mis à jour
+flash.password.edit.message: Le mot de passe a été mis à jour
 flash.product.moderate: produit visible uniquement par le créateur
 flash.product.unmoderate: modération annulée
 flash.product.report: Produit signalé
 flash.product.unreport: Signalement du produit annulé
 flash.registration.success: 'Votre inscription a bien été prise en compte, un mail vous a été envoyé, allez le valider avant de vous connecter'
+flash.user.edit.mail.message: Votre adresse email a bien été mise à jour, veuillez validez la nouvelle adresse pour vous connecter
+flash.user.edit.message: Votre profil a bien été mis à jour
 
 
 form.agree_therms.label:
@@ -107,6 +113,11 @@ form.party.label.location: Adresse
 form.party.label.name: Nom de l'évènement
 form.party.placeholder.search_product: chercher un produit
 form.party.title: Créer un événement
+form.password.current: Mot de passe actuel
+form.password.first_label: Mot de passe
+form.password.new.first_label: Nouveau mot de passe
+form.password.new.second_label: Confirmation du nouveau mot de passe
+form.password.second_label: Confirmation du mot de passe
 form.product.label.name: Nom du produit
 form.product.label.description: Description
 form.product.label.picture: Image
@@ -117,11 +128,12 @@ form.proposition_date.label.starting_at: Date d'arrivée
 form.proposition_date.label.ending_at: Date de fin
 form.proposition_date.label.number_max_participant: Nombre de participants maximum
 form.proposition_date.placeholder.number_max_participant: Pas de maximum
-form.password.first_label: Mot de passe
-form.password.second_label: Confirmation mot de passe
 form.product_party.quantity: quantité
 form.registration.email.label: E-mail
 form.registration.username.label: Nom d'utilisateur
+form.user.email: Email
+form.user.email.caution: Attention, la modification de votre adresse email entrainera votre déconnexion. Vous devrez valider la nouvelle adresse depuis vos mails pour vous reconnecter.
+form.user.username: Nom d'utilisateur
 
 
 home.title: ORGA
@@ -223,3 +235,8 @@ title.party.create: Nouvel événement
 title.product.create: Création produit
 title.register: Inscription
 title.user: Profil
+title.user.edit: Modification profil
+
+user.address: "Adresse :"
+user.email: "Email :"
+user.username: "Nom d'utilisateur :"

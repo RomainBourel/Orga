@@ -7,3 +7,4 @@ user.password.regex_sp: Votre mot de passe doit comporter un caractère spécial
 user.password.regex_int: Votre mot de passe doit comporter un chiffre
 user.password.regex_lowercase: Votre mot de passe doit comporter une lettre minuscule
 user.password.regex_uppercase: Votre mot de passe doit comporter une lettre majuscule
+"There is already an account with this email": "Cet email est déjà utilisé"

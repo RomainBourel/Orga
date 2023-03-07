@@ -22,6 +22,19 @@ class ChangePasswordFormType extends AbstractType
 
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
+        $passwordWording = "form.password.";
+        if ($options['ask_current_password']) {
+            $builder->add('currentPassword', PasswordType::class, [
+                'mapped' => false,
+                'label' => $this->translator->trans('form.password.current'),
+                'constraints' => [
+                    new NotBlank([
+                        'message' => 'user.password.not_blank',
+                    ]),
+                ],
+            ]);
+            $passwordWording = "form.password.new.";
+        }
         $builder
             ->add('plainPassword', RepeatedType::class, [
                 'type' => PasswordType::class,
@@ -31,11 +44,11 @@ class ChangePasswordFormType extends AbstractType
                     ],
                 ],
                 'first_options' => [
-                    'label' => $this->translator->trans('form.password.first_label'),
+                    'label' => $this->translator->trans($passwordWording . 'first_label'),
                     'attr' => ['data-principal' => '1'],
                 ],
                 'second_options' => [
-                    'label' => $this->translator->trans('form.password.second_label'),
+                    'label' => $this->translator->trans($passwordWording . 'second_label'),
                 ],
                 'constraints' => [
                     new NotBlank([
@@ -75,5 +88,10 @@ class ChangePasswordFormType extends AbstractType
     public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([]);
+        $resolver->setDefaults([
+            'ask_current_password' => false,
+        ]);
+
+        $resolver->setAllowedTypes('ask_current_password', 'bool');
     }
 }

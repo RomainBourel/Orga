@@ -73,7 +73,7 @@ class RegistrationController extends AbstractController
     }
 
     #[Route('/send/verify/email', name: 'app_send_verify_email')]
-    public function resendVerifyEmail(Request $request, UserRepository $userRepository, TranslatorInterface $translator): Response
+    public function resendVerifyEmail(Request $request, UserRepository $userRepository): Response
 {
         $user = $userRepository->findOneBy(['email' => $request->get('email')]);
         if (!empty($user)) {
@@ -90,7 +90,9 @@ class RegistrationController extends AbstractController
                 'type' => 'success',
             ]);
         }
-
+        if ($this->getUser()) {
+            return $this->redirectToRoute('logout');
+        }
         return $this->redirectToRoute('login');
     }
 

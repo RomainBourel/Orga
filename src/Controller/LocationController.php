@@ -42,7 +42,7 @@ class LocationController extends AbstractController
             ]);
             return $this->redirectToRoute('user');
         }
-        return $this->renderForm('location/create.html.twig', [
+        return $this->render('location/create.html.twig', [
             'form' => $form,
         ]);
     }
@@ -61,7 +61,7 @@ class LocationController extends AbstractController
             ]);
             return $this->redirectToRoute('user');
         }
-        return $this->renderForm('location/create.html.twig', [
+        return $this->render('location/create.html.twig', [
             'form' => $form,
             'location' => $location,
         ]);
