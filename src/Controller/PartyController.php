@@ -33,6 +33,15 @@ class PartyController extends AbstractController
     }
 
     #[isGranted('ROLE_USER')]
+    #[Route('/party/list', name: 'party_list')]
+    public function list(): Response
+    {
+        return $this->render('party/list.html.twig', [
+            'parties' => array_reverse($this->partyRepository->findNextPartiesByUser($this->getUser(), null, true),)
+        ]);
+    }
+
+    #[isGranted('ROLE_USER')]
     #[Route('/party/create', name: 'party_create')]
     public function create(Request $request, EntityManagerInterface $em, PartyRepository $partyRepository, SluggerInterface $slugger, LocationRepository $locationRepository): Response
     {

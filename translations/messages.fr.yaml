@@ -15,6 +15,7 @@ button.copy.link: Copier le lien
 button.edit: Modifier
 button.party.save.create: Créer l'évènement
 button.party.edit: Mettre à jour l'évènement
+button.party.list: Voir tout mes évènements
 button.party.save.edit: Valider les modifications
 button.party.proposition_date_available: Je suis disponible
 button.party.proposition_date_available.not: Je suis indisponible
@@ -232,6 +233,7 @@ title.location.create: Nouvelle adresse
 title.login: Connexion
 title.party: "événement : "
 title.party.create: Nouvel événement
+title.party.list: Evénement
 title.product.create: Création produit
 title.register: Inscription
 title.user: Profil

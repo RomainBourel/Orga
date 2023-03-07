@@ -85,7 +85,7 @@ class PartyRepository extends ServiceEntityRepository
         return $slug;
     }
 
-    public function findNextPartiesByUser(User $user, ?int $limit = null): array
+    public function findNextPartiesByUser(User $user, ?int $limit = null, $all = false): array
     {
         $qb = $this->createQueryBuilder('p')
             ->join('p.users', 'u')
@@ -95,12 +95,18 @@ class PartyRepository extends ServiceEntityRepository
                 'u = :user',
             ]))
             ->setParameter('user', $user)
-            ->andWhere('pd.startingAt > :today')
+        ;
+        if (!$all) {
+            $qb
+                ->andWhere('pd.startingAt > :today')
+                ->setParameter('today', new \DateTime('today'))
+            ;
+        }
+        $qb
             ->andWhere(new Orx([
                 'pd.finalDate = true',
                 'pd.finalDate is null',
             ]))
-            ->setParameter('today', new \DateTime('today'))
             ->addOrderBy('pd.startingAt', 'ASC')
             ->groupBy('p.id')
         ;

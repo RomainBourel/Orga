@@ -1,0 +1,12 @@
+{% extends "./base.html.twig" %}
+
+{% block title %}{{ parent() }}{{ "title.party.list"|trans }}{% endblock %}
+
+{% block body %}
+    <h1>{{ "title.party.list"|trans }}</h1>
+    <div class="party__reminder">
+        {% for party in parties %}
+            {% include "party/card_reminder.html.twig" %}
+        {% endfor %}
+    </div>
+{% endblock %}
