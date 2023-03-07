@@ -30,40 +30,51 @@ class ProductController extends AbstractController
         $form = $this->createForm(ProductFormType::class, $product);
 
         $form->handleRequest($request);
-        if ($form->isSubmitted() && $form->isValid()) {
-            $product->setUser($this->getUser());
-            $imageFile = $form->get('picture')->getData();
-            if ($imageFile) {
-                $originalFilename = pathinfo($imageFile->getClientOriginalName(), PATHINFO_FILENAME);
-                $safeFilename = $slugger->slug($originalFilename);
-                $newFilename = $safeFilename . '-' . uniqid() . '.' . $imageFile->guessExtension();
+        if ($form->isSubmitted()) {
+            if ($form->isValid()) {
+                $product->setUser($this->getUser());
+                $imageFile = $form->get('picture')->getData();
+                if ($imageFile) {
+                    $originalFilename = pathinfo($imageFile->getClientOriginalName(), PATHINFO_FILENAME);
+                    $safeFilename = $slugger->slug($originalFilename);
+                    $newFilename = $safeFilename . '-' . uniqid() . '.' . $imageFile->guessExtension();
 
-                try {
-                    $imageFile->move(
-                        'uploads',
-                        $newFilename
-                    );
-                } catch (FileException $e) {
-                    // ... handle exception if something happens during file uploads
+                    try {
+                        $imageFile->move(
+                            'uploads',
+                            $newFilename
+                        );
+                    } catch (FileException $e) {
+                        // ... handle exception if something happens during file uploads
+                    }
+                    $product->setPicture($newFilename);
                 }
-                $product->setPicture($newFilename);
+                $slug = $productRepository->findNextSlug($slugger->slug($product->getName()));
+                $product->setSlug($slug);
+                if ($this->isGranted('ROLE_ADMIN')) {
+                    $product->setIsPublished(true);
+                }
+                $em->persist($product);
+                $em->flush();
+                if ($request->isXmlHttpRequest()) {
+                    return $this->json([
+                        'code' => 200,
+                        'response' => [
+                            'id' => $product->getId(),
+                            'name' => $product->getName(),
+                            'unity' => $product->getUnity()->getName(),
+                        ],
+                    ]);
+                }
             }
-            $slug = $productRepository->findNextSlug($slugger->slug($product->getName()));
-            $product->setSlug($slug);
-            if ($this->isGranted('ROLE_ADMIN')) {
-                $product->setIsPublished(true);
-            }
-            $em->persist($product);
-            $em->flush();
             if ($request->isXmlHttpRequest()) {
                 return $this->json([
-                    'code' => 200,
-                    'response' => [
-                        'id' => $product->getId(),
-                        'name' => $product->getName(),
-                        'unity' => $product->getUnity()->getName(),
-                    ],
-                ]);
+                    'code' => 400,
+                    'response' => $this->render('product/create_form.html.twig', [
+                        'form' => $form,
+                        'formType' => 'create',
+                    ]),
+                ], 400);
             }
             return $this->redirectToRoute('home');
         }

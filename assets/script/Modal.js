@@ -3,14 +3,13 @@ export default class Modal {
         this.modal = document.querySelector('#modal');
         this.content = document.querySelector('#modal-content');
         this.openModalButton = document.querySelector(this.modal.dataset.openModalButton);
+        this.closeModalButton = document.querySelector('#modal-close-button');
         this.init(buttonCallback);
     }
 
     init(buttonCallback) {
         this.modal.addEventListener('click', (e) => this.onClickCloseModal(e, this.modal));
-        this.modal.querySelectorAll('button').forEach((button) => {
-            button.addEventListener('click', (e) => this.onClickCloseModal(e, button));
-        });
+        this.closeModalButton.addEventListener('click', (e) => this.onClickCloseModal(e, this.closeModalButton));
         this.openModalButton.addEventListener('click', this.onClickOpenModal);
         this.openModal();
         if (buttonCallback) {
@@ -32,12 +31,12 @@ export default class Modal {
 
     onClickCloseModal = ({target}, elementWhoListen) => {
         if (target === elementWhoListen) {
-            this.closeModal();
+            Modal.closeModal();
         }
     }
 
-    closeModal() {
-        this.modal.classList.remove('modal--open');
-        this.content.classList.add('hidden');
+    static closeModal() {
+        document.querySelector('#modal').classList.remove('modal--open');
+        document.querySelector('#modal-content').classList.add('hidden');
     }
 }

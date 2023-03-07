@@ -1,6 +1,8 @@
 <div id="modal" class="modal" data-open-modal-button="{{ openButton }}">
     <div id="modal-content" class="modal__content hidden">
-        {{ content|raw }}
-        <button id="modal-submit-button" type="button" class="btn btn-secondary btn__modal">Fermer</button>
+        <div id="modal-content--dynamic">
+            {{ content|raw }}
+        </div>
+        <button id="modal-close-button" type="button" class="btn btn-secondary btn__modal">Fermer</button>
     </div>
 </div>

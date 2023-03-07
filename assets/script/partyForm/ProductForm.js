@@ -41,6 +41,15 @@ export default class ProductForm {
         })
             .then(response => response.json())
             .then((data) => {
+                if (400 === data.code) {
+                    const modalContentDynamic = document.querySelector('#modal-content--dynamic');
+                    modalContentDynamic.innerHTML = data.response.content;
+                    const submitButton = modalContentDynamic.querySelector('button[type="submit"]');
+                    submitButton.addEventListener('click', this.onClickCreateProduct);
+                    submitButton.classList.add('btn__modal');
+                    return;
+                }
+                Modal.closeModal();
                 SearchProductBar.search(data.response);
                 this.searchInput.value = '';
             })
