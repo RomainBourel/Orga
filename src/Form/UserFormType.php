@@ -18,7 +18,6 @@ class UserFormType extends AbstractType
 
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
-        dump($options);
         $builder
             ->add('email', EmailType::class, [
                 'label' => $this->translator->trans('form.user.email'),
