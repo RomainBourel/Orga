@@ -76,6 +76,7 @@ error.verified:
   </form>
 
 
+flash.available: Disponibilité prise en compte
 flash.copy.link: Lien copié
 flash.comment.send: Commentaire envoyé
 flash.comment.error: Une erreur s'est produite
@@ -95,6 +96,7 @@ flash.product.unmoderate: modération annulée
 flash.product.report: Produit signalé
 flash.product.unreport: Signalement du produit annulé
 flash.registration.success: 'Votre inscription a bien été prise en compte, un mail vous a été envoyé, allez le valider avant de vous connecter'
+flash.unavailable: Indisponibilité prise en compte
 flash.user.edit.mail.message: Votre adresse email a bien été mise à jour, veuillez validez la nouvelle adresse pour vous connecter
 flash.user.edit.message: Votre profil a bien été mis à jour
 

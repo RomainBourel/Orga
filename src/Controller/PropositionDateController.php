@@ -47,6 +47,7 @@ class PropositionDateController extends AbstractController
                 ->setPropositionDate($propositionDate)
             ;
             $this->em->persist($available);
+            $propositionDate->addAvailable($available);
         }
 
         $this->em->flush();
@@ -54,7 +55,7 @@ class PropositionDateController extends AbstractController
         return [
             'isAvailable' => $isAvailable,
             'flash' => [
-                'message'=> $isAvailable ? 'Disponibilité prise en compte' : 'Indisponibilité prise en compte',
+                'message'=> $isAvailable ? $this->translator->trans('flash.available') : $this->translator->trans('flash.unavailable'),
                 'type' => 'success',
             ],
             'participantText' => $this->translator->trans(

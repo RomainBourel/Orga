@@ -10,7 +10,9 @@
   border-radius: 5% 5% 1% 1%;
   overflow: clip;
   &--double {
+    width: 60vw;
     max-width: 280px;
+    min-width: 230px;
   }
   &__container {
     margin: 4px;
