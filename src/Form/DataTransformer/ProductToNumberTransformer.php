@@ -17,9 +17,9 @@ class ProductToNumberTransformer implements DataTransformerInterface
      * Transforms an object (Product) to a string (productId).
      * @param Product|null $product
      */
-    public function transform($product): ?int
+    public function transform(mixed $product): ?int
     {
-        if (null === $product) {
+        if (!is_object($product) || 'Proxies\__CG__\\' . Product::class !== get_class($product)) {
             return null;
         }
         return $product->getId();
@@ -32,7 +32,7 @@ class ProductToNumberTransformer implements DataTransformerInterface
      */
     public function reverseTransform($productId): ?Product
     {
-        if (!$productId) {
+        if (!is_int($productId)  && !is_string($productId)) {
             return null;
         }
         $product = $this->entityManager->getRepository(Product::class)->find($productId);

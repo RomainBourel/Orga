@@ -63,6 +63,7 @@ class PartyController extends AbstractController
             $party->setCreator($this->getUser())
                 ->setSlug($slug)
             ;
+            $this->managePropositionDate($party, $request->get('party_form')['propositionDates']);
             if (1 === count($party->getPropositionDates())) {
                 $party->setFinalDate($party->getPropositionDates()[0]);
             }
@@ -113,7 +114,7 @@ class PartyController extends AbstractController
                 $party->setSlug($this->partyRepository->findNextSlug($this->slugger->slug($party->getName())));
             }
 
-            $this->manageUpdatePropositionDate($party, $request->get('party_form')['propositionDates'], $oldPropositionDates);
+            $this->managePropositionDate($party, $request->get('party_form')['propositionDates'], $oldPropositionDates);
             $this->removeEmptyProductParty($party);
             $this->addFlash('flash', [
                 'message' => $this->translator->trans('flash.party.create.message'),
@@ -156,7 +157,7 @@ class PartyController extends AbstractController
         return  $party;
     }
 
-    private function manageUpdatePropositionDate(Party $party, array $requestPropositionDate, array $oldPropositionDates): void
+    private function managePropositionDate(Party $party, array $requestPropositionDate, array $oldPropositionDates = []): void
     {
         $isPropositionDateModify = false;
         foreach ($party->getPropositionDates() as $key => $propositionDate) {

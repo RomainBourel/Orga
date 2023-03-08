@@ -17,9 +17,9 @@ class PartyToNumberTransformer implements DataTransformerInterface
      * Transforms an object (Product) to a string (productId).
      * @param Party|null $party
      */
-    public function transform($party): ?string
+    public function transform(mixed $party): ?string
     {
-        if (null === $party) {
+        if (!is_object($party) || 'Proxies\__CG__\\' . Party::class !== get_class($party)) {
             return '';
         }
         return $party->getId();
@@ -30,9 +30,9 @@ class PartyToNumberTransformer implements DataTransformerInterface
      * @param int $partytId
      * @throws TransformationFailedException if object (issue) is not found.
      */
-    public function reverseTransform($partyId): ?Party
+    public function reverseTransform(mixed $partyId): ?Party
     {
-        if (!$partyId) {
+        if (!is_int($partyId) && !is_string($partyId)) {
             return null;
         }
         $party = $this->entityManager->getRepository(Party::class)->find($partyId);

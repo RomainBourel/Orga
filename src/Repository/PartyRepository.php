@@ -5,7 +5,6 @@ namespace App\Repository;
 use App\Entity\Party;
 use App\Entity\User;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
-use Doctrine\ORM\Query\Expr\Andx;
 use Doctrine\ORM\Query\Expr\Orx;
 use Doctrine\Persistence\ManagerRegistry;
 
@@ -70,10 +69,10 @@ class PartyRepository extends ServiceEntityRepository
     public function findNextSlug(string $slug): string
     {
         $result =  $this->createQueryBuilder('p')
-            ->select('p.slug')
+            ->select('p.id, p.slug')
             ->where('p.slug LIKE :slug')
             ->setParameter('slug', $slug.'%')
-            ->orderBy('p.slug', 'DESC')
+            ->orderBy('p.id', 'DESC')
             ->setMaxResults(1)
             ->getQuery()
             ->getOneOrNullResult()
@@ -85,7 +84,7 @@ class PartyRepository extends ServiceEntityRepository
         return $slug;
     }
 
-    public function findNextPartiesByUser(User $user, ?int $limit = null, $all = false): array
+    public function findNextPartiesByUser(User $user, ?int $limit = null, bool $all = false): array
     {
         $qb = $this->createQueryBuilder('p')
             ->join('p.users', 'u')

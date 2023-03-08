@@ -98,7 +98,7 @@ class ProductController extends AbstractController
         }
 
         $response = $this->render('product/search_proposition.html.twig', [
-            'products' => $productRepository->findWith($request->get('q')),
+            'products' => $productRepository->findNameLike($request->get('q')),
         ]);
         return $this->json([
             'response' => $response,

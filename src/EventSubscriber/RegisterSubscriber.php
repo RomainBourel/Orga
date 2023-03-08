@@ -8,13 +8,13 @@ use Symfony\Component\Security\Core\Exception\CustomUserMessageAuthenticationExc
 
 class RegisterSubscriber implements EventSubscriberInterface
 {
-    public static function getSubscribedEvents()
+    public static function getSubscribedEvents(): array
     {
         return [
             AuthenticationSuccessEvent::class => 'onAuthenticationSuccess'
         ];
     }
-    public function onAuthenticationSuccess(AuthenticationSuccessEvent $event)
+    public function onAuthenticationSuccess(AuthenticationSuccessEvent $event): void
     {
         $user = $event->getAuthenticationToken()->getUser();
         if (!$user->isVerified()) {

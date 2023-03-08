@@ -6,7 +6,8 @@ use App\Entity\Product;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\ORM\Query\Expr\Orx;
 use Doctrine\Persistence\ManagerRegistry;
-use Symfony\Component\Security\Core\Security;
+use Symfony\Bundle\SecurityBundle\Security;
+
 
 /**
  * @extends ServiceEntityRepository<Product>
@@ -66,7 +67,7 @@ class ProductRepository extends ServiceEntityRepository
 //        ;
 //    }
 
-    public function findWith(string $value): array
+    public function findNameLike(string $value): array
     {
         return $this->createQueryBuilder('p')
             ->where(new Orx([
@@ -86,10 +87,10 @@ class ProductRepository extends ServiceEntityRepository
     public function findNextSlug(string $slug): string
     {
         $result =  $this->createQueryBuilder('p')
-            ->select('p.slug')
+            ->select('p.id, p.slug')
             ->where('p.slug LIKE :slug')
             ->setParameter('slug', $slug.'%')
-            ->orderBy('p.slug', 'DESC')
+            ->orderBy('p.id', 'DESC')
             ->setMaxResults(1)
             ->getQuery()
             ->getOneOrNullResult()
