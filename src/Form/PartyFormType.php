@@ -40,6 +40,13 @@ class PartyFormType extends AbstractType
                         ->addOrderBy('l.principal', 'DESC',)
                         ->addOrderBy('l.name', 'ASC')
                     ;
+                    //  Example of SQL request that will be generated with userId = 1
+                    //  (I have adding select to see just important information but with dql I don't need to do that because I want to get Party object)
+                    //
+                    //      SELECT name, principal FROM `location`
+                    //      INNER JOIN `user` ON location.user_id = user.id
+                    //      WHERE user.id = 1
+                    //      ORDER BY location.principal DESC, location.name ASC;
                 },
             ])
             ->add('propositionDates', CollectionType::class, [

@@ -116,5 +116,15 @@ class PartyRepository extends ServiceEntityRepository
         return $qb->getQuery()
             ->getResult()
         ;
+//          Example of SQL request that will be generated with userId = 1, without limit and $all = true
+//          (I have adding select to see just important information but with dql I don't need to do that because I want to get Party object)
+//
+//              SELECT party.id, party.name, proposition_date.starting_at  FROM `party`
+//              INNER JOIN `party_user` ON party_user.party_id = party.id
+//              INNER JOIN `user` ON party_user.user_id = user.id
+//              INNER JOIN `proposition_date` ON party.id = proposition_date.party_id
+//              WHERE (party.creator_id = 1 OR user.id = 1) AND (proposition_date.final_date IS true OR proposition_date.final_date IS null)
+//              GROUP BY party.id
+//              ORDER BY proposition_date.starting_at ASC;
     }
 }
