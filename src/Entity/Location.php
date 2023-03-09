@@ -48,7 +48,7 @@ class Location
     #[ORM\Column]
     private ?bool $principal = null;
 
-    #[ORM\OneToMany(mappedBy: 'location', targetEntity: Party::class)]
+    #[ORM\OneToMany(mappedBy: 'location', targetEntity: Party::class, cascade:["persist", "remove"], orphanRemoval: true)]
     private Collection $parties;
 
     public function __construct()
